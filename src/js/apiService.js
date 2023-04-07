@@ -17,7 +17,7 @@ class ApiService {
     async fetchTrandingFilmDay() {    
 
         const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.pageNumber}`;
-        this.#fetchData(queryString); 
+        return this.#fetchData(queryString); 
     }
 
    
@@ -25,7 +25,7 @@ class ApiService {
     async fetchFilmByName() {    
 
         const queryString = `${BASE_URL}search/keyword?api_key=${API_KEY}&query=${this.searchQuery}`;
-        this.#fetchData(queryString); 
+        return this.#fetchData(queryString); 
        
     }
     
@@ -33,14 +33,14 @@ class ApiService {
     async fetchFullInfoByID() {    
 
         const queryString = `${BASE_URL}movie/${this.filmID}?api_key=${API_KEY}`;
-        this.#fetchData(queryString); 
+        return this.#fetchData(queryString); 
     }
 
     // запит трейлера за ID  
      async fetchTrailerByID() {    
 
         const queryString = `${BASE_URL}movie/${this.filmID}/videos?api_key=${API_KEY}`;
-        this.#fetchData(queryString); 
+        return this.#fetchData(queryString); 
     }
 
     async #fetchData(queryString) {
