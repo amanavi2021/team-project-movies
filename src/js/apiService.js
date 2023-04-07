@@ -13,10 +13,10 @@ class ApiService {
      
            }
 
-    // запит  наупопулярніших фільмів дня       
+    // запит  найпопулярніших фільмів дня       
     async fetchTrandingFilmDay() {    
 
-        const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}`;
+        const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.pageNumber}`;
         this.#fetchData(queryString); 
     }
 
