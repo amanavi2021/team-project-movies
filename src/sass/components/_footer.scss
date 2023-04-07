@@ -8,7 +8,6 @@
 
   @media screen and (max-width: calc($tablet - 0.02px)) {
     max-width: 320px;
-    // height: 100px;
 
     padding-top: 29px;
     padding-bottom: 30px;
@@ -19,20 +18,14 @@
     align-items: center;
     justify-content: center;
 
-    width: 768px;
-    // height: 79px;
+    width: $tablet;
 
     padding-top: 30px;
     padding-bottom: 30px;
   }
 
   @media screen and (min-width: $desktop) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 1260px;
-    // height: 77px;
+    width: $desktop;
 
     padding-top: 30px;
     padding-bottom: 28px;
