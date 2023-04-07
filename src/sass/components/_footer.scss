@@ -1,41 +1,41 @@
-.footer {
+.footer__container {
   margin-left: auto;
   margin-right: auto;
 
+  text-align: center;
+
   background-color: #f7f7f7;
 
-  @media screen and (max-width: 767.98px) {
+  @media screen and (max-width: calc($tablet - 0.02px)) {
     max-width: 320px;
-    height: 100px;
+    // height: 100px;
 
     padding-top: 29px;
     padding-bottom: 30px;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1259.98px) {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 768px;
-    height: 79px;
+    // height: 79px;
 
     padding-top: 30px;
     padding-bottom: 30px;
   }
 
-  @media screen and (min-width: 1260px) {
-    width: 1260px;
-    height: 77px;
-
-    padding-top: 30px;
-    padding-bottom: 28px;
-  }
-}
-
-.container {
-  text-align: center;
-
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $desktop) {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 1260px;
+    // height: 77px;
+
+    padding-top: 30px;
+    padding-bottom: 28px;
   }
 }
 
@@ -45,14 +45,14 @@
   letter-spacing: 0.03em;
   color: #545454;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     font-size: 16px;
     line-height: calc(19 / 16);
   }
 }
 
 .footer__text--position {
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     margin-right: 5px;
   }
 }
@@ -62,7 +62,7 @@
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 767.98px) {
+  @media screen and (max-width: calc($tablet - 0.02px)) {
     margin-top: 10px;
   }
 }
@@ -79,6 +79,6 @@
 
   &:hover,
   &:focus {
-    color: #fa3636;
+    color: #bb1010;
   }
 }
