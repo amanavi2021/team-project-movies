@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '837953248391225ae7c8e73f09921895';
+const LOCAL_STORAGE = 'trandingFilmDay'
 
 
 //клас робить HTTP-запит на ресурс і повертає дані (об'єкт)
@@ -45,9 +46,25 @@ class ApiService {
 
     // запит переліку жанрів 
     async fetchGenres(){
-        const queryString =`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`;
+        const queryString =`${BASE_URL}genre/movie/list?api_key=${API_KEY}`;
         return this.#fetchData(queryString); 
     }
+    
+    // збереження результату запиту найпопулярніших фільмів дня в локальну змінну
+    async saveTrandingFilmDayToLocalStorage() {
+        const trandingFilmDay = await this.fetchTrandingFilmDay();
+        localStorage.setItem(LOCAL_STORAGE, JSON.stringify(trandingFilmDay));
+    }
+
+    // отримання збереженного результату запиту найпопулярніших фільмів дня в локальну змінну
+    getTrandingFilmDay() {
+    const savedData = localStorage.getItem(LOCAL_STORAGE) || null;
+    if (savedData) {
+        return JSON.parse(savedData);
+    } else {
+        return null;
+    }
+}
 
     async #fetchData(queryString) {
          try {
@@ -59,9 +76,6 @@ class ApiService {
             throw error;
         }
     };
-
-    
-
 
     incrementPage() {
         this.pageNumber += 1;
