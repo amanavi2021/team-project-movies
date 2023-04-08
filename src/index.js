@@ -23,15 +23,28 @@ const refs = {
 };
 
 async function onLoad() {
-      
+    localStorage.removeItem('trandingFilmDay');
+    
     try {
-        const films = await apiService.fetchTrandingFilmDay(); 
+
+        await apiService.saveTrandingFilmDayToLocalStorage();    
+        const films = apiService.getTrandingFilmDay();
         appendFilmMarkUp(films);
     } catch (error) {
         console.error(error);
     };
-
 }
+
+// async function onLoad() {
+      
+//     try {
+//         const films = await apiService.fetchTrandingFilmDay(); 
+//         appendFilmMarkUp(films);
+//     } catch (error) {
+//         console.error(error);
+//     };
+
+// }
 
 async function appendFilmMarkUp(films) {
     refs.filmsContainer.insertAdjacentHTML('beforeend', await renderFilms(films.results));
