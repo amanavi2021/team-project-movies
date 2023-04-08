@@ -1,5 +1,5 @@
 import apiService from './js/apiService';
-import renderFilms from './js/renderFilms'; 
+import onLoad from './js/onLoad' 
 import {mask} from './js/loader';
 import { toggleModal } from './js/modal';
 
@@ -15,39 +15,5 @@ async function saveGenres() {
   }
 }
 
-// !!!!!!!!!! тест рендеру карток з фільмами 
 
-const refs = {
-  filmsContainer: document.querySelector('.gallery'),
-          
-};
-
-async function onLoad() {
-    localStorage.removeItem('trandingFilmDay');
-    
-    try {
-
-        await apiService.saveTrandingFilmDayToLocalStorage();    
-        const films = apiService.getTrandingFilmDay();
-        appendFilmMarkUp(films);
-    } catch (error) {
-        console.error(error);
-    };
-}
-
-// async function onLoad() {
-      
-//     try {
-//         const films = await apiService.fetchTrandingFilmDay(); 
-//         appendFilmMarkUp(films);
-//     } catch (error) {
-//         console.error(error);
-//     };
-
-// }
-
-async function appendFilmMarkUp(films) {
-    refs.filmsContainer.insertAdjacentHTML('beforeend', await renderFilms(films.results));
-}
-// !!!!!!!!!! тест рендеру карток з фільмами 
 
