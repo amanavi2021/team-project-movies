@@ -1,0 +1,10 @@
+.gallery{
+    display: flex;
+    gap:16px;
+    flex-wrap: wrap;
+
+}
+
+.film-card {
+    flex-basis: calc((100% - 16px * 2)/3);  
+}
