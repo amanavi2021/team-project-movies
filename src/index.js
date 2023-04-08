@@ -5,6 +5,7 @@ import { toggleModal } from './js/modal';
 
 toggleModal();
 saveGenres();
+onLoad();
 
 async function saveGenres() {
   if (!localStorage.getItem('genres')) {
@@ -14,19 +15,14 @@ async function saveGenres() {
   }
 }
 
-
-
 // !!!!!!!!!! тест рендеру карток з фільмами 
 
 const refs = {
-  link: document.querySelector('.button-test'),
   filmsContainer: document.querySelector('.gallery'),
           
 };
 
-refs.link.addEventListener('click', onLinkClick);
-
-async function onLinkClick() {
+async function onLoad() {
       
     try {
         const films = await apiService.fetchTrandingFilmDay(); 
