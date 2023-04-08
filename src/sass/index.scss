@@ -1,6 +1,13 @@
-@import './utils/_variables';
-@import './_common';
+@import './utils/variables';
+@import './common';
+@import './utils/base';
 
 @import './utils/visually-hidden';
 @import './utils/container';
+
+//  СТИЛІ ФУТЕРА
+@import './components/footer';
+
+// СТИЛІ МОДАЛКИ
+@import './components/modal';
 @import './utils/loader';
