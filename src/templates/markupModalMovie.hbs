@@ -1,29 +1,4 @@
-import markupModalMovie from '../templates/markupModalMovie.hbs';
-import apiService from './apiService';
-
-export function toggleModal() {
-  const refs = {
-    openModal: document.querySelector('[data-modal-open]'),
-    closeModal: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
-    testbtn: document.querySelector('.button-movie'),
-    filmInfo: document.querySelector('.film-info__wrap'),
-  };
-
-  refs.openModal.addEventListener('click', toggleModal);
-  refs.closeModal.addEventListener('click', toggleModal);
-  refs.testbtn.addEventListener('click', toggleModal);
-
-  function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
-    renderList();
-  }
-}
-
-function renderList(data) {
-
- const markupList =
-       `<div class="thumb">
+<div class="thumb">
     <img class="modal__image" src='{{curFilm.poster_path}}' alt="" />
 </div>
 <div class="content__text">
@@ -72,9 +47,4 @@ function renderList(data) {
             <button type='submit' class='button-modal button-modal--trailer' id='trailer'>Trailer</button>
         </li>
     </ul>
-</div>`;
-    refs.filmInfo.insertAdjacentHTML(`beforeend`, markupList);
-    }
-    
-
-
+</div>
