@@ -1,5 +1,6 @@
 import apiService from './js/apiService';
 import renderFilms from './js/renderFilms'; 
+import {mask} from './js/loader';
 import { toggleModal } from './js/modal';
 
 toggleModal();
