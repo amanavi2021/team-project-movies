@@ -1,5 +1,5 @@
-import apiService from './apiService'
-import renderFilms from './renderFilms';
+import apiService from './apiservice'
+import renderFilms from './renderfilms';
 
 export default async function onLoad() {
     const refs = {

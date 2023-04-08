@@ -1,5 +1,5 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
-import apiService from './apiService';
+import apiService from './apiservice';
 
 export default async function renderFilms(films) {
 
