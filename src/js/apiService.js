@@ -43,6 +43,12 @@ class ApiService {
         return this.#fetchData(queryString); 
     }
 
+    // запит переліку жанрів 
+    async fetchGenres(){
+        const queryString =`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`;
+        return this.#fetchData(queryString); 
+    }
+
     async #fetchData(queryString) {
          try {
             const response = await axios.get(queryString);
@@ -54,10 +60,7 @@ class ApiService {
         }
     };
 
-    async fetchGenres(){
-        const queryString =`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`;
-        return this.#fetchData(queryString); 
-    }
+    
 
 
     incrementPage() {

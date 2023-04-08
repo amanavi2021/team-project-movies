@@ -1,0 +1,25 @@
+<div class="film-card">
+
+    <img class="film-card__small-image" src="https://image.tmdb.org/t/p/w500/{{backdrop_path}}" alt="{{title}}"
+        loading="lazy" />
+
+    <div class="info">
+        <p class="info__title">
+            {{#if title}}
+            {{title}}
+            {{/if}}
+        </p>
+        <div class="info__genre-year">
+            <p class="info__genre">
+                {{#if genreList}}
+                {{genreList}}
+                {{/if}}
+            </p>
+            <p class="info__year">
+                {{#if year}}
+                {{year}}
+                {{/if}}
+            </p>
+        </div>
+    </div>
+</div>
