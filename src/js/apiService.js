@@ -54,6 +54,11 @@ class ApiService {
         }
     };
 
+    async fetchGenres(){
+        const queryString =`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`;
+        return this.#fetchData(queryString); 
+    }
+
 
     incrementPage() {
         this.pageNumber += 1;
