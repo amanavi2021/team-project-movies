@@ -10,6 +10,13 @@
 
 // СТИЛІ МОДАЛКИ
 @import './components/modal';
+<<<<<<< Updated upstream
 
 //СТИЛІ КАРТКИ З ВІДЕО 
 @import './components/film-card';
+=======
+@import './utils/loader';
+
+// СТИЛІ КАРТКИ ФІЛЬМУ
+@import './components/film-card'
+>>>>>>> Stashed changes

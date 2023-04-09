@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .films {
 &__list {
     display: flex;
@@ -118,3 +119,72 @@
     letter-spacing: 0.03em;
 }
 }
+=======
+.film-card {
+    margin-top: 20px;
+    width: 280px;      
+    
+    @media screen and (min-width:768px) and (max-width:1199px) {
+        width: 336px;
+        margin-top: 30px;   
+    }
+
+    @media screen and (min-width:1200px) {
+        width: 395px;
+        margin-top: 30px;
+    }
+
+    &__small-image{
+        width: 280px;
+        margin: 0;
+        @media screen and (min-width:768px) and (max-width:1199px) {
+            width: 335px;
+            height: 455px;
+        }
+        @media screen and (min-width:1200px) {
+            width: 395px;
+            height: 575px;
+        }
+    }
+        .info {
+        display: block;
+        margin-left: 0;
+        margin-top: 10px;
+       
+        &__title{
+            font-size: 12px;
+            line-height: 1.33;
+            text-transform: uppercase;
+            color: #000000;
+            @media screen and (min-width:1200px) {
+                font-size: 20px;
+                line-height: 1.2;
+            }
+        }
+        
+        &__genre-year{
+            display: flex;
+        }
+        
+        &__genre{
+        color: #B92F2C;
+        font-size: 12px;
+        line-height: 1.17;
+        @media screen and (min-width:1200px) {
+            font-size: 20px;
+            line-height: 1.2;
+        }
+        }
+        
+        &__year{
+            margin-left: 3px;
+            font-size: 12px;
+            line-height: 1.17;
+            @media screen and (min-width:1200px) {
+                font-size: 20px;
+                line-height: 1.2;
+            }
+        }   
+    }
+  }
+>>>>>>> Stashed changes
