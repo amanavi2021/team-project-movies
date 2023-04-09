@@ -7,19 +7,19 @@ import localStore from './service/localstorage'
 export default async function renderFilms(films) {
 
   await apiService.saveGenresToLocalStorage();
-  const genres =localStore.load('genres');
+  const genres = localStore.load('genres') || [] ;
  
   return films.map(({ poster_path, title, genre_ids, release_date }) => {
-    if (poster_path != null) {
-    const date = new Date(release_date);
-    const year = date.getFullYear();
+    if (poster_path !== null) {
+      const date = new Date(release_date);
+      const year = date.getFullYear();
        
-    let genreList = genre_ids.map((genreId) => {
-      const genre = genres.find((g) => g.id === genreId);
-      return genre.name;
-    });
+      let genreList = genre_ids.map((genreId) => {
+          const genre = genres.find((g) => g.id === genreId);
+          return genre.name;
+        });
 
-    if (genreList.length > 2) {
+    if (genreList.length > 2 || genre_ids.length === 0) {
       genreList = genreList.slice(0, 2);
       genreList.push('Other');
     };
