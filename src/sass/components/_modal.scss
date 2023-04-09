@@ -61,8 +61,10 @@
   }
 
   @media screen and (min-width: $tablet) and (max-width: calc($desktop - 0.02px)) {
+    padding-top: 40px;
     padding-left: 36px;
-    padding-right: 36px;
+    padding-right: 72px;
+    padding-bottom: 64px;
 
     width: 704px;
     height: 552px;
@@ -71,8 +73,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 40px 12px;
 
     width: 806px;
     min-height: 558px;
@@ -200,7 +201,7 @@
   line-height: 16px;
 }
 
-.info-item__highlight-orange {
+.info-item__highlight-red {
   background-color: #b92f2c;
   border-radius: 5px;
   padding: 1px 9px;
