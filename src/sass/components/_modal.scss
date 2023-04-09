@@ -12,6 +12,10 @@
   transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  @media screen and (max-width: calc($tablet - 0.02px)) {
+    overflow-y: scroll;
+  }
+
   &.is-hidden {
     visibility: hidden;
     opacity: 0;
@@ -29,11 +33,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-
+  overflow: auto;
   padding-top: 40px;
   padding-bottom: 40px;
-  padding-right:20px;
-  padding-left:20px;
+  padding-right: 20px;
+  padding-left: 20px;
 
   background-color: #ffffff;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -90,13 +94,94 @@
   background-color: transparent;
 }
 
-/////
+///// style for 1 card modal
 .wrap-modal {
   display: flex;
 }
 
+.film-info__wrap {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+  }
+}
+
+.modal__title {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-transform: uppercase;
+}
+
+.content__text {
+  margin-top: 30px;
+  width: 240px;
+}
+
+
+
+.film-card__info-list {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.film-card__info-el {
+  display: flex;
+}
+
+.film-card__info-item {
+  width: 40%;
+  color: #8c8c8c;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  line-height: 1.33333;
+}
+
+.film-card__info-item--value {
+  width: 60%;
+  color: #000;
+  line-height: 1.3333;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.info-item__highlight-orange {
+  background-color: #B92F2C;
+  border-radius: 5px;
+  padding: 1px 9px;
+}
+
+.info-item__highlight-grey {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 1px 4px;
+}
+
+.film-card__title {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.33333;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3333;
+}
+
+.film-card__overview {
+  color: #000;
+  font-size: 12px;
+  line-height: 1.66667;
+  font-weight: 500;
+}
+
+
 
 .list-buttons {
+  gap: 4px;
   display: flex;
   align-content: center;
   flex-wrap: wrap;
@@ -104,10 +189,17 @@
   justify-content: center;
 }
 
-.modal__content{
-  @media screen and (min-width: $tablet) {
-      display: flex
-    }
-  
-}
+.button-list {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 14px;
+  gap: 10px;
 
+  width: 111px;
+  height: 34px;
+
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 100px;
+}
