@@ -77,9 +77,20 @@
         }
 
         &__title {
-            font-size: 32;
+            font-size: 32px;
             line-height: calc(38/32);
+            font-weight: 500;
             color:#FFFFFF;
+            @media screen and (min-width: $tablet) {
+                font-size: 40px;
+                line-height: calc(47/40);
+                
+            }
+    
+            @media screen and (min-width: $desktop) {
+                font-size: 64px;
+                line-height: calc(75/64);
+        }
         }
 
         &__nav {
@@ -91,15 +102,32 @@
             gap:4px;
             justify-content: center;
         }
+
+        &__logo {
+            width: 32px;
+            height: 32px;
+
+            @media screen and (min-width: $tablet) {
+              
+                width: 40px;
+                height: 40px;
+            }
+    
+            @media screen and (min-width: $desktop) {
+                width: 59px;
+                height: 59px;
+
+        }
+    }
     }
 
-    logo{
+    .logo{
         display: flex;
-        align-items: baseline;
+        align-items: center;
         gap:8px;
     }
 
-    .btn {
+    .nav__link {
         
             display: flex;
             align-items: center;
@@ -124,6 +152,35 @@
             background-color: #000000;
             text-transform: uppercase;
     }
+
+    .btn{
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 100px;
+        padding: 10px 26px;
+        box-sizing: border-box;
+      
+        // width: 87px;
+        height: 34px;
+      
+        font-family: $mainFont;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: calc(14 / 12);
+        letter-spacing: 0em;
+        text-align: center;
+        cursor: pointer;
+        color: #FFFFFF;
+        background-color: #000000;
+        text-transform: uppercase;
+}
+
+
+
 
 .search__button {
     height: 16px;
