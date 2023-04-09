@@ -1,10 +1,11 @@
-import markupTpl from '../templates/markupFilmMainPage.hbs';
-import apiService from './apiService';
+import markupTpl from '../templates/markupfilmmainpage.hbs';
+import apiService from './apiservice';
+import localStore from './service/localstorage'
 
 export default async function renderFilms(films) {
 
   await apiService.saveGenresToLocalStorage();
-  const genres = JSON.parse(localStorage.getItem('genres'));
+  const genres =localStore.load('genres');
  
   return films.map(({ poster_path, title, genre_ids, release_date }) => {
     const date = new Date(release_date);
