@@ -1,39 +1,37 @@
-import markupModalMovie from '../templates/markupModalMovie.hbs';
-import apiService from './apiService';
-
 export function toggleModal() {
   const refs = {
     openModal: document.querySelector('[data-modal-open]'),
     closeModal: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
-    filmClick: document.querySelector('.gallery'),
-    filmInfo: document.querySelector('.film-info__wrap'),
   };
 
-  function renderList() {
-    refs.filmInfo.insertAdjacentHTML(`beforeend`, markupModalMovie());
-  }
-
-  refs.openModal.addEventListener('click', toggleModal);
-  refs.closeModal.addEventListener('click', toggleModal);
-  refs.filmClick.addEventListener('click', onClickOpen);
-  refs.closeModal.addEventListener('click', onClickClose);
-
-  function onClickOpen() {
+  function openModal() {
     refs.modal.classList.remove('is-hidden');
-    renderList();
+    window.addEventListener('keydown', closeModalOnEsc);
+    refs.modal.addEventListener('click', closeModalOnClickOutside);
   }
 
-  function onClickClose() {
+  function closeModal() {
     refs.modal.classList.add('is-hidden');
-    clearModalMovie(refs.filmInfo);
+    window.removeEventListener('keydown', closeModalOnEsc); 
+    refs.modal.removeEventListener('click', closeModalOnClickOutside); 
   }
 
-  function toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
+  function closeModalOnEsc(event) {
+    if (event.code === 'Escape') {
+      closeModal();
+    }
   }
 
-  function clearModalMovie(ref) {
-    ref.innerHTML = '';
+  function closeModalOnClickOutside(event) {
+    if (event.target === refs.modal) {
+      closeModal();
+    }
   }
+
+  refs.openModal.addEventListener('click', openModal);
+  refs.closeModal.addEventListener('click', closeModal);
 }
+
+
+toggleModal();

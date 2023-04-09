@@ -5,6 +5,9 @@
 @import './utils/visually-hidden';
 @import './utils/container';
 
+//CТИЛІ ХЕДЕРА
+@import './utils/header';
+
 //  СТИЛІ ФУТЕРА
 @import './components/footer';
 
@@ -14,3 +17,10 @@
 
 // СТИЛІ ГАЛЕРЕЇ
 @import './utils/gallery';
+
+// СТИЛІ ПАГІНАЦІЇ
+@import './pagination';
+
+// СТИЛІ УЧАСНИКІВ КОМАНДИ
+@import './components/team';
+

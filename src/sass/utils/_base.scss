@@ -1,8 +1,10 @@
 body{
   font-family: $mainFont;
   font-size: 14px;
+  background-color: #FFFFFF;
+  scroll-behavior: smooth;
+  background-attachment: fixed;
 }
-
 
 // reset styles
 h1,

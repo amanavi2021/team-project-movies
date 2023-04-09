@@ -1,19 +1,16 @@
-import apiService from './js/apiService';
+import pageHeaderAutoSize from './js/service/pageheaderautosize';
 import onLoad from './js/onLoad' 
 import {mask} from './js/loader';
-import { toggleModal } from './js/modal';
+import { paginationFeach } from './js/pagination';
+import * as teamModal from './js/team-members';
+// import * as toggleModal from './js/modal';
 
-toggleModal();
-saveGenres();
-onLoad();
+// pageHeaderAutoSize()
+// toggleModal();
+// saveGenres();
 
-async function saveGenres() {
-  if (!localStorage.getItem('genres')) {
-    const fetchedGenres = await apiService.fetchGenres();
-    const genres = fetchedGenres.genres;
-    localStorage.setItem('genres', JSON.stringify(genres));
-  }
-}
+paginationFeach();
 
 
-
+//onLoad();
+import searchByName from './js/searchByName';
