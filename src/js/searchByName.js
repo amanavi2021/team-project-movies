@@ -5,9 +5,9 @@ import renderFilms from './renderFilms';
 
 
 
-const formRef = document.querySelector('.search-form');
+const formRef = document.querySelector('#search-form');
 const containerRef = document.querySelector('.gallery');
-const BtnRef = document.querySelector('button');
+const BtnRef = document.querySelector('.search__button');
 
 formRef.addEventListener('submit', onClick);
 
@@ -34,6 +34,7 @@ try {
 } catch (error) {
  console.error (error)
 }
+formRef.reset();
 }
 
 function renderMoviesByName (movies) {
