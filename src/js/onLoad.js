@@ -1,4 +1,4 @@
-import apiService from './apiservice'
+import apiService from './apiService'
 import renderFilms from './renderfilms';
 
 export default async function onLoad() {
