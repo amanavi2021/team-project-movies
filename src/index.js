@@ -10,5 +10,5 @@ saveGenres();
 paginationFeach();
 
 
-onLoad();
+//onLoad();
 import searchByName from './js/searchByName';
