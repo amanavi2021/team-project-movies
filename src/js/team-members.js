@@ -54,11 +54,11 @@ const teamMembers = [
       'https://media.licdn.com/dms/image/C4D03AQE9yuFbOvfwpA/profile-displayphoto-shrink_200_200/0/1610811042896?e=1686182400&v=beta&t=rLrvi32cplyT9SpnZcs-BwokiyGAhtGerj1d7gsuUHw',
   },
   {
-    name: '',
+    name: 'Anatolii Matsakov',
     role: 'Developer',
-    github: '',
-    linkedin: '',
-    photo: '',
+    github: 'https://github.com/WipeRrr',
+    linkedin: 'https://www.linkedin.com/in/anatoliy-matsakov-85b934261/',
+    photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04GHU608EP-fed049334141-512',
   },
   {
     name: '',
