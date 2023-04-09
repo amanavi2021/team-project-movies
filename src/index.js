@@ -4,7 +4,7 @@ import { toggleModal } from './js/modal';
 toggleModal();
 onLoad();
 
-
+import searchByName from './js/searchByName'
 
 
 
