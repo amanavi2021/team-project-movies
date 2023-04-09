@@ -43,20 +43,33 @@
 
   // СТОСОВНО ШИРИНИ І ВИСОТИ ТРЕБА БУДЕ ДИВИТИСЬ КОЛИ БУДЕ ШАБЛОН КАРТКИ ФІЛЬМУ І СПИСОК КОМАНДИ
   @media screen and (max-width: calc($tablet - 0.02px)) {
+    padding-left: 20px;
+    padding-right: 20px;
+
     width: 100%;
 
-    max-width: $mobile;
-    min-height: 609px;
+    max-width: 280px;
+    height: 100vh;
+
+    overflow-y: scroll;
   }
 
-  @media screen and (min-width: $tablet) {
-    width: $tablet;
-    min-height: 581px;
+  @media screen and (min-width: $tablet) and (max-width: calc($desktop - 0.02px)) {
+    padding-left: 36px;
+    padding-right: 36px;
+
+    width: 704px;
+    height: 552px;
+
+    overflow-y: scroll;
   }
 
   @media screen and (min-width: $desktop) {
-    width: $desktop;
-    min-height: 581px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    width: 806px;
+    min-height: 558px;
   }
 }
 // ------------------------------------------------------------------------------------------------

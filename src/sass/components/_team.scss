@@ -1,0 +1,81 @@
+.team-list {
+  list-style: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+
+  @media screen and (max-width: calc($tablet - 0.02px)) {
+    gap: 10px;
+    justify-content: space-around;
+  }
+
+  @media screen and (min-width: $tablet) and (max-width: calc($desktop - 0.02px)) {
+    justify-content: space-around;
+  }
+}
+
+.member__card {
+  flex-basis: calc((100% - 10px) / 2);
+
+  @media screen and (min-width: $tablet) {
+    flex-basis: calc((100% - 15px) / 5);
+  }
+
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc((100% - 15px) / 5);
+  }
+}
+
+.member__thumb {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 90px;
+  height: 90px;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.member__info {
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.member__role {
+  font-size: 12px;
+  color: #bb1010;
+}
+
+.member__name {
+  font-size: 14px;
+
+  font-weight: 700;
+}
+.member__link-git {
+  padding-right: 3px;
+  border-right: 1px solid #bb1010;
+}
+
+.member__link {
+  color: #545454;
+  font-size: 12px;
+
+  &:hover,
+  &:focus {
+    color: #bb1010;
+  }
+}
