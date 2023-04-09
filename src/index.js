@@ -1,10 +1,16 @@
-import onLoad from './js/onload' 
+import pageHeaderAutoSize from './js/service/pageheaderautosize';
+import onLoad from './js/onLoad' 
 import {mask} from './js/loader';
-import { toggleModal } from './js/modal';
-toggleModal();
-onLoad();
+import { paginationFeach } from './js/pagination';
+import * as teamModal from './js/team-members';
+// import * as toggleModal from './js/modal';
 
-import searchByName from './js/searchByName'
+pageHeaderAutoSize()
+// toggleModal();
+// saveGenres();
+
+paginationFeach();
 
 
-
+//onLoad();
+import searchByName from './js/searchByName';
