@@ -4,3 +4,4 @@ import * as teamModal from './js/team-members';
 // import * as toggleModal from './js/modal';
 
 onLoad();
+import searchByName from './js/searchByName';

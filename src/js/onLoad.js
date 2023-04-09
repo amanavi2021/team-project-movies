@@ -13,6 +13,7 @@ export default async function onLoad() {
 
         await apiService.saveTrandingFilmDayToLocalStorage();    
         const films = apiService.getTrandingFilmDay();
+        console.log('films onload', films);
         refs.filmsContainer.insertAdjacentHTML('beforeend', await renderFilms(films.results));
     } catch (error) {
         console.error(error);
