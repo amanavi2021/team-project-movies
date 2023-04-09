@@ -1,5 +1,5 @@
 import markupTpl from '../templates/markupfilmmainpage.hbs';
-import apiService from './apiservice';
+import apiService from './apiService';
 import localStore from './service/localstorage'
 
 
