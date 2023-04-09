@@ -5,7 +5,7 @@ import { paginationFeach } from './js/pagination';
 import * as teamModal from './js/team-members';
 // import * as toggleModal from './js/modal';
 
-pageHeaderAutoSize()
+// pageHeaderAutoSize()
 // toggleModal();
 // saveGenres();
 
