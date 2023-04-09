@@ -1,10 +1,91 @@
-.gallery{
-    display: flex;
-    gap:16px;
-    flex-wrap: wrap;
+.gallery {
+    @media screen and (min-width: $tablet) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 32px;
+    }
 
-}
+    @media screen and (min-width: $desktop) {
+        grid-column-gap: 16px;
+        grid-row-gap: 32px;
+    }}
 
 .film-card {
-    flex-basis: calc((100% - 16px * 2)/3);  
+    @media screen and (max-width: calc($tablet - 0.02px)) {
+        margin-top: 20px;
+    }
+
+       /* animation */
+
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    transform-origin: 50% 0;
+    transform: perspective(800px) rotateX(0deg) translateZ(0);
+
+    &:hover {
+        transform: perspective(800px) rotateX(2deg) translate3d(0, -9px, 2px);
+         }
 }
+
+.film-card__small-image {
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+
+    @media screen and (min-width: $tablet) {
+        height: 455px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        height: 574px;
+    }
+}
+    
+.info {
+    margin-top: 10px;
+        @media screen and (min-width: $tablet) {
+            margin-top: 8px;
+        }
+    
+        @media screen and (min-width: $desktop) {
+            margin-top: 12px;
+        }
+
+    font-family: $mainFont;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.info__title {
+
+    line-height: 1.17;
+    text-transform: uppercase;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    @media screen and (min-width: $tablet) {
+        line-height: 1.33;
+    }
+    
+    @media screen and (min-width: $desktop) {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
+.info__genre-year {
+    display: flex;
+    line-height: 1.33;
+    color: #B92F2C;
+
+    @media screen and (min-width: $desktop) {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+}
+
+

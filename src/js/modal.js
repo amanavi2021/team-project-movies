@@ -32,3 +32,7 @@ export function toggleModal() {
   refs.openModal.addEventListener('click', openModal);
   refs.closeModal.addEventListener('click', closeModal);
 }
+
+}
+toggleModal();
+

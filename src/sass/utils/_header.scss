@@ -1,0 +1,124 @@
+// html {
+//     box-sizing: border-box;
+//   }
+//   *,
+//   *::before,
+//   *::after {
+//     box-sizing: inherit;
+//   }
+//   ul {
+//       list-style: none;
+//       padding: 0;
+//       margin: 0;
+//     }
+    // header {
+    //   background-color: red;
+    //   }
+  .search {
+  width: 252px;
+  height: 34px;
+  background-color:  #FFFFFF;
+  border-radius: 100px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-right: 16px;
+  padding-left: 16px;
+  margin-top: 8px;
+//   position: relative;
+  display: flex;
+  justify-content: space-between;
+  }
+  .search__input {
+      width: 84px;
+      height: 16px;
+      border: none;
+  outline: none;
+      color: #000000;
+      font-size: 14px;
+  }
+  input::placeholder {
+      color: #000000;
+      font-size: 14px;
+      line-height: 1.14;
+      font-weight: 400;
+    }
+
+    .header{
+        &__container{
+        background-image: url('../images/hero-mobile.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 15px;
+        margin-top: 20px;
+        height:460px;
+        padding: 14px;
+
+        margin-left: auto;
+        margin-right: auto;
+        
+
+        @media screen and (min-width: $tablet) {
+            background-image: url('../images/hero-tablet.jpg');
+            margin-top: 32px;
+            height:222px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            background-image: url('../images/hero-desktop.jpg');
+            height:316px;
+        }
+
+        }
+
+        &__title {
+            font-size: 32;
+            line-height: calc(38/32);
+            color:#FFFFFF;
+        }
+
+        &__nav {
+            display: flex;
+            gap:4px;
+        }
+        &__buttons-library{
+            display: flex;
+            gap:4px;
+            justify-content: center;
+        }
+    }
+
+    logo{
+        display: flex;
+        align-items: baseline;
+        gap:8px;
+    }
+
+    .btn {
+        
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 0;
+            border-radius: 100px;
+            padding: 10px 26px;
+            box-sizing: border-box;
+          
+            // width: 87px;
+            height: 34px;
+          
+            font-family: $mainFont;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: calc(14 / 12);
+            letter-spacing: 0em;
+            text-align: center;
+            cursor: pointer;
+            color: #FFFFFF;
+            background-color: #000000;
+            text-transform: uppercase;
+    }
+
+.search__button {
+    height: 16px;
+}
