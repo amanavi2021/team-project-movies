@@ -81,7 +81,7 @@ class ApiService {
             const data = await response.data;
             return data;
         } catch (error) {
-            console.error('Get state error: ', error.message);
+            throw Error;
         }
     };
 
