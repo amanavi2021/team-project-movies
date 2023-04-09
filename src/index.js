@@ -6,8 +6,8 @@ import * as teamModal from './js/team-members';
 // import * as toggleModal from './js/modal';
 
 pageHeaderAutoSize()
-// toggleModal();
-// saveGenres();
+toggleModal();
+saveGenres();
 paginationFeach();
 
 
