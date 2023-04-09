@@ -1,10 +1,7 @@
-import onLoad from './js/onLoad' 
-import {mask} from './js/loader';
-import { toggleModal } from './js/modal';
-toggleModal();
+import onLoad from './js/onLoad';
+import { mask } from './js/loader';
+import * as teamModal from './js/team-members';
+// import * as toggleModal from './js/modal';
+
 onLoad();
-
-import searchByName from './js/searchByName'
-
-
-
+import searchByName from './js/searchByName';
