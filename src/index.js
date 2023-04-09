@@ -8,6 +8,7 @@ import * as teamModal from './js/team-members';
 pageHeaderAutoSize()
 // toggleModal();
 // saveGenres();
+
 paginationFeach();
 
 
