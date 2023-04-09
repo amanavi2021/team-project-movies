@@ -14,27 +14,121 @@
     // header {
     //   background-color: red;
     //   }
-  .search {
-  width: 252px;
-  height: 34px;
-  background-color:  #FFFFFF;
-  border-radius: 100px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-right: 16px;
-  padding-left: 16px;
-  margin-top: 8px;
-//   position: relative;
-  display: flex;
-  justify-content: space-between;
+
+  .search__params {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+   
+
+    @media screen and (min-width: $tablet) {
+        flex-wrap: nowrap;
+        margin-left:0;
+        margin-right:0;
+
+    }
+
+    // @media screen and (min-width: $desktop) {
+    //   
+    // }
+
   }
+  .search__navi {
+    display: flex;
+    gap:8px;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: $tablet) {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin-left:0;
+        margin-right:0;
+
+    }
+  }
+
+
+  .search {
+    width: 252px;
+    height: 34px;
+    background-color:  #FFFFFF;
+    border-radius: 100px;
+    margin-top: 8px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    
+    @media screen and (min-width: $tablet) {
+        width: 165px;
+        height: 38px;
+
+    }
+
+    @media screen and (min-width: $desktop) {
+        width: 187px;
+        height: 42px;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 100px;
+        background-color: #FFFFFF;
+        box-sizing: border-box;
+    
+        height: 34px;
+        width: 34px;
+        @media screen and (min-width: $tablet) {
+            height: 38px;
+            width: 38px;
+    
+        }
+    
+        @media screen and (min-width: $desktop) {
+            height: 42px;
+            width: 42px;
+        }
+
+    }
+    
+    &__icon {
+        width: 14px;
+        height: 14px;
+
+        @media screen and (min-width: $tablet) {
+            width: 16px;
+            height: 16px;
+        }
+
+    }
+}
+
+
   .search__input {
-      width: 84px;
-      height: 16px;
+    //   width: 84px;
+    //   height: 16px;
+      padding-left: 14px;
       border: none;
-  outline: none;
+      outline: none;
       color: #000000;
+      font-size: 12px;
+      line-height: calc(14/12);
+      border-radius: 100px;
+
+      @media screen and (min-width: $tablet) {
       font-size: 14px;
+      line-height: calc(16/14);
+      width:100px;
+    }
+
   }
   input::placeholder {
       color: #000000;
@@ -60,18 +154,19 @@
         padding: 14px;
 
         margin-left: auto;
-        margin-right: auto;
-        
+        margin-right: auto;     
 
         @media screen and (min-width: $tablet) {
             background-image: url('../images/hero-tablet.jpg');
             margin-top: 32px;
             height:222px;
+            padding: 16px;
         }
 
         @media screen and (min-width: $desktop) {
             background-image: url('../images/hero-desktop.jpg');
             height:316px;
+            padding: 16px 32px;
         }
 
         }
@@ -125,6 +220,16 @@
         display: flex;
         align-items: center;
         gap:8px;
+        @media screen and (min-width: $tablet) {
+              
+        margin-top: 105px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            margin-top: 151px;
+
+    }
+
     }
 
     .nav__link {
@@ -148,10 +253,24 @@
             letter-spacing: 0em;
             text-align: center;
             cursor: pointer;
-            color: #FFFFFF;
-            background-color: #000000;
+            color: #000000;
+            background-color: #FFFFFF;
             text-transform: uppercase;
+            
+            &--current{
+                color: #FFFFFF;
+                background-color: #000000;
+            }
+
+            @media screen and (min-width: $tablet) {
+                height: 38px;
+            }
+    
+            @media screen and (min-width: $desktop) {
+                height: 42px;
+            }
     }
+
 
     .btn{
         
@@ -174,14 +293,20 @@
         letter-spacing: 0em;
         text-align: center;
         cursor: pointer;
-        color: #FFFFFF;
-        background-color: #000000;
+        color: $accentColor;
+        background-color: #FFFFFF;
         text-transform: uppercase;
-}
 
+        &--active{
+            color: #FFFFFF;
+            background-color: $accentColor;
+        }
 
+        @media screen and (min-width: $tablet) {
+            height: 38px;
+        }
 
-
-.search__button {
-    height: 16px;
+        @media screen and (min-width: $desktop) {
+            height: 42px;
+        }
 }

@@ -1,6 +1,17 @@
 <header class="header">
   <div class="container header__container">
       
+      
+        <div class ='search__params'> 
+         <div class ='search__navi'> 
+<form class="search" id="search-form">
+          <input class="search__input" type="text" name="searchQuery" placeholder = 'Movie Search' autocomplete="off" />
+          <button type="submit" class="search__button">
+            <svg width= "14" height = "14" class="search__button-icon search__icon">
+              <use href="./images/symbol-defs.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
         <nav class="nav">
           <ul class="header__nav">
             <li class="nav_item">
@@ -11,23 +22,19 @@
             </li>
           </ul>
         </nav>
-        <form class="search" id="search-form">
-          <input class="search__input" type="text" name="searchQuery" placeholder = 'Movie Search' autocomplete="off" />
-          <button type="submit" class="search__button">
-            <svg width= "16" height = "16" class="search__button-icon search-icon">
-              <use href="./images/symbol-defs.svg#icon-search"></use>
-            </svg>
-          </button>
-        </form>
+         </div>
         <div class="header__buttons-library">
-          <button class="library-btn library-btn_watched btn">Watched</button>
-          <button class="library-btn library-btn_queue btn" >Queue</button>
+          <button class="library-btn btn">Watched</button>
+          <button class="library-btn btn btn--active">Queue</button>
         </div>
+      </div>
+
         <a href="#" class="logo">
           <svg class="header__logo logo__animation" width="32px" height="32px">
             <use href="./images/symbol-defs.svg#icon-film"></use>
           </svg>
            <span class="header__title">Filmoteka</span>
-        </a>
+        </a>      
+
   </div>
 </header>
