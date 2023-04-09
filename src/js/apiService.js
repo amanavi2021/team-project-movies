@@ -26,7 +26,8 @@ class ApiService {
     // запит фільма за ключовим словом 
     async fetchFilmByName() {    
 
-        const queryString = `${BASE_URL}search/keyword?api_key=${API_KEY}&query=${this.searchQuery}`;
+        // const queryString = `${BASE_URL}search/keyword?api_key=${API_KEY}&query=${this.searchQuery}`;
+        const queryString = `${BASE_URL}/search/movie?api_key=${API_KEY}&page=${this.pageNumber}&query=${this.searchQuery}`;
         return this.#fetchData(queryString); 
        
     }
@@ -89,6 +90,8 @@ class ApiService {
         }
     };
 
+
+   
     incrementPage() {
         this.pageNumber += 1;
     }

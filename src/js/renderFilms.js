@@ -1,6 +1,7 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
 import apiService from './apiService';
 
+
 export default async function renderFilms(films) {
 
   await apiService.saveGenresToLocalStorage();
