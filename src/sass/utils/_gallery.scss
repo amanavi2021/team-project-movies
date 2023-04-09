@@ -6,7 +6,6 @@
     }
 
     @media screen and (min-width: $desktop) {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-column-gap: 16px;
         grid-row-gap: 32px;
     }}
@@ -31,6 +30,7 @@
 }
 
 .film-card__small-image {
+    width: 100%;
     border-radius: 5px;
     object-fit: cover;
 
