@@ -1,11 +1,11 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
-import apiService from './apiService'
-
+import apiService from './apiservice';
 
 export default async function renderFilms(films) {
-  const genresResponse = await apiService.fetchGenres();
-  const genres = genresResponse.genres;
 
+  await apiService.saveGenresToLocalStorage();
+  const genres = JSON.parse(localStorage.getItem('genres'));
+ 
   return films.map(({ poster_path, title, genre_ids, release_date }) => {
     const date = new Date(release_date);
     const year = date.getFullYear();
@@ -18,9 +18,11 @@ export default async function renderFilms(films) {
     if (genreList.length > 2) {
       genreList = genreList.slice(0, 2);
       genreList.push('Other');
-    }
+    };
+
     genreList = genreList.join(', ');
 
     return markupTpl({ poster_path, title, genreList, year });
   }).join('');
 };
+
