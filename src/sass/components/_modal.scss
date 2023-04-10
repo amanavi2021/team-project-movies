@@ -79,7 +79,9 @@
     width: 806px;
     min-height: 558px;
     max-height: 805px;
+
     height: fit-content;
+
   }
 }
 // ------------------------------------------------------------------------------------------------
@@ -261,11 +263,13 @@
 }
 
 .button-list__watched {
+  cursor: pointer;
   width: 125px;
   height: 34px;
 }
 
 .button-list__queue {
+   cursor: pointer;
   width: 111px;
   height: 34px;
 }
