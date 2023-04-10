@@ -20,7 +20,7 @@ export function toggleModal() {
     ) {
       return;
     }
-    console.log(e.target.nodeName)
+    console.log(e.target.nodeName);
     refs.modal.classList.remove('is-hidden');
     window.addEventListener('keydown', closeModalOnEsc);
     refs.modal.addEventListener('click', closeModalOnClickOutside);
@@ -60,7 +60,7 @@ export function toggleModal() {
        let movieId = e.target.dataset.id;
        const movies = apiService.getSavedFilms();
 
-       console.log('movies', movies)
+       console.log('movies', movies);
 
        const movie = movies.results.find(({id}) => id === Number(movieId));
        console.log('movie by method find', movie)
