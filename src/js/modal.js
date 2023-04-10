@@ -12,20 +12,22 @@ export function toggleModal() {
     filmInfo: document.querySelector('.film-info__wrap'),
   };
 
-  function openModal(e) {
-    if (
-      e.target === e.currentTarget ||
-      e.target.nodeName === `BUTTON` ||
-      e.target.classList.contains(`trailer-player-wrapper`)
-    ) {
-      return;
-    }
-    console.log(e.target.nodeName);
-    refs.modal.classList.remove('is-hidden');
-    window.addEventListener('keydown', closeModalOnEsc);
-    refs.modal.addEventListener('click', closeModalOnClickOutside);
-    renderList();
-  }
+
+  // function openModal(e) {
+  //   if (
+  //     e.target === e.currentTarget ||
+  //     e.target.nodeName === `BUTTON` ||
+  //     e.target.classList.contains(`trailer-player-wrapper`)
+  //   ) {
+  //     return;
+  //   }
+  //   console.log(e.target.nodeName)
+  //   refs.modal.classList.remove('is-hidden');
+  //   window.addEventListener('keydown', closeModalOnEsc);
+  //   refs.modal.addEventListener('click', closeModalOnClickOutside);
+  //   renderList();
+  // }
+
 
   function closeModal() {
     refs.modal.classList.add('is-hidden');
@@ -48,11 +50,18 @@ export function toggleModal() {
 
   // refs.openModal.addEventListener('click', openModal);
   // refs.closeModal.addEventListener('click', closeModal);
-  refs.filmClick.addEventListener('click', openModal);
+  refs.filmClick.addEventListener('click', onClickOpen);
   refs.closeModal.addEventListener('click', closeModal);
 
 
-   async function onClickOpen(e) {
+  async function onClickOpen(e) {
+       if (
+         e.target === e.currentTarget ||
+         e.target.nodeName === `BUTTON` ||
+         e.target.classList.contains(`trailer-player-wrapper`)
+       ) {
+         return;
+       }
     console.log('id', e.target.dataset.id);
 
     try {
@@ -73,10 +82,8 @@ export function toggleModal() {
       console.error(error);
     }
     refs.modal.classList.remove('is-hidden');
-    // apiService.fetchFullInfoByID();
-    
+    renderList();
   }
-
 
   // function onClickClose() {
   //   refs.modal.classList.add('is-hidden');
