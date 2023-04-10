@@ -142,11 +142,14 @@ function onOpenTeamListModal() {
   modalRef.classList.remove('is-hidden');
   window.addEventListener('keydown', onEscKeyPress);
   loadIntoTeamModal(teamMembers);
+  document.body.style.overflow = 'hidden';
 }
 
 function onCloseModal() {
   modalRef.classList.add('is-hidden');
   teamRef.innerHTML = '';
+
+  document.body.style.overflow = '';
 }
 
 function onBackDropClick(e) {
