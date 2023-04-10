@@ -51,7 +51,7 @@ const teamMembers = [
     linkedin:
       'https://www.linkedin.com/in/%D1%80%D1%83%D1%81%D0%BB%D0%B0%D0%BD-%D0%B1%D1%83%D0%BB%D0%B4%D0%B0-8a0345204/',
     photo:
-      'https://media.licdn.com/dms/image/C4D03AQE9yuFbOvfwpA/profile-displayphoto-shrink_200_200/0/1610811042896?e=1686182400&v=beta&t=rLrvi32cplyT9SpnZcs-BwokiyGAhtGerj1d7gsuUHw',
+      'https://ca.slack-edge.com/T04FPHYQ4M8-U04G3HB6XSB-1cfd90246585-512',
   },
   {
     name: 'Anatolii Matsakov',
