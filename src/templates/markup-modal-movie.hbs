@@ -4,10 +4,9 @@
     src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
     alt='{{title}}'
     loading='lazy'
-    data-id='{{id}}'
   />
 </div>
-<div class='content__text'>
+<div class='content__text' data-id='{{id}}'>
   <h2 class='modal__title'>
      {{#if title}}
             {{title}}
