@@ -24,7 +24,9 @@ async function onClick (e) {
 apiService.resetPage();
 
 try {
-    const movies = await apiService.fetchFilmByName();
+   await apiService.saveFindingFilmsToLocalStorage();
+   const movies = apiService.getSavedFilms();
+    // const movies = await apiService.fetchFilmByName();
    //  const trending = await apiService.fetchTrandingFilmDay();
    //  console.log('trending', trending);
     console.log('by the name', movies) 

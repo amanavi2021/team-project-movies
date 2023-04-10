@@ -3,7 +3,7 @@ import localStore from './service/localstorage'
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '837953248391225ae7c8e73f09921895';
-const LOCAL_STORAGE_TF = 'trandingFilmDay';
+const LOCAL_STORAGE_TF = 'currentFilms';
 const LOCAL_STORAGE_G = 'genres';
 
 
@@ -53,10 +53,17 @@ class ApiService {
         localStore.save(LOCAL_STORAGE_TF, trandingFilmDay);
     }
 
-    // отримання збереженного результату запиту найпопулярніших фільмів дня в локальну змінну
-    getTrandingFilmDay() {
+    // отримання збереженного результату запиту найпопулярніших фільмів дня або пошуку фільмів в локальну змінну
+    getSavedFilms() {
      return localStore.load(LOCAL_STORAGE_TF)||{};
       }
+
+     // збереження результату запиту фільмів за назвою
+     async saveFindingFilmsToLocalStorage() {
+        const findingFilms = await this.fetchFilmByName();
+        localStore.save(LOCAL_STORAGE_TF, findingFilms);
+    }  
+    
 
     //збереження результату запиту переліку жанрів, якщо до цього вони не були збережені
     async saveGenresToLocalStorage() {

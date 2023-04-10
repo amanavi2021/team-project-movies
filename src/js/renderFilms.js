@@ -9,7 +9,8 @@ export default async function renderFilms(films) {
   await apiService.saveGenresToLocalStorage();
   const genres = localStore.load('genres') || [] ;
  
-  return films.map(({ poster_path, title, genre_ids, release_date }) => {
+  return films.map(({ poster_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
+  }) => {
     if (poster_path !== null) {
       const date = new Date(release_date);
       const year = date.getFullYear();
@@ -25,8 +26,8 @@ export default async function renderFilms(films) {
     };
 
     genreList = genreList.join(', ');
-
-    return markupTpl({ poster_path, title, genreList, year });
+    return markupTpl({ poster_path, title, genreList, year, id, popularity, vote_average, vote_count, overview
+    });
   }
 }).join('');
   
