@@ -51,7 +51,27 @@ export function toggleModal() {
   refs.filmClick.addEventListener('click', openModal);
   refs.closeModal.addEventListener('click', closeModal);
 
-  function onClickOpen() {
+
+   async function onClickOpen(e) {
+    console.log('id', e.target.dataset.id);
+
+    try {
+
+       let movieId = e.target.dataset.id;
+       const movies = apiService.getSavedFilms();
+
+       console.log('movies', movies)
+
+       const movie = movies.results.find(({id}) => id === Number(movieId));
+       console.log('movie by method find', movie)
+       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
+       refs.filmInfo.innerHTML = await renderList(movie);
+
+       
+    } 
+    catch (error) {
+      console.error(error);
+    }
     refs.modal.classList.remove('is-hidden');
     renderList();
   }
