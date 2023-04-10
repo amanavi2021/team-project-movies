@@ -1,7 +1,7 @@
 .footer__container {
   margin-left: auto;
   margin-right: auto;
-
+color:#545454;
   text-align: center;
 
   background-color: #f7f7f7;
@@ -36,7 +36,7 @@
   font-size: 14px;
   line-height: calc(16 / 14);
   letter-spacing: 0.03em;
-  color: #545454;
+  color: inherit;
 
   @media screen and (min-width: $tablet) {
     font-size: 16px;

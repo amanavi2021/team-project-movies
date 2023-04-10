@@ -1,26 +1,32 @@
- <body>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Filmoteka</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Custom styles --> 
-    <link rel="stylesheet" href="./sass/index.scss" />
-  </head>
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Filmoteka</title>
+      <!-- Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      />
+      <!-- Custom styles -->
+      <link rel="stylesheet" href="./sass/index.scss" />
+    </head>
 
-  <body>
-    <!-- Header -->
-    <include src="./partials/home-header.html"></include>
-    <!-- Main -->
-    <main>
-
-<!--test form for movie search by name -->
-      <!-- <form action="" class="search-form">
+    <body>
+      <!-- Header -->
+      <include src="./partials/home-header.html"></include>
+      <!-- Main -->
+      <main>
+        <!--test form for movie search by name -->
+        <!-- <form action="" class="search-form">
 
       <input 
       type="text" 
@@ -33,18 +39,18 @@
 
 
       </form> -->
-       <include src="./partials/pagination.html"></include>
+        <include src="./partials/pagination.html"></include>
 
-      <include src="./partials/home-films-gallery.html"></include>
+        <include src="./partials/home-films-gallery.html"></include>
+      </main>
+      <!-- Footer -->
+      <include src="./partials/footer.html"></include>
+      <!-- Modal -->
+      <include src="./partials/modal.html"></include>
+      <!-- Loader -->
+      <include src="./partials/loader.html"></include>
 
-     
-    </main>
-    <!-- Footer -->
-    <include src="./partials/footer.html"></include>
-    <!-- Modal -->
-    <include src="./partials/modal.html"></include>
-    <!-- Loader -->
-    <include src="./partials/loader.html"></include>
-
-    <script type="module" src="./index.js"></script>
-  </body>
+      <script type="module" src="./index.js"></script>
+    </body>
+  </html>
+</body>

@@ -1,13 +1,21 @@
 <header class="header">
   <div class="container header__container">
-      
-      
-        <div class ='search__params'> 
-         <div class ='search__navi'> 
-<form class="search" id="search-form">
-          <input class="search__input" type="text" name="searchQuery" placeholder = 'Movie Search' autocomplete="off" />
+    <div class="search__params">
+      <div class="search__navi">
+        <form class="search" id="search-form">
+          <input
+            class="search__input"
+            type="text"
+            name="searchQuery"
+            placeholder="Movie Search"
+            autocomplete="off"
+          />
           <button type="submit" class="search__button">
-            <svg width= "14" height = "14" class="search__button-icon search__icon">
+            <svg
+              width="14"
+              height="14"
+              class="search__button-icon search__icon"
+            >
               <use href="./images/symbol-defs.svg#icon-search"></use>
             </svg>
           </button>
@@ -15,26 +23,27 @@
         <nav class="nav">
           <ul class="header__nav">
             <li class="nav_item">
-              <a href="./index.html" class = "nav__link">Home</a>
+              <a href="./index.html" class="nav__link">Home</a>
             </li>
             <li class="nav_item">
-              <a href="./my-library.html" class="nav__link nav__link--current">My Library</a>
+              <a href="./my-library.html" class="nav__link nav__link--current"
+                >My Library</a
+              >
             </li>
           </ul>
         </nav>
-         </div>
-        <div class="header__buttons-library">
-          <button class="library-btn btn">Watched</button>
-          <button class="library-btn btn btn--active">Queue</button>
-        </div>
       </div>
+      <div class="header__buttons-library">
+        <button class="library-btn btn">Watched</button>
+        <button class="library-btn btn btn--active">Queue</button>
+      </div>
+    </div>
 
-        <a href="./index.html" class="logo">
-          <svg class="header__logo logo__animation" width="32px" height="32px">
-            <use href="./images/symbol-defs.svg#icon-film"></use>
-          </svg>
-           <span class="header__title">Filmoteka</span>
-        </a>      
-
+    <a href="./index.html" class="logo">
+      <svg class="header__logo logo__animation" width="32px" height="32px">
+        <use href="./images/symbol-defs.svg#icon-film"></use>
+      </svg>
+      <span class="header__title">Filmoteka</span>
+    </a>
   </div>
 </header>
