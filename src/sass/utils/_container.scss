@@ -3,7 +3,7 @@
     margin-right: auto;
     
     @media screen and (max-width: calc($tablet - 0.02px)) {
-      max-width: 480px;
+      max-width: 480px; 
       padding-left: 20px;
       padding-right: 20px;
     }

@@ -1,26 +1,10 @@
-// html {
-//     box-sizing: border-box;
-//   }
-//   *,
-//   *::before,
-//   *::after {
-//     box-sizing: inherit;
-//   }
-//   ul {
-//       list-style: none;
-//       padding: 0;
-//       margin: 0;
-//     }
-    // header {
-    //   background-color: red;
-    //   }
 
   .search__params {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
    
 
     @media screen and (min-width: $tablet) {
@@ -30,10 +14,7 @@
 
     }
 
-    // @media screen and (min-width: $desktop) {
-    //   
-    // }
-
+  
   }
   .search__navi {
     display: flex;
@@ -42,6 +23,11 @@
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
+
+    // @media screen and (max-width: $tablet
+    // ) {
+    //     margin-bottom: 322px;
+    // }
 
     @media screen and (min-width: $tablet) {
         flex-wrap: nowrap;
@@ -59,7 +45,7 @@
     height: 34px;
     background-color:  #FFFFFF;
     border-radius: 100px;
-    margin: 0;
+
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -69,8 +55,7 @@
         height: 38px;
 
     }
-
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: 1200px) {
         width: 187px;
         height: 42px;
     }
@@ -127,7 +112,11 @@
       @media screen and (min-width: $tablet) {
       font-size: 14px;
       line-height: calc(16/14);
-      width:100px;
+      width: 127px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        width: 145px;
     }
 
   }
@@ -149,25 +138,38 @@
         background-image: url('../images/hero-mobile.jpg');
         background-repeat: no-repeat;
         background-position: center;
+       
         border-radius: 15px;
         margin-top: 20px;
         height:460px;
         padding: 14px;
+   
 
-        margin-left: auto;
-        margin-right: auto;     
+        @media screen and (max-width: $tablet) {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
 
         @media screen and (min-width: $tablet) {
             background-image: url('../images/hero-tablet.jpg');
             margin-top: 32px;
-            height:222px;
+            margin-left: 32px;
+            margin-right: 32px;   
+            height: 222px;
             padding: 16px;
+        }
+
+        @media screen and (max-width: $desktop) {
+            background-size: cover;
         }
 
         @media screen and (min-width: $desktop) {
             background-image: url('../images/hero-desktop.jpg');
-            height:316px;
+            height: 316px;
             padding: 16px 32px;
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         }
@@ -192,16 +194,29 @@
         &__nav {
             display: flex;
             gap:4px;
+          
         }
         &__buttons-library{
             display: flex;
             gap:4px;
             justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+
+            @media screen and (max-width: $tablet) {
+            margin-top: 322px;
+    }
+
+            @media screen and (min-width: $tablet) {
+            margin-right: 0;
+        
+    }
         }
 
         &__logo {
             width: 32px;
             height: 32px;
+
 
             @media screen and (min-width: $tablet) {
               
@@ -220,8 +235,7 @@
     .logo{
         display: flex;
         align-items: center;
-        gap:8px;
-        margin-top: 312px;
+        gap: 8px;
         margin-left: auto;
         margin-right: auto;
 
@@ -234,8 +248,25 @@
             margin-top: 151px;
 
     }
+}
 
+
+.logo-home {
+    @media screen and (max-width: $tablet) {
+        margin-top: 312px;
+        display: flex;
+        justify-content: center;
     }
+}
+
+.logo-library {
+    @media screen and (max-width: $tablet) {
+        position: absolute;
+        top: 368px;
+        left: 70px;
+       
+    }
+}
 
     .nav__link {
         
@@ -275,6 +306,7 @@
                 height: 42px;
             }
     }
+
 
 
     .btn{

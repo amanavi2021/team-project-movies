@@ -1,5 +1,5 @@
 // import pageHeaderAutoSize from './js/service/pageheaderautosize';
-import {mask} from './js/loader';
+import { mask } from './js/loader';
 import { paginationFeach } from './js/pagination';
 import * as teamModal from './js/team-members';
 import toggleModal from './js/modal';
@@ -10,5 +10,3 @@ import theme from './js/theme';
 // toggleModal();
 
 paginationFeach();
-
-
