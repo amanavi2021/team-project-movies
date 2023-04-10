@@ -1,17 +1,31 @@
-import onLoad from './onLoad';
-import apiService from './apiService';
+import markupTpl from '../templates/markupFilmMainPage.hbs';
 
 const NUMBER_PAGINATION = 5;
+const NUMBER_PER_PAGE = 8;
 const cardContainerEl = document.querySelector('.gallery');
 const paginationEl = document.querySelector('.pagination__box');
-const paginationContainerEl = document.querySelector('.pagination__container')
 
 
-export async function paginationFeach() {
-    const { total_pages } = await apiService.fetchTrandingFilmDay();
+export function paginationLocalStorage(placeKey) {
     
-    onLoad();
+    const savedFilms = localStorage.getItem(`${placeKey}`) || [];
+    try {
+        const parsedSavedFilms = JSON.parse(savedFilms);
+        const filmsNumber = parsedSavedFilms.length;
     
+    if (filmsNumber === 0) {
+        return;
+    }
+
+    const paginationEl = document.querySelector('.pagination');
+
+    paginationEl.classList.remove('visually-hidden');
+
+    const total_pages = Math.ceil(filmsNumber / NUMBER_PER_PAGE);
+    const films = filmsList(parsedSavedFilms, NUMBER_PER_PAGE, 1);
+        
+    render(films);
+  
     if (total_pages <= NUMBER_PAGINATION + 2) {
         displayPaginationSmall(total_pages);
         paginationEl.addEventListener('click', onPaginationBtnClick);
@@ -19,42 +33,72 @@ export async function paginationFeach() {
 
     displayPaginationBig(total_pages);
     document.querySelector('.js-page-1').classList.add('pagination__item--select');
-    document.querySelector('.pagination__btnLeft').setAttribute('disabled', true);
-
 
     paginationEl.addEventListener('click', (e) => {
         if (!e.target.classList.contains('pagination__item')) {
             return;
         }
-        
-        const currentPage = Number(e.target.textContent);        
-        
-        onBigPaginationBtnClickrRenderFilms(currentPage);
+
+        const currentPage = Number(e.target.textContent);
+    
+        onBigPaginationBtnClickrRenderFilms(currentPage, parsedSavedFilms);
         onBigPaginationBtnClickrRenderPagination(total_pages, currentPage); 
-
-        if (currentPage === 1) {
-            document.querySelector('.pagination__btnLeft').disabled = true;
-        } else {
-            document.querySelector('.pagination__btnLeft').removeAttribute('dissabled');
-        }
-
-        if (currentPage === total_pages) {
-            document.querySelector('.pagination__btnRight').disabled = true;
-        } else {
-            document.querySelector('.pagination__btnRight').removeAttribute('dissabled');
-        }
     }); 
+    } catch {
+        console.log('nothing are parsed');
+    }
+}
+
+function filmsList(arrFilms, numberPerPage, page) {
+        cardContainerEl.innerHTML = '';
+        page -= 1;
+
+        const start = numberPerPage * page;
+        const end = start + numberPerPage;
+        const paginatedData = arrFilms.slice(start, end);
+
+        return paginatedData;
+    }
+
+function render(films) {
+    const makeFilmsList = films
+        .map(({ poster_path, title, genre_ids, release_date }) => {
+            if (poster_path !== null) {
+                const date = new Date(release_date);
+                const year = date.getFullYear();
+                let genreList = genre_ids.map((genreId) => {
+                    const genre = genres.find((g) => g.id === genreId);
+                    return genre.name;
+                });
+
+                if (genreList.length > 2 || genre_ids.length === 0) {
+                    genreList = genreList.slice(0, 2);
+                    genreList.push('Other');
+                };
+
+                genreList = genreList.join(', ');
+
+                return markupTpl({ poster_path, title, genreList, year });
+            }
+        })
+        .join('');
+    
+    cardContainerEl.insertAdjacentHTML('beforeend', makeFilmsList);
+}
+
+function onBigPaginationBtnClickrRenderFilms(currentPage, parsedSavedFilms) {
+    cardContainerEl.innerHTML = '';
+    
+    const films = filmsList(parsedSavedFilms, NUMBER_PER_PAGE, currentPage);
+        
+    render(films);
 }
 
 function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
     paginationEl.innerHTML = '';
-    document.querySelector('.pagination__btnLeft').remove();
-    document.querySelector('.pagination__btnRight').remove();
-
 
     const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2);
     const m = total_pages - (NUMBER_PAGINATION - 1);
-
 
     if (currentPage < n) {
         displayPaginationBig(total_pages);
@@ -67,17 +111,11 @@ function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
     document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
 }
 
-async function onBigPaginationBtnClickrRenderFilms(currentPage) {
-    cardContainerEl.innerHTML = '';
-    apiService.pageNumber = currentPage;
-    onLoad();
-}
 
 
 function displayPaginationBig(total_pages) {
-    createPaginationArrowLeft(paginationContainerEl);
-
     const ulEl = document.createElement('ul');
+
     ulEl.classList.add('pagination__list');
 
     for (let i = 0; i < NUMBER_PAGINATION; i += 1) {
@@ -85,26 +123,24 @@ function displayPaginationBig(total_pages) {
         ulEl.appendChild(liEl);
     }
 
-    createPaginationDots(ulEl);
+    const dots = displayPaginationDots();
+    ulEl.appendChild(dots);
 
     const finishPage = displayPaginationBtn(total_pages);
     ulEl.appendChild(finishPage);
 
     paginationEl.appendChild(ulEl);
-
-    createPaginationArrowRight(paginationContainerEl);
 }
 
 function displayPaginationBigFinish(total_pages) {
-    createPaginationArrowLeft(paginationContainerEl);
-
     const ulEl = document.createElement('ul');
     ulEl.classList.add('pagination__list');
 
     const firstPage = displayPaginationBtn(1);
     ulEl.appendChild(firstPage);
 
-    createPaginationDots(ulEl);
+    const dots = displayPaginationDots();
+    ulEl.appendChild(dots);
 
     for (let i = total_pages - (NUMBER_PAGINATION - 1); i <= total_pages; i += 1) {
         const liEl = displayPaginationBtn(i);
@@ -112,34 +148,30 @@ function displayPaginationBigFinish(total_pages) {
     }
 
     paginationEl.appendChild(ulEl);
-
-    createPaginationArrowRight(paginationContainerEl);
 }
 
 function displayPaginationBigMiddle(total_pages, currentPage) {
-    createPaginationArrowLeft(paginationContainerEl);
-
     const ulEl = document.createElement('ul');
     ulEl.classList.add('pagination__list');
 
     const firstPage = displayPaginationBtn(1);
     ulEl.appendChild(firstPage);
 
-    createPaginationDots(ulEl);
+    const dotsFirst = displayPaginationDots();
+    ulEl.appendChild(dotsFirst);
 
     for (let i = currentPage - (Math.ceil(NUMBER_PAGINATION / 2) - 1); i <= currentPage + (Math.ceil(NUMBER_PAGINATION / 2) - 1); i += 1) {
         const liEl = displayPaginationBtn(i);
         ulEl.appendChild(liEl);
     }
 
-    createPaginationDots(ulEl);
+    const dotsLast = displayPaginationDots();
+    ulEl.appendChild(dotsLast);
 
     const lastPage = displayPaginationBtn(total_pages);
     ulEl.appendChild(lastPage);
 
     paginationEl.appendChild(ulEl);
-
-    createPaginationArrowRight(paginationContainerEl);
 }
 
 function displayPaginationSmall(totalPages) {
@@ -176,28 +208,12 @@ async function onPaginationBtnClick(e) {
     render(results);
 }      
 
-function createPaginationDots(parrent) {
+function displayPaginationDots() {
     const liEl = document.createElement('li');
     liEl.classList.add('pagination__dots');
     liEl.innerText = '...';
-    parrent.appendChild(liEl);
-}
 
-function createPaginationArrowLeft(parrent) {
-    const btnLeft = document.createElement('button');
-    btnLeft.classList.add('pagination__btnLeft');
-    btnLeft.innerText = '<';
-    btnLeft.type = "button";
-    parrent.prepend(btnLeft);
-}
+    return liEl;
+}        
 
-function createPaginationArrowRight(parrent) {
-    const btnRight = document.createElement('button');
-    btnRight.classList.add('pagination__btnRight');
-    btnRight.innerText = '>';
-    btnRight.type = "button";
-    parrent.append(btnRight);
-}
-
-
-
+paginationLocalStorage(place);
