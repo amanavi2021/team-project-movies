@@ -19,31 +19,65 @@ export async function paginationFeach() {
 
     displayPaginationBig(total_pages);
     document.querySelector('.js-page-1').classList.add('pagination__item--select');
-    document.querySelector('.pagination__btnLeft').setAttribute('disabled', true);
+
+    const btnLeft = document.querySelector('.pagination__btnLeft');
+    const btnRight = document.querySelector('.pagination__btnRight');
+
+    btnLeft.setAttribute('disabled', true);
 
 
     paginationEl.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('pagination__item')) {
-            return;
-        }
         
-        const currentPage = Number(e.target.textContent);        
-        
-        onBigPaginationBtnClickrRenderFilms(currentPage);
-        onBigPaginationBtnClickrRenderPagination(total_pages, currentPage); 
-
-        if (currentPage === 1) {
-            document.querySelector('.pagination__btnLeft').disabled = true;
-        } else {
-            document.querySelector('.pagination__btnLeft').removeAttribute('dissabled');
-        }
-
-        if (currentPage === total_pages) {
-            document.querySelector('.pagination__btnRight').disabled = true;
-        } else {
-            document.querySelector('.pagination__btnRight').removeAttribute('dissabled');
-        }
     }); 
+
+    paginationContainerEl.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
+            return;
+        };
+        
+        if (e.target.classList.contains('pagination__item')) {
+             const currentPage = Number(e.target.textContent);        
+        
+            onBigPaginationBtnClickrRenderFilms(currentPage);
+            onBigPaginationBtnClickrRenderPagination(total_pages, currentPage); 
+
+            if (currentPage === 1) {
+                document.querySelector('.pagination__btnLeft').disabled = true;
+            } else {
+                document.querySelector('.pagination__btnLeft').removeAttribute('dissabled');
+            }
+
+            if (currentPage === total_pages) {
+                document.querySelector('.pagination__btnRight').disabled = true;
+            } else {
+                document.querySelector('.pagination__btnRight').removeAttribute('dissabled');
+        }
+        }
+
+       
+            
+
+            if (e.target.classList.contains('pagination__btnLeft')) {
+                const activePage = document.querySelector('.pagination__item--select');
+                activePageNumber = Number(activePage.textContent);
+                
+                const nextPage = activePageNumber - 1;
+
+                onBigPaginationBtnClickrRenderFilms(nextPage);
+                onBigPaginationBtnClickrRenderPagination(total_pages, nextPage); 
+            }
+
+            if (e.target.classList.contains('pagination__btnRight')) {
+                const activePage = document.querySelector('.pagination__item--select');
+                activePageNumber = Number(activePage.textContent);
+                
+                const previousPage = activePageNumber + 1;
+
+            onBigPaginationBtnClickrRenderFilms(previousPage);
+            onBigPaginationBtnClickrRenderPagination(total_pages, previousPage); 
+            }
+       
+    })
 }
 
 function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
