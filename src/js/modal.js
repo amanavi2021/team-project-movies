@@ -70,15 +70,15 @@ export function toggleModal() {
       const movies = apiService.getSavedFilms();
 
 
-       let movieId = e.target.dataset.id;
-       const movies = apiService.getSavedFilms();
+//        let movieId = e.target.dataset.id;
+//        const movies = apiService.getSavedFilms();
 
       //  console.log('movies', movies);
 
-       const movie = movies.results.find(({id}) => id === Number(movieId));
+       //const movie = movies.results.find(({id}) => id === Number(movieId));
       //  console.log('movie by method find', movie)
        //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
-       refs.filmInfo.innerHTML = await renderList(movie);
+       //refs.filmInfo.innerHTML = await renderList(movie);
 
 
       const movie = movies.results.find(({ id }) => id === Number(movieId));
