@@ -59,7 +59,7 @@ export async function paginationFeach() {
 
             if (e.target.classList.contains('pagination__btnLeft')) {
                 const activePage = document.querySelector('.pagination__item--select');
-                activePageNumber = Number(activePage.textContent);
+                const activePageNumber = Number(activePage.textContent);
                 
                 const nextPage = activePageNumber - 1;
 
@@ -69,7 +69,7 @@ export async function paginationFeach() {
 
             if (e.target.classList.contains('pagination__btnRight')) {
                 const activePage = document.querySelector('.pagination__item--select');
-                activePageNumber = Number(activePage.textContent);
+                const activePageNumber = Number(activePage.textContent);
                 
                 const previousPage = activePageNumber + 1;
 
