@@ -4,7 +4,7 @@ const teamMembers = [
     role: 'Team Lead',
     github: 'https://github.com/amanavi2021',
     linkedin: '',
-    photo: '',
+    photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04GN1KPCKW-89b080b31dc6-512',
   },
   {
     name: 'Oleksandr Karpiuk',
