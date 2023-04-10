@@ -62,17 +62,17 @@ export function toggleModal() {
        ) {
          return;
        }
-    console.log('id', e.target.dataset.id);
+    // console.log('id', e.target.dataset.id);
 
     try {
 
        let movieId = e.target.dataset.id;
        const movies = apiService.getSavedFilms();
 
-       console.log('movies', movies);
+      //  console.log('movies', movies);
 
        const movie = movies.results.find(({id}) => id === Number(movieId));
-       console.log('movie by method find', movie)
+      //  console.log('movie by method find', movie)
        //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
        refs.filmInfo.innerHTML = await renderList(movie);
 
@@ -82,7 +82,7 @@ export function toggleModal() {
       console.error(error);
     }
     refs.modal.classList.remove('is-hidden');
-    renderList();
+    // renderList();
   }
 
   // function onClickClose() {
@@ -90,12 +90,13 @@ export function toggleModal() {
   //   clearModalMovie(refs.filmInfo);
   // }
 
- async function renderList(movie) {
+  async function renderList(movie) {
+
     // console.log('renderList called with movie:', movie);
     await apiService.saveGenresToLocalStorage();
     const genres = localStore.load('genres') || [] ;
     // console.log('GENRES', genres);
-        const { poster_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
+        const { poster_path, backdrop_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
     } = movie;
 
    if (poster_path !== null) {
@@ -110,7 +111,7 @@ export function toggleModal() {
         genreList.push('Other');
       };
       genreList = genreList.join(', ');
-      return markupModalMovie({ poster_path, title, genreList, year, id, popularity, vote_average, vote_count, overview
+      return markupModalMovie({ poster_path, backdrop_path, title, genreList, year, id, popularity, vote_average, vote_count, overview
       });
    }
       

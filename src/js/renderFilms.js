@@ -9,7 +9,7 @@ export default async function renderFilms(films) {
   await apiService.saveGenresToLocalStorage();
   const genres = localStore.load('genres') || [] ;
  
-  return films.map(({ poster_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
+  return films.map(({ poster_path, backdrop_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
   }) => {
     if (poster_path !== null) {
       const date = new Date(release_date);
@@ -26,7 +26,7 @@ export default async function renderFilms(films) {
     };
 
     genreList = genreList.join(', ');
-    return markupTpl({ poster_path, title, genreList, year, id, popularity, vote_average, vote_count, overview
+    return markupTpl({ poster_path, backdrop_path, title, genreList, year, id, popularity, vote_average, vote_count, overview
     });
   }
 }).join('');
