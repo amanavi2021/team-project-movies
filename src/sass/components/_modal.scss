@@ -12,6 +12,10 @@
   transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  @media screen and (max-width: calc($tablet - 0.02px)) {
+    overflow-y: scroll;
+  }
+
   &.is-hidden {
     visibility: hidden;
     opacity: 0;
@@ -29,9 +33,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-
-  padding-top: 40px;
-  padding-bottom: 40px;
+  overflow: auto;
+  padding: 40px 20px;
 
   background-color: #ffffff;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -52,11 +55,16 @@
     height: 100%;
 
     overflow-y: scroll;
+    height: 100vh;
+    max-width: 280px;
+    min-height: 609px;
   }
 
   @media screen and (min-width: $tablet) and (max-width: calc($desktop - 0.02px)) {
+    padding-top: 40px;
     padding-left: 36px;
-    padding-right: 36px;
+    padding-right: 72px;
+    padding-bottom: 64px;
 
     width: 704px;
     height: 552px;
@@ -65,8 +73,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 40px 12px;
 
     width: 806px;
     min-height: 558px;
@@ -101,4 +108,163 @@
   padding: 0px;
   border: none;
   background-color: transparent;
+}
+
+///// style for 1 film card modal
+.thumb {
+  width: 240px;
+  height: 357px;
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+    height: 374px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 375px;
+    height: 478px;
+  }
+}
+
+.modal__image {
+  border-radius: 5px;
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+    height: 374px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 375px;
+    height: 478px;
+  }
+}
+.wrap-modal {
+  display: flex;
+}
+
+.film-info__wrap {
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    gap: 68px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 16px;
+  }
+}
+
+.modal__title {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+    line-height: 1.17;
+  }
+}
+
+.content__text {
+  margin-top: 30px;
+  width: 240px;
+  @media screen and (min-width: $tablet) {
+    margin-top: 0;
+    width: 264px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-top: 0;
+    width: 391px;
+  }
+}
+
+.film-card__info-list {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.film-card__info-el {
+  display: flex;
+}
+
+.film-card__info-item {
+  width: 40%;
+  color: #8c8c8c;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  line-height: 1.33333;
+}
+
+.film-card__info-item--value {
+  width: 60%;
+  color: #000;
+  line-height: 1.3333;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.info-item__highlight-red {
+  background-color: #b92f2c;
+  border-radius: 5px;
+  padding: 1px 9px;
+}
+
+.info-item__highlight-grey {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 1px 4px;
+}
+
+.film-card__title {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.33333;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.3333;
+}
+
+.film-card__overview {
+  color: #000;
+  font-size: 12px;
+  line-height: 1.66667;
+  font-weight: 500;
+}
+
+.list-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.list-buttons-item:not(:last-child) {
+  margin-right: 4px;
+  @media screen and (min-width: $tablet) {
+    margin-right: 8px;
+  }
+}
+
+.button-list {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 100px;
+  color: #b92f2c;
+  background: #fff;
+  border: 1px solid #000000;
+  box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+}
+
+.button-list__watched {
+  width: 125px;
+  height: 34px;
+}
+
+.button-list__queue {
+  width: 111px;
+  height: 34px;
 }

@@ -2,7 +2,7 @@
 import {mask} from './js/loader';
 import { paginationFeach } from './js/pagination';
 import * as teamModal from './js/team-members';
-// import * as toggleModal from './js/modal';
+import toggleModal from './js/modal';
 
 // pageHeaderAutoSize()
 // toggleModal();
