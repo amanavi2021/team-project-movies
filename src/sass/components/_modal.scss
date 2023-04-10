@@ -55,7 +55,7 @@
     height: 100%;
 
     overflow-y: scroll;
-    height: 100vh;
+    height: fit-content;
     max-width: 280px;
     min-height: 609px;
   }
@@ -67,7 +67,8 @@
     padding-bottom: 64px;
 
     width: 704px;
-    height: 552px;
+    height: fit-content;
+    max-height: 552px;;
 
     overflow-y: scroll;
   }
@@ -78,7 +79,9 @@
     width: 806px;
     min-height: 558px;
     max-height: 805px;
-    // height: 100%;
+
+    height: fit-content;
+
   }
 }
 // ------------------------------------------------------------------------------------------------

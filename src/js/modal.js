@@ -12,6 +12,7 @@ export function toggleModal() {
     filmInfo: document.querySelector('.film-info__wrap'),
   };
 
+
   // function openModal(e) {
   //   if (
   //     e.target === e.currentTarget ||
@@ -26,6 +27,7 @@ export function toggleModal() {
   //   refs.modal.addEventListener('click', closeModalOnClickOutside);
   //   renderList();
   // }
+
 
   function closeModal() {
     refs.modal.classList.add('is-hidden');
@@ -67,7 +69,7 @@ export function toggleModal() {
        let movieId = e.target.dataset.id;
        const movies = apiService.getSavedFilms();
 
-       console.log('movies', movies)
+       console.log('movies', movies);
 
        const movie = movies.results.find(({id}) => id === Number(movieId));
        console.log('movie by method find', movie)

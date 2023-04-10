@@ -1,7 +1,7 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
 import apiService from './apiService';
 import renderFilms from './renderFilms';
-
+import onClickPlayer from './trailerplayer';
 
 
 
@@ -30,16 +30,20 @@ try {
    //  const trending = await apiService.fetchTrandingFilmDay();
    //  console.log('trending', trending);
     console.log('by the name', movies) 
-    renderMoviesByName(movies);
-    
+    await renderMoviesByName(movies);
 
 } catch (error) {
  console.error (error)
-}
+  }
+  
+  //  Вішаємо слухача на кнопку на картці і при натиску, запускаємо Відео
+  const trailerPlayBTNs = document.querySelectorAll('.trailer-player-btn');
+  trailerPlayBTNs.forEach((button) => button.addEventListener('click', onClickPlayer));
+  
 formRef.reset();
 }
 
-function renderMoviesByName (movies) {
+async function renderMoviesByName (movies) {
  if (movies.results.length === 0) {
 
     alert("We haven't found movies with that name");
@@ -51,11 +55,11 @@ function renderMoviesByName (movies) {
 
  console.log('Last console', movies.results);
  containerRef.innerHTML = '';
- containerRef.insertAdjacentHTML('beforeend', renderMovies(movies.results));
+ containerRef.insertAdjacentHTML('beforeend', await renderFilms(movies.results));
 
 }
 
-
+// А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто асинхронна ..
 function renderMovies(movies) {
 
    
