@@ -50,8 +50,7 @@ const teamMembers = [
     github: 'https://github.com/rbulda50',
     linkedin:
       'https://www.linkedin.com/in/%D1%80%D1%83%D1%81%D0%BB%D0%B0%D0%BD-%D0%B1%D1%83%D0%BB%D0%B4%D0%B0-8a0345204/',
-    photo:
-      'https://ca.slack-edge.com/T04FPHYQ4M8-U04G3HB6XSB-1cfd90246585-512',
+    photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04G3HB6XSB-1cfd90246585-512',
   },
   {
     name: 'Anatolii Matsakov',
@@ -61,18 +60,12 @@ const teamMembers = [
     photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04GHU608EP-fed049334141-512',
   },
   {
-    name: '',
+    name: 'Olesia Manina',
     role: 'Developer',
-    github: '',
-    linkedin: '',
-    photo: '',
-  },
-  {
-    name: '',
-    role: 'Developer',
-    github: '',
-    linkedin: '',
-    photo: '',
+    github: 'https://github.com/OlesiaManina',
+    linkedin: 'https://www.linkedin.com/in/olesia-manina-206592271/',
+    photo:
+      'https://media.licdn.com/dms/image/D5603AQEBcXzDdzgetA/profile-displayphoto-shrink_200_200/0/1681136399432?e=1686787200&v=beta&t=39wY9bA1tuVhVuxNQFdnP0-bmNZcD037Qy-cCT-CYLw',
   },
   {
     name: '',
