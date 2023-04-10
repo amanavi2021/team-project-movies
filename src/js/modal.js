@@ -91,12 +91,13 @@ export function toggleModal() {
   // }
 
  async function renderList(movie) {
-    console.log('renderList called with movie:', movie);
+    // console.log('renderList called with movie:', movie);
     await apiService.saveGenresToLocalStorage();
     const genres = localStore.load('genres') || [] ;
-    console.log('GENRES', genres);
+    // console.log('GENRES', genres);
         const { poster_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
     } = movie;
+
    if (poster_path !== null) {
         const date = new Date(release_date);
         const year = date.getFullYear();
