@@ -1,10 +1,15 @@
 <div class='thumb'>
-  <img
+  <img 
     class='modal__image'
     src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
     alt='{{title}}'
     loading='lazy'
+    data-id='{{id}}'
   />
+      <button class="trailer-player-btn " type="button">
+        &#9658
+
+      </button>
 </div>
 <div class='content__text' data-id='{{id}}'>
   <h2 class='modal__title'>
@@ -63,14 +68,14 @@
   <ul class='list-buttons'>
     <li class='list-buttons-item'>
       <button
-        type='submit'
+        type='button'
         class='button-list button-list__watched'
         id='watchedInModal'
       >Add to watched</button>
     </li>
     <li class='list-buttons-item'>
       <button
-        type='submit'
+        type='button'
         class='button-list button-list__queue'
         id='queueInModal'
       >Add to queue</button>
