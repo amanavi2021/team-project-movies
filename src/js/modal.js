@@ -54,9 +54,9 @@ export function toggleModal() {
 
        const movie = movies.results.find(({id}) => id === Number(movieId));
        console.log('movie by method find', movie)
-      //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
-      refs.filmInfo.innerHTML = await renderList(movie);
-       
+       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
+       refs.filmInfo.innerHTML = await renderList(movie);
+
        
     } 
     catch (error) {
@@ -73,9 +73,7 @@ export function toggleModal() {
   }
 
  async function renderList(movie) {
-
-  console.log('renderList called with movie:', movie);
-    
+    console.log('renderList called with movie:', movie);
     await apiService.saveGenresToLocalStorage();
     const genres = localStore.load('genres') || [] ;
     console.log('GENRES', genres);
@@ -88,8 +86,6 @@ export function toggleModal() {
             const genre = genres.find((g) => g.id === genreId);
             return genre.name;
           });
-
-          console.log(genreList);
       if (genreList.length > 2 || genre_ids.length === 0) {
         genreList = genreList.slice(0, 2);
         genreList.push('Other');
