@@ -11,7 +11,7 @@
     }}
 
 .film-card {
-
+cursor: pointer;
     @media screen and (max-width: calc($tablet - 0.02px)) {
         margin-top: 20px;
     }
