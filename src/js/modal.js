@@ -1,4 +1,4 @@
-import markupModalMovie from '../templates/markupModalMovie.hbs';
+import markupModalMovie from '../templates/markup-modal-movie.hbs';
 import apiService from './apiService';
 
 export function toggleModal() {
