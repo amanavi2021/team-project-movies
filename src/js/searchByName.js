@@ -38,9 +38,8 @@ try {
  console.error (error)
   }
   
-  //  Вішаємо слухача на кнопку на картці і при натиску, запускаємо Відео
-  const trailerPlayBTNs = document.querySelectorAll('.trailer-player-btn');
-  trailerPlayBTNs.forEach((button) => button.addEventListener('click', onClickPlayer));
+  //  Вішаємо слухача і при click на кнопку, запускаємо Відео
+  refs.filmsContainer.addEventListener('click', onClickPlayer);
   
 // formRef.reset();
 }

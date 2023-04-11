@@ -82,7 +82,7 @@ cursor: pointer;
 .info__genre-year {
     display: flex;
     line-height: 1.33;
-    color: #B92F2C;
+    color: $accentColor;
 
     @media screen and (min-width: $desktop) {
         font-size: 20px;
@@ -112,7 +112,6 @@ cursor: pointer;
     text-transform: uppercase;
     font-family: $mainFont;
     font-weight: 500;
-    //font-size: 70px;
     color: black;
     border-color: transparent;
     
