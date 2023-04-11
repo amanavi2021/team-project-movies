@@ -1,7 +1,8 @@
 import localstorage from "./service/localstorage";
 
 const filmContainer = document.querySelector('.modal');
-
+let queueBtn = null;
+let watchedBtn = null;
 filmContainer.addEventListener('click', onClickBtn) 
 
 const queue = localstorage.load('queue') || [];
@@ -12,11 +13,11 @@ function onClickBtn(e) {
     const id = target.closest('div').dataset.id;
 
     if (target.id === 'queueInModal') {
-        onClassActiveToggle(target);
+        getBtnRefs(target)
         return addToQueue(id);
     };
     if (target.id === 'watchedInModal') {
-        onClassActiveToggle(target);
+        getBtnRefs(target)
         return addToWatched(id);
     };
 };
@@ -49,13 +50,13 @@ function addToQueue(id) {
     if (findFilm) {
         queue.splice(indexFilm, 1);
         localstorage.save('queue', queue);
-        return;
+        queueBtn.classList.remove('button-list--active');
+        queueBtn.textContent = 'Add to queue';
     } else {
         queue.push(results);
         localstorage.save('queue', queue);
-
-
-        return;
+        queueBtn.classList.add('button-list--active');
+        queueBtn.textContent = 'Added to queue';
     };
 };
 
@@ -86,23 +87,24 @@ function addToWatched(id) {
     if (findFilm) {
         watched.splice(indexFilm, 1);
         localstorage.save('watched', watched);
+        watchedBtn.classList.remove('button-list--active');
+        watchedBtn.textContent = 'Add to watched';
     } else {
         watched.push(results);
         localstorage.save('watched', watched);
-    };
-};
-
-function onClassActiveToggle(target) {
-    const queueBtn = document.querySelector('#queueInModal');
-    const watchedBtn = document.querySelector('#watchedInModal');
-
-    if (target.id === 'queueInModal') {
-        queueBtn.classList.add('button-list--active');
-        watchedBtn.classList.remove('button-list--active');
-    } else {
         watchedBtn.classList.add('button-list--active');
-        queueBtn.classList.remove('button-list--active');
+        watchedBtn.textContent = 'Added to watched';
     };
 };
 
+function getBtnRefs(target) {
+    if (target.id === 'queueInModal') {
+        queueBtn = target;
+        return;
+    };
+    if (target.id === 'watchedInModal') {
+        watchedBtn = target;
+        return;
+    };
+};
 
