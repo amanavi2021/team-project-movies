@@ -40,7 +40,7 @@ try {
   const trailerPlayBTNs = document.querySelectorAll('.trailer-player-btn');
   trailerPlayBTNs.forEach((button) => button.addEventListener('click', onClickPlayer));
   
-formRef.reset();
+// formRef.reset();
 }
 
 async function renderMoviesByName (movies) {
