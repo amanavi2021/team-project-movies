@@ -69,14 +69,15 @@ const teamMembers = [
       'https://media.licdn.com/dms/image/D5603AQEBcXzDdzgetA/profile-displayphoto-shrink_200_200/0/1681136399432?e=1686787200&v=beta&t=39wY9bA1tuVhVuxNQFdnP0-bmNZcD037Qy-cCT-CYLw',
   },
   {
-    name: '',
+    name: 'Pavlo Stimpack',
     role: 'Developer',
-    github: '',
-    linkedin: '',
-    photo: '',
+    github: 'https://github.com/Stiroid',
+    linkedin: 'https://www.linkedin.com/mwlite/in/stimpack-paul-914084272',
+    photo:
+      'https://media.licdn.com/dms/image/D5603AQGbu19s3lBcCA/profile-displayphoto-shrink_200_200/0/1681228744464?e=1686787200&v=beta&t=3DmdTdw341wPKYlJvO7oAgEJwMPGl5UjPhue5-m0LKM',
   },
   {
-    name: '',
+    name: 'Yaroslav Voinalovych',
     role: 'Developer',
     github: '',
     linkedin: '',
