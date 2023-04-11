@@ -103,6 +103,7 @@
 
 ///// style for 1 film card modal
 .thumb {
+  position: relative;
   width: 240px;
   height: 357px;
   @media screen and (min-width: $tablet) {
@@ -250,7 +251,9 @@
   background: #fff;
   border: 1px solid #000000;
   box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {  
+          background-color: #e5a4a3;}
   &--active {
       color: #FFFFFF;
       background-color: $accentColor;

@@ -2,6 +2,8 @@ import markupModalMovie from '../templates/markup-modal-movie.hbs';
 import apiService from './apiService';
 import renderFilms from './renderFilms';
 import localStore from './service/localstorage';
+import onClickPlayer from './trailerplayer';
+import refs from './service/refs';
 
 export function toggleModal() {
   const refs = {
@@ -85,11 +87,18 @@ export function toggleModal() {
       console.log('movie by method find', movie);
       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       refs.filmInfo.innerHTML = await renderList(movie);
+
+  
     } catch (error) {
       console.error(error);
     }
     window.addEventListener('keydown', closeModalOnEsc);
     refs.modal.classList.remove('is-hidden');
+
+    //  Вішаємо слухача на кнопку на картці і при натиску, запускаємо Відео
+    const trailerPlayBTN = document.querySelector('.trailer-player-btn');
+    trailerPlayBTN.addEventListener('click', onClickPlayer);
+ 
 
     // renderList();
     //document.body.style.overflow = 'hidden';
@@ -118,8 +127,7 @@ export function toggleModal() {
         const genre = genres.find(g => g.id === genreId);
         return genre.name;
       });
-      if (genreList.length > 2 || genre_ids.length === 0) {
-        genreList = genreList.slice(0, 2);
+      if (genre_ids.length === 0) {
         genreList.push('Other');
       }
       genreList = genreList.join(', ');
