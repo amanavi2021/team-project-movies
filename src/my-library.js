@@ -7,6 +7,7 @@ import toggleModal from './js/modal';
 import localstorage from './js/service/localstorage';
 import renderFilms from './js/renderFilms';
 import theme from './js/theme';
+import searchByName from './js/searchByName';
 
 onLoadCurrentFilms();
 const filmContainer = document.querySelector('.my-gallery');
