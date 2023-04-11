@@ -5,6 +5,7 @@ import * as teamModal from './js/team-members';
 import toggleModal from './js/modal';
 import searchByName from './js/searchByName';
 import theme from './js/theme';
+import addToQueueOrWatched from './js/add-to-queue-or-watched'
 
 // pageHeaderAutoSize()
 // toggleModal();
