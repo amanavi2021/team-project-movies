@@ -1,5 +1,7 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
 import apiService from './apiService';
+import { paginationLocalStorage } from './paginationIn-library';
+import { paginationSearch } from './paginationSearch';
 import renderFilms from './renderFilms';
 import onClickPlayer from './trailerplayer';
 
@@ -15,7 +17,8 @@ async function onClick (e) {
  e.preventDefault();
 
  apiService.query = e.currentTarget.elements.searchQuery.value.trim();
- console.log(apiService.query)
+  console.log(apiService.query)
+  const searchQueryName = e.currentTarget.elements.searchQuery.value.trim();
 
  if(e.target.elements.searchQuery.value.trim() === "") {
     return
@@ -25,12 +28,11 @@ apiService.resetPage();
 
 try {
    await apiService.saveFindingFilmsToLocalStorage();
-   const movies = apiService.getSavedFilms();
+   //const movies = apiService.getSavedFilms();
     // const movies = await apiService.fetchFilmByName();
    //  const trending = await apiService.fetchTrandingFilmDay();
    //  console.log('trending', trending);
-    console.log('by the name', movies) 
-    await renderMoviesByName(movies);
+  paginationSearch(searchQueryName);
 
 } catch (error) {
  console.error (error)
@@ -43,45 +45,7 @@ try {
 // formRef.reset();
 }
 
-async function renderMoviesByName (movies) {
- if (movies.results.length === 0) {
 
-    alert("We haven't found movies with that name");
-    return;
 
- }
-
-//  const films = apiService.fetchFilmByName();
-
- console.log('Last console', movies.results);
- containerRef.innerHTML = '';
- containerRef.insertAdjacentHTML('beforeend', await renderFilms(movies.results));
-
-}
-
-// А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто асинхронна ..
-function renderMovies(movies) {
-
-   
-   const genres = JSON.parse(localStorage.getItem('genres'));
-  
-   return movies.map(({ poster_path, title, genre_ids, release_date }) => {
-     const date = new Date(release_date);
-     const year = date.getFullYear();
-        
-     let genreList = genre_ids.map((genreId) => {
-         const genre = genres.find((g) => g.id === genreId);
-         return genre.name;
-     });
- 
-     if (genreList.length > 2) {
-       genreList = genreList.slice(0, 2);
-       genreList.push('Other');
-     };
- 
-     genreList = genreList.join(', ');
- 
-     return markupTpl({ poster_path, title, genreList, year });
-   }).join('');
- };
+// А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто ас
  
