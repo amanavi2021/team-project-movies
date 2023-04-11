@@ -30,8 +30,6 @@ function onClickBtnLibrary(e) {
         } else {
             paginationLocalStorage('queue');
             onClassActiveToggle(target);
-
-            
             return;
         };
     };
@@ -57,12 +55,12 @@ async function appendFromLocalStorage(parsedFilms) {
     };
 };
 
-function onLoadCurrentFilms() {
-    if (!localstorage.load('watched')) {
-        return;
-    }
-    appendFromLocalStorage(localstorage.load('watched'));
-}
+// function onLoadCurrentFilms() {
+//     if (!localstorage.load('watched')) {
+//         return;
+//     }
+//     appendFromLocalStorage(localstorage.load('watched'));
+// }
 
 function onClassActiveToggle(target) {
     if (target === btnQueue) {
