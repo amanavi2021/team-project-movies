@@ -6,6 +6,7 @@ import * as teamModal from './js/team-members';
 //import { paginationLocalStorage } from './js/pagination-library';
 import localstorage from './js/service/localstorage';
 import renderFilms from './js/renderFilms';
+import theme from './js/theme';
 
 onLoadCurrentFilms();
 const filmContainer = document.querySelector('.my-gallery');
