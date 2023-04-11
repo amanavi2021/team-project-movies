@@ -57,7 +57,8 @@ const teamMembers = [
     role: 'Developer',
     github: 'https://github.com/WipeRrr',
     linkedin: 'https://www.linkedin.com/in/anatoliy-matsakov-85b934261/',
-    photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04GHU608EP-fed049334141-512',
+    photo:
+      'https://media.licdn.com/dms/image/D4E35AQFUYf4luMB9Iw/profile-framedphoto-shrink_200_200/0/1681211227225?e=1681822800&v=beta&t=KEFcU3PId1osfxzCYemK5jaOKx7NEQmr6s9ZWL2nL8c',
   },
   {
     name: 'Olesia Manina',

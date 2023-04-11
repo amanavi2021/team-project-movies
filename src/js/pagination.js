@@ -1,21 +1,40 @@
 import onLoad from './onLoad';
 import apiService from './apiService';
+import localstorage from './service/localstorage';
 
 const NUMBER_PAGINATION = 5;
 const cardContainerEl = document.querySelector('.gallery');
 const paginationEl = document.querySelector('.pagination__box');
 const paginationContainerEl = document.querySelector('.pagination__container')
 
+function getTotalPage() {
+    const savedFilms = localStorage.getItem('currentFilms') || {};
+    try {
+        const parsedSavedFilms = JSON.parse(savedFilms);
+        const pageNumber = parsedSavedFilms.total_pages;
+
+        return pageNumber;
+    } catch {
+        console.log('nothing');
+    }
+}
+
 
 export async function paginationFeach() {
-    const { total_pages } = await apiService.fetchTrandingFilmDay();
+
+    const total_pages = getTotalPage();
     
-    onLoad();
+    onLoad(); 
     
-    if (total_pages <= NUMBER_PAGINATION + 2) {
+    if (total_pages <= NUMBER_PAGINATION + 2 && total_pages >= 1) {
         displayPaginationSmall(total_pages);
+        document.querySelector('.js-page-1').classList.add('pagination__item--select');
+
         paginationEl.addEventListener('click', onPaginationBtnClick);
+        return;
     }
+
+     paginationEl.innerHTML = '';
 
     displayPaginationBig(total_pages);
     document.querySelector('.js-page-1').classList.add('pagination__item--select');
@@ -23,12 +42,8 @@ export async function paginationFeach() {
     const btnLeft = document.querySelector('.pagination__btnLeft');
     const btnRight = document.querySelector('.pagination__btnRight');
 
-    btnLeft.setAttribute('disabled', true);
+    btnLeft.disabled = true;
 
-
-    paginationEl.addEventListener('click', (e) => {
-        
-    }); 
 
     paginationContainerEl.addEventListener('click', (e) => {
         if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
@@ -44,46 +59,59 @@ export async function paginationFeach() {
             if (currentPage === 1) {
                 document.querySelector('.pagination__btnLeft').disabled = true;
             } else {
-                document.querySelector('.pagination__btnLeft').removeAttribute('dissabled');
+                document.querySelector('.pagination__btnLeft').disabled = false;
             }
 
             if (currentPage === total_pages) {
                 document.querySelector('.pagination__btnRight').disabled = true;
             } else {
-                document.querySelector('.pagination__btnRight').removeAttribute('dissabled');
-        }
-        }
-
-       
-            
-
-            if (e.target.classList.contains('pagination__btnLeft')) {
-                const activePage = document.querySelector('.pagination__item--select');
-                const activePageNumber = Number(activePage.textContent);
-                
-                const nextPage = activePageNumber - 1;
-
-                onBigPaginationBtnClickrRenderFilms(nextPage);
-                onBigPaginationBtnClickrRenderPagination(total_pages, nextPage); 
+                document.querySelector('.pagination__btnRight').disabled = false;
             }
+        }
 
-            if (e.target.classList.contains('pagination__btnRight')) {
-                const activePage = document.querySelector('.pagination__item--select');
-                const activePageNumber = Number(activePage.textContent);
-                
-                const previousPage = activePageNumber + 1;
+        if (e.target.classList.contains('pagination__btnLeft')) {
+                //const currentArrow = e.target;
+            const activePage = document.querySelector('.pagination__item--select');
+            const activePageNumber = Number(activePage.textContent);
+            const previousPage = activePageNumber - 1;
 
             onBigPaginationBtnClickrRenderFilms(previousPage);
             onBigPaginationBtnClickrRenderPagination(total_pages, previousPage); 
+            
+            console.log(document.querySelector('.pagination__item--select').textContent);
+            console.log(Number(document.querySelector('.pagination__item--select').textContent) === 1);
+
+            if (Number(document.querySelector('.pagination__item--select').textContent) === 1) {
+                    document.querySelector('.pagination__btnLeft').disabled = true;
+                } else {
+                    document.querySelector('.pagination__btnLeft').disabled = false;
+                }
             }
+
+        if (e.target.classList.contains('pagination__btnRight')) {
+               // const currentArrow = e.target;
+            const activePage = document.querySelector('.pagination__item--select');
+            const activePageNumber = Number(activePage.textContent);
+                
+            const nextPage = activePageNumber + 1;
+
+            onBigPaginationBtnClickrRenderFilms(nextPage);
+            onBigPaginationBtnClickrRenderPagination(total_pages, nextPage);    
+            
+            if (Number(document.querySelector('.pagination__item--select').textContent) === total_pages) {
+                document.querySelector('.pagination__btnRight').disabled = true;
+            } else {
+                document.querySelector('.pagination__btnRight').disabled = false;
+            }
+        }
        
     })
 }
 
 function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
     paginationEl.innerHTML = '';
-    document.querySelector('.pagination__btnLeft').remove();
-    document.querySelector('.pagination__btnRight').remove();
+    document.querySelector('.pagination__btnLeft')?.remove();
+    document.querySelector('.pagination__btnRight')?.remove();
 
 
     const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2);
@@ -197,7 +225,7 @@ function displayPaginationBtn(page) {
     return liEl;
 }
 
-async function onPaginationBtnClick(e) {
+function onPaginationBtnClick(e) {
     if (!e.target.classList.contains('pagination__item')) {
         return;
     }
@@ -205,9 +233,9 @@ async function onPaginationBtnClick(e) {
     cardContainerEl.innerHTML = '';
     apiService.pageNumber = Number(e.target.textContent);
 
-    const { results } = await apiService.fetchTrandingFilmDay();
+    onLoad();
 
-    render(results);
+    document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
 }      
 
 function createPaginationDots(parrent) {
