@@ -93,9 +93,11 @@ cursor: pointer;
 .trailer-player-btn {
 
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    bottom: 12%;
+    left: 5%;
     padding: 10px;
     border-radius: 50%;
     text-align: center;
@@ -118,7 +120,7 @@ cursor: pointer;
 }
 
 .trailer-player__svg {
-    fill: black;
+    z-index: 1500;
 }
 
 
