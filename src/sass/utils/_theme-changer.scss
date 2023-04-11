@@ -1,10 +1,15 @@
 .dark {
-  background-color: #252525;
+  background-image:
+      linear-gradient(to right,
+        rgba(37, 37, 37, 0.7),
+        rgba(37, 37, 37, 0.7)),
+      url("../images/background-black2.jpg");
+  background-color: rgb(37, 37, 37);
   color: #fff;
 }
 
 .dark__footer {
-  background-color: #1b1a1a;
+  background-color: rgb(27, 26, 26);
   color: #fff;
 }
 
