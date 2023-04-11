@@ -1,13 +1,21 @@
+.footer {
+  margin-top: 20px;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 32px;
+  }
+}
+
 .footer__container {
   margin-left: auto;
   margin-right: auto;
-color:#545454;
+  color: #545454;
   text-align: center;
 
   background-color: #f7f7f7;
 
   @media screen and (max-width: calc($tablet - 0.02px)) {
-    max-width: 320px;
+    max-width: 480px;
 
     padding-top: 29px;
     padding-bottom: 30px;

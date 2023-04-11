@@ -87,7 +87,35 @@ export function toggleModal() {
       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       refs.filmInfo.innerHTML = await renderList(movie);
 
-     } catch (error) {
+
+// зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
+// КОД ІНШІ ЧАСТИНИ СКРИПТУ НЕ ЗМІНЮЄ І НЕ ЧІПАЄ(крім використанні id)
+      const queueBtn = document.querySelector('#queueInModal');
+      const watchedBtn = document.querySelector('#watchedInModal');
+      const queueLocalStorage = localStore.load('queue');
+      const watchedLocalStorage = localStore.load('watched');
+
+      if (queueLocalStorage) {
+        for (const film of queueLocalStorage) {
+          if (movie.id === film.id) {
+            queueBtn.classList.add('button-list--active');
+            queueBtn.textContent = 'Added to queue';
+        }
+      }
+      }
+      if (watchedLocalStorage) {
+        for (const film of watchedLocalStorage) {
+          if (movie.id === film.id) {
+            watchedBtn.classList.add('button-list--active');
+            watchedBtn.textContent = 'Added to queue';
+        }
+        }
+      }
+// зміна стилю кнопок
+
+
+    } catch (error) {
+
       console.error(error);
     }
     window.addEventListener('keydown', closeModalOnEsc);
