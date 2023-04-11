@@ -77,11 +77,12 @@ const teamMembers = [
       'https://media.licdn.com/dms/image/D5603AQGbu19s3lBcCA/profile-displayphoto-shrink_200_200/0/1681228744464?e=1686787200&v=beta&t=3DmdTdw341wPKYlJvO7oAgEJwMPGl5UjPhue5-m0LKM',
   },
   {
-    name: 'Yaroslav Voinalovych',
+    name: 'Yaroslav Voinalovich',
     role: 'Developer',
-    github: '',
-    linkedin: '',
-    photo: '',
+    github: 'https://github.com/Voinalovych91',
+    linkedin: 'https://www.linkedin.com/in/yaroslav-voinalovich-8a2b87271/',
+    photo:
+      'https://media.licdn.com/dms/image/D4E03AQF8AcETaCzbOw/profile-displayphoto-shrink_200_200/0/1681232134819?e=1686787200&v=beta&t=tVjtXbBPrWdnVygwwazXdjR-4OExYCl2cr5PjCG2obI',
   },
   {
     name: 'Yaroslav Hrytsutenko',
