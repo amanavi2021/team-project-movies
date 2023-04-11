@@ -3,11 +3,12 @@ import apiService from './js/apiService';
 import {mask} from './js/loader';
 import * as teamModal from './js/team-members';
 // import toggleModal from './js/modal';
-//import { paginationLocalStorage } from './js/pagination-library';
+import { paginationLocalStorage } from './js/paginationIn-library';
 import localstorage from './js/service/localstorage';
 import renderFilms from './js/renderFilms';
 
-onLoadCurrentFilms();
+paginationLocalStorage('watched');
+//onLoadCurrentFilms();
 const filmContainer = document.querySelector('.my-gallery');
 
 const buttons = document.querySelector('.header__buttons-library');
@@ -23,10 +24,10 @@ function onClickBtnLibrary(e) {
             onClassActiveToggle(target);
             return;
         } else {
-            const parsedFilmsFromQueueLocalStorage = localstorage.load('queue');
+            paginationLocalStorage('queue');
             onClassActiveToggle(target);
 
-            appendFromLocalStorage(parsedFilmsFromQueueLocalStorage);
+            
             return;
         };
     };
@@ -36,8 +37,7 @@ function onClickBtnLibrary(e) {
             onClassActiveToggle(target);
             return;
         } else {
-            const parsedFilmsFromWatchedLocalStorage = localstorage.load('watched');
-            appendFromLocalStorage(parsedFilmsFromWatchedLocalStorage);
+            paginationLocalStorage('watched');
             onClassActiveToggle(target);
             return;
         };
