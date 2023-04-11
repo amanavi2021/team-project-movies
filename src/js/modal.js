@@ -3,12 +3,12 @@ import apiService from './apiService';
 import renderFilms from './renderFilms';
 import localStore from './service/localstorage';
 import onClickPlayer from './trailerplayer';
-import refs from './service/refs';
 
 export function toggleModal() {
   const refs = {
     closeModal: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
+    playerClick: document.querySelector('.modal'),
     filmClick: document.querySelector('.gallery'),
     filmInfo: document.querySelector('.film-info__wrap'),
   };
@@ -53,6 +53,7 @@ export function toggleModal() {
 
   refs.filmClick.addEventListener('click', onClickOpen);
   refs.closeModal.addEventListener('click', closeModal);
+  refs.playerClick.addEventListener('click', onClickPlayer);
 
   async function onClickOpen(e) {
     if (
@@ -85,15 +86,14 @@ export function toggleModal() {
       console.log('movie by method find', movie);
       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       refs.filmInfo.innerHTML = await renderList(movie);
-    } catch (error) {
+
+     } catch (error) {
       console.error(error);
     }
     window.addEventListener('keydown', closeModalOnEsc);
     refs.modal.classList.remove('is-hidden');
 
-    //  Вішаємо слухача на кнопку на картці і при натиску, запускаємо Відео
-    const trailerPlayBTN = document.querySelector('.trailer-player-btn');
-    trailerPlayBTN.addEventListener('click', onClickPlayer);
+   
 
     // renderList();
     //document.body.style.overflow = 'hidden';

@@ -17,15 +17,14 @@ class ApiService {
      
            }
 
-    // запит  найпопулярніших фільмів дня       
+// запит  найпопулярніших фільмів дня       
     async fetchTrandingFilmDay() {    
-
         const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.pageNumber}`;
         return this.#fetchData(queryString); 
     }
 
    
-    // запит фільма за ключовим словом 
+// запит фільма за ключовим словом 
     async fetchFilmByName() {    
 
         //const queryString = `${BASE_URL}search/keyword?api_key=${API_KEY}&query=${this.searchQuery}`;
@@ -34,32 +33,32 @@ class ApiService {
        
     }
     
-    // запит повної інформації за ID
+// запит повної інформації за ID
     async fetchFullInfoByID() {    
 
         const queryString = `${BASE_URL}movie/${this.filmID}?api_key=${API_KEY}`;
         return this.#fetchData(queryString); 
     }
 
-    // запит трейлера за ID  
+// запит трейлера за ID  
      async fetchTrailerByID() {    
 
         const queryString = `${BASE_URL}movie/${this.filmID}/videos?api_key=${API_KEY}`;
         return this.#fetchData(queryString); 
     }
 
-    // збереження результату запиту найпопулярніших фільмів дня в локальну змінну
+// збереження результату запиту найпопулярніших фільмів дня в локальну змінну
     async saveTrandingFilmDayToLocalStorage() {
         const trandingFilmDay = await this.fetchTrandingFilmDay();
         localStore.save(LOCAL_STORAGE_TF, trandingFilmDay);
     }
 
-    // отримання збереженного результату запиту найпопулярніших фільмів дня або пошуку фільмів в локальну змінну
+// отримання збереженного результату запиту найпопулярніших фільмів дня або пошуку фільмів в локальну змінну
     getSavedFilms() {
      return localStore.load(LOCAL_STORAGE_TF)||{};
       }
 
-     // збереження результату запиту фільмів за назвою
+// збереження результату запиту фільмів за назвою
      async saveFindingFilmsToLocalStorage() {
          const findingFilms = await this.fetchFilmByName();
          if (findingFilms.results.length === 0) {
@@ -70,7 +69,7 @@ class ApiService {
     }  
     
 
-    //збереження результату запиту переліку жанрів, якщо до цього вони не були збережені
+//збереження результату запиту переліку жанрів, якщо до цього вони не були збережені
     async saveGenresToLocalStorage() {
         if (!localStore.load(LOCAL_STORAGE_G)) {
             const fetchedGenres = await this.#fetchGenres();
@@ -80,13 +79,13 @@ class ApiService {
         }
     }
 
-    // запит переліку жанрів 
+// запит переліку жанрів 
     async #fetchGenres(){
         const queryString =`${BASE_URL}genre/movie/list?api_key=${API_KEY}`;
         return this.#fetchData(queryString); 
     }
     
-
+// базова функція fetch
     async #fetchData(queryString) {
          try {
             const response = await axios.get(queryString);
