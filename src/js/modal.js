@@ -59,10 +59,12 @@ export function toggleModal() {
       e.target === e.currentTarget ||
       e.target.nodeName === `BUTTON` ||
       e.target.classList.contains(`trailer-player__svg`) ||
-      e.target.classList.contains(`trailer-player-wrapper`)
+      e.target.classList.contains(`trailer-player-wrapper`) ||
+      e.target.nodeName === `path`
     ) {
       return;
     }
+    console.log(e.target.nodeName);
     // console.log('id', e.target.dataset.id);
 
     try {
