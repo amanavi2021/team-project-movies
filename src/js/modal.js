@@ -55,37 +55,34 @@ export function toggleModal() {
   refs.closeModal.addEventListener('click', closeModal);
 
   async function onClickOpen(e) {
-       if (
-         e.target === e.currentTarget ||
-         e.target.nodeName === `BUTTON` ||
-         e.target.classList.contains(`trailer-player-wrapper`)
-       ) {
-         return;
-       }
+    if (
+      e.target === e.currentTarget ||
+      e.target.nodeName === `BUTTON` ||
+      e.target.classList.contains(`trailer-player__svg`) ||
+      e.target.classList.contains(`trailer-player-wrapper`)
+    ) {
+      return;
+    }
     // console.log('id', e.target.dataset.id);
 
     try {
       let movieId = e.target.dataset.id;
       const movies = apiService.getSavedFilms();
 
-
-//        let movieId = e.target.dataset.id;
-//        const movies = apiService.getSavedFilms();
+      //        let movieId = e.target.dataset.id;
+      //        const movies = apiService.getSavedFilms();
 
       //  console.log('movies', movies);
 
-       //const movie = movies.results.find(({id}) => id === Number(movieId));
+      //const movie = movies.results.find(({id}) => id === Number(movieId));
       //  console.log('movie by method find', movie)
-       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
-       //refs.filmInfo.innerHTML = await renderList(movie);
-
+      //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
+      //refs.filmInfo.innerHTML = await renderList(movie);
 
       const movie = movies.results.find(({ id }) => id === Number(movieId));
       console.log('movie by method find', movie);
       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       refs.filmInfo.innerHTML = await renderList(movie);
-
-  
     } catch (error) {
       console.error(error);
     }
@@ -95,11 +92,9 @@ export function toggleModal() {
     //  Вішаємо слухача на кнопку на картці і при натиску, запускаємо Відео
     const trailerPlayBTN = document.querySelector('.trailer-player-btn');
     trailerPlayBTN.addEventListener('click', onClickPlayer);
- 
 
     // renderList();
     //document.body.style.overflow = 'hidden';
-
   }
 
   // function onClickClose() {
@@ -108,13 +103,22 @@ export function toggleModal() {
   // }
 
   async function renderList(movie) {
-
     // console.log('renderList called with movie:', movie);
     await apiService.saveGenresToLocalStorage();
     const genres = localStore.load('genres') || [];
     // console.log('GENRES', genres);
 
-        const { poster_path, backdrop_path, title, genre_ids, release_date, id, popularity, vote_average, vote_count, overview
+    const {
+      poster_path,
+      backdrop_path,
+      title,
+      genre_ids,
+      release_date,
+      id,
+      popularity,
+      vote_average,
+      vote_count,
+      overview,
     } = movie;
 
     if (poster_path !== null) {
@@ -128,8 +132,17 @@ export function toggleModal() {
         genreList.push('Other');
       }
       genreList = genreList.join(', ');
-      return markupModalMovie({ poster_path, backdrop_path, title, genreList, year, id, popularity, vote_average, vote_count, overview
-
+      return markupModalMovie({
+        poster_path,
+        backdrop_path,
+        title,
+        genreList,
+        year,
+        id,
+        popularity,
+        vote_average,
+        vote_count,
+        overview,
       });
     }
   }
