@@ -7,7 +7,6 @@ import refs from './service/refs';
 
 export function toggleModal() {
   const refs = {
-    // openModal: document.querySelector('[data-modal-open]'),
     closeModal: document.querySelector('[data-modal-close]'),
     modal: document.querySelector('[data-modal]'),
     filmClick: document.querySelector('.gallery'),
@@ -52,8 +51,6 @@ export function toggleModal() {
     }
   }
 
-  // refs.openModal.addEventListener('click', openModal);
-  // refs.closeModal.addEventListener('click', closeModal);
   refs.filmClick.addEventListener('click', onClickOpen);
   refs.closeModal.addEventListener('click', closeModal);
 
