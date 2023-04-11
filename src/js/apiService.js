@@ -1,5 +1,6 @@
 import axios from 'axios';
 import localStore from './service/localstorage'
+import notifier from './service/notifier'
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '837953248391225ae7c8e73f09921895';
@@ -10,9 +11,9 @@ const LOCAL_STORAGE_G = 'genres';
 //клас робить HTTP-запит на ресурс і повертає дані (об'єкт)
 class ApiService {
     constructor() {
-        this.searchQuery = '' ; // Chupa для перевірки;
+        this.searchQuery = '' ; 
         this.pageNumber = 1;
-        this.filmID = ''; // 594767 для перевірки;
+        this.filmID = ''; 
      
            }
 
@@ -60,7 +61,11 @@ class ApiService {
 
      // збереження результату запиту фільмів за назвою
      async saveFindingFilmsToLocalStorage() {
-        const findingFilms = await this.fetchFilmByName();
+         const findingFilms = await this.fetchFilmByName();
+         if (findingFilms.results.length === 0) {
+             notifier.warning("We haven't found movies with that name");
+         return;
+         }
         localStore.save(LOCAL_STORAGE_TF, findingFilms);
     }  
     
