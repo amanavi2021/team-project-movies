@@ -45,8 +45,8 @@ try {
 
 async function renderMoviesByName (movies) {
  if (movies.results.length === 0) {
-
-    alert("We haven't found movies with that name");
+    
+    // alert("We haven't found movies with that name"); - в Api Service є після перевірки
     return;
 
  }
