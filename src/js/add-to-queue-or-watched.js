@@ -32,11 +32,15 @@ function addToQueue(id) {
     for (const film of filmsFromLocalStorage.results) {
         if (film.id === Number(id)) {
             results = {
-                // genres: film.genres,
                 genre_ids: film.genre_ids,
                 release_date: film.release_date,
                 poster_path: film.poster_path,
+                backdrop_path: film.backdrop_path,
                 title: film.title,
+                popularity: film.popularity,
+                vote_average: film.vote_average,
+                vote_count: film.vote_count,
+                overview: film.overview,
                 id: film.id,
             };
         };
