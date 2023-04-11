@@ -5,7 +5,7 @@ import notifier from './service/notifier'
 
 export default async function onClickPlayer(event) {
     let playerContainer = document.querySelector('.trailer-player-container');  
-    const currentFilmId = event.target.closest('.film-card').querySelector('.film-card__small-image').dataset.id;
+    const currentFilmId = event.target.closest('.film-card').querySelector('.film-card__small-image').dataset.id || event.target.closest('.thumb').querySelector('.modal__image').dataset.id;
     apiService.filmID = currentFilmId;
 
     const trailerData = await apiService.fetchTrailerByID();

@@ -1,0 +1,23 @@
+.dark {
+  background-image:
+      linear-gradient(to right,
+        rgba(37, 37, 37, 0.7),
+        rgba(37, 37, 37, 0.7)),
+      url("../images/background-black2.jpg");
+  background-color: rgb(37, 37, 37);
+  color: #fff;
+}
+
+.dark__footer {
+  background-color: rgb(27, 26, 26);
+  color: #fff;
+}
+
+.dark_theme-text {
+  color: #fff;
+}
+
+.section-theme{
+  display: flex;
+  justify-content: center;
+}

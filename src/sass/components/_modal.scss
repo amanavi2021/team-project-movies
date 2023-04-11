@@ -84,8 +84,8 @@
 
   width: 30px;
   height: 30px;
-
-  background-color: #ffffff;
+  color: inherit;
+  background-color: inherit;
   border: none;
 
   cursor: pointer;
@@ -95,7 +95,7 @@
   width: 30px;
   height: 30px;
   position: absolute;
-
+  fill: inherit;
   padding: 0px;
   border: none;
   background-color: transparent;
@@ -103,6 +103,7 @@
 
 ///// style for 1 film card modal
 .thumb {
+  position: relative;
   width: 240px;
   height: 357px;
   @media screen and (min-width: $tablet) {
@@ -189,7 +190,7 @@
 
 .film-card__info-item--value {
   width: 60%;
-  color: #000;
+  color: inherit;
   line-height: 1.3333;
   font-weight: 500;
   font-size: 12px;
@@ -206,13 +207,14 @@
   background-color: #f7f7f7;
   border-radius: 5px;
   padding: 1px 4px;
+  color: #000;
 }
 
 .film-card__title {
   margin-top: 20px;
   margin-bottom: 8px;
   text-transform: uppercase;
-  color: #000;
+  color: inherit;
   line-height: 1.33333;
   font-weight: 500;
   font-size: 12px;
@@ -220,7 +222,7 @@
 }
 
 .film-card__overview {
-  color: #000;
+  color: inherit;
   font-size: 12px;
   line-height: 1.66667;
   font-weight: 500;
@@ -250,7 +252,9 @@
   background: #fff;
   border: 1px solid #000000;
   box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {  
+          background-color: #e5a4a3;}
   &--active {
       color: #FFFFFF;
       background-color: $accentColor;

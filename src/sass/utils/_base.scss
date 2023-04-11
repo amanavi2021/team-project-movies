@@ -1,9 +1,22 @@
 body{
   font-family: $mainFont;
   font-size: 14px;
-  background-color: #FFFFFF;
+  color: #000;
+  background-image:
+    linear-gradient(to right,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)),
+    url("../images/background-white.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  background-color: rgb(255, 255, 255);
+
   scroll-behavior: smooth;
   background-attachment: fixed;
+
 }
 
 // reset styles
