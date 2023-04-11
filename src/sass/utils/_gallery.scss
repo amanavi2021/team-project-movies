@@ -125,11 +125,6 @@ cursor: pointer;
     
 }
 
-.trailer-player__svg {
-   fill:$accentColor;
-}
-
-
 .trailer-player-wrapper {
     position: fixed;
     top: 0;
@@ -147,4 +142,18 @@ cursor: pointer;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.trailer-player__svg {
+    fill:$accentColor;
+ 
+ }
+ .svg__path-second, .svg__path-first{
+    .trailer-player-btn:hover & {  
+           fill: white;}
+ }
+
+ .svg__path-third{
+    .trailer-player-btn:hover & {  
+         fill: #cf6f55;}
 }
