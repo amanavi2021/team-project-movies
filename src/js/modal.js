@@ -64,7 +64,6 @@ export function toggleModal() {
     ) {
       return;
     }
-    console.log(e.target.nodeName);
     // console.log('id', e.target.dataset.id);
 
     try {
