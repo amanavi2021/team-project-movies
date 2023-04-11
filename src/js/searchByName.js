@@ -47,11 +47,12 @@ try {
 
 
 async function renderMoviesByName (movies) {
- if (movies.results.length === 0) {
-    
-    // alert("We haven't found movies with that name"); - в Api Service є після перевірки
-    return;
-
-
-// А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто ас
+  if (movies.results.length === 0) {
+     
+     // alert("We haven't found movies with that name"); - в Api Service є після перевірки
+     return;
  
+ 
+ // А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто ас
+  }
+ }
