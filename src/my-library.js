@@ -10,6 +10,7 @@ import localstorage from './js/service/localstorage';
 import renderFilms from './js/renderFilms';
 import theme from './js/theme';
 import searchByName from './js/searchByName';
+import languageApi from './js/language-changer';
 
 paginationLocalStorage('watched');
 //onLoadCurrentFilms();

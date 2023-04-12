@@ -1,0 +1,58 @@
+.language-container {
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.lang--btn,
+.lang--btn:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.language {
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.lang--btn {
+  cursor: pointer;
+  font: inherit;
+  min-width: 35px;
+  min-height: 25px;
+  text-transform: uppercase;
+  border-radius: 40%;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.66667;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+}
+
+.active-btn {
+  background: #ff001b;
+  border-color: #ff001b;
+  box-shadow: 0 0 7px 5px rgba(190, 49, 49, 0.6);
+}
+
+.en {
+  margin-left: 10px;
+}
+
+.lang--btn:hover,
+.lang--btn:focus {
+  border-color: #ff001b;
+  box-shadow: 0 0 7px 5px rgba(177, 11, 11, 0.925);
+}
+
+:focus,
+:active,
+a:focus,
+a:active {
+  outline: none;
+}

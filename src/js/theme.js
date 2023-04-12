@@ -1,7 +1,6 @@
 export default document
   .querySelector('#switch')
   .addEventListener('change', event => {
-    console.log('sdsdsdsd');
     event.preventDefault();
     if (localStorage.getItem('theme') === 'dark') {
       localStorage.removeItem('theme');
@@ -31,7 +30,9 @@ function addDarkClassToHTML() {
       document
         .querySelector('.member__link')
         .classList.remove('dark_theme-text');
-      document.querySelector('.header__title').classList.remove('dark_theme-title');
+      document
+        .querySelector('.header__title')
+        .classList.remove('dark_theme-title');
     }
   } catch (err) {}
 }
