@@ -367,6 +367,13 @@
         background-color: #FFFFFF;
         text-transform: uppercase;
 
+        &:hover,
+            &:focus {
+                color: white;
+                background-color: #ae2a28;
+               
+            }
+
         &--active{
             color: #FFFFFF;
             background-color: $accentColor;
