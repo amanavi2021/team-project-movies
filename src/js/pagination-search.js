@@ -1,3 +1,4 @@
+import * as paginationFunctions from './pagination-functions';
 import onLoad from './onLoad';
 import apiService from './apiService';
 import localstorage from './service/localstorage';
@@ -10,10 +11,16 @@ const paginationContainerEl = document.querySelector('.pagination__container')
 
 function getTotalPage() {
     const savedFilms = localStorage.getItem('currentFilms') || {};
+
     try {
         const parsedSavedFilms = JSON.parse(savedFilms);
-        const pageNumber = parsedSavedFilms.total_pages;
-        const firstPageFilms = parsedSavedFilms.results;
+        let pageNumber = 0;
+        let firstPageFilms = [];
+
+        if (savedFilms !== {}) {
+            pageNumber = parsedSavedFilms.total_pages;
+            firstPageFilms = parsedSavedFilms.results;
+        }
 
         return { pageNumber, firstPageFilms } ;
     } catch {
@@ -27,43 +34,60 @@ export async function paginationSearch(currentSearchWord) {
     const localStorageData = getTotalPage();
     const { pageNumber, firstPageFilms } = localStorageData;
     const total_pages = pageNumber;
-    
+
+    if (total_pages === 0) {
+        cardContainerEl.innerHTML = '';
+        paginationFunctions.clearPagination(paginationEl);
+        console.log('nothing is found');
+        return;
+    }
+    console.log(total_pages);
+
     appendFromLocalStorage(firstPageFilms);
 
-    
-    
+    paginationFunctions.clearPagination(paginationEl);
+
     if (total_pages <= NUMBER_PAGINATION + 2 && total_pages >= 1) {
         displayPaginationSmall(total_pages);
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
-        paginationEl.addEventListener('click', async (e) => {
-    if (!e.target.classList.contains('pagination__item')) {
-        return;
-    }
-
+     paginationEl.addEventListener('click', async (e) => {
+        if (!e.target.classList.contains('pagination__item')) {
+            return;
+        }
     
-    const currentPage = Number(e.target.textContent);
+        try {  
+        const currentPage = Number(e.target.textContent);
 
-    cardContainerEl.innerHTML = '';
-    apiService.pageNumber = currentPage;
-    apiService.query = currentSearchWord;
-
-    try {  
-        const movies = await apiService.fetchFilmByName();
-        console.log(movies);
-        appendFromLocalStorage(movies.results);
-    }
-    catch {
-        console.error(error);
-    }
-    document.querySelector('.pagination__item--select')?.classList.remove('pagination__item--select');
-    document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
+        cardContainerEl.innerHTML = '';
+        paginationFunctions.clearPagination(paginationEl);
+        apiService.pageNumber = currentPage;
+        apiService.query = currentSearchWord;
+            
+        
+        
+            const movies = await apiService.fetchFilmByName();
+            console.log(movies);
+            paginationFunctions.clearPagination(paginationEl);
+            appendFromLocalStorage(movies.results);
+            displayPaginationSmall(total_pages);
+            document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
+        }
+        catch {
+        console.log('fetch problem');
+        }
+            
+        //document.querySelector('.pagination__item--select').classList.remove('pagination__item--select');
+        
+         
+        
         });
         
         return;
     }
 
-     paginationEl.innerHTML = '';
+    paginationEl.innerHTML = '';
+    paginationFunctions.clearPagination(paginationEl);
 
     displayPaginationBig(total_pages);
     document.querySelector('.js-page-1').classList.add('pagination__item--select');
@@ -71,76 +95,55 @@ export async function paginationSearch(currentSearchWord) {
     const btnLeft = document.querySelector('.pagination__btnLeft');
     const btnRight = document.querySelector('.pagination__btnRight');
 
-    btnLeft.setAttribute('disabled', true);
-
+    btnLeft.disabled = true;
 
     paginationContainerEl.addEventListener('click', (e) => {
+        e.preventDefault();
+
         if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
             return;
         };
-        
+
+       
         if (e.target.classList.contains('pagination__item')) {
              const currentPage = Number(e.target.textContent);        
         
             onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWord);
             onBigPaginationBtnClickrRenderPagination(total_pages, currentPage); 
 
-           if (currentPage === 1) {
-                document.querySelector('.pagination__btnLeft').disabled = true;
-            } else {
-                document.querySelector('.pagination__btnLeft').disabled = false;
-            }
-
-            if (currentPage === total_pages) {
-                document.querySelector('.pagination__btnRight').disabled = true;
-            } else {
-                document.querySelector('.pagination__btnRight').disabled = false;
-            }
+            paginationFunctions.activityArrows(currentPage, total_pages);
         }
 
         if (e.target.classList.contains('pagination__btnLeft')) {
-                //const currentArrow = e.target;
+                
             const activePage = document.querySelector('.pagination__item--select');
             const activePageNumber = Number(activePage.textContent);
-                
             const previousPage = activePageNumber - 1;
 
             onBigPaginationBtnClickrRenderFilms(previousPage, currentSearchWord);
             onBigPaginationBtnClickrRenderPagination(total_pages, previousPage); 
 
-            if (Number(document.querySelector('.pagination__item--select').textContent) === 1) {
-                document.querySelector('.pagination__btnLeft').disabled = true;
-            } else {
-                document.querySelector('.pagination__btnLeft').disabled = false;
-            };
+            paginationFunctions.activityOfLeftArrow(1);
             
             }
 
         if (e.target.classList.contains('pagination__btnRight')) {
-               // const currentArrow = e.target;
+              
             const activePage = document.querySelector('.pagination__item--select');
             const activePageNumber = Number(activePage.textContent);
-                
             const nextPage = activePageNumber + 1;
 
             onBigPaginationBtnClickrRenderFilms(nextPage, currentSearchWord);
             onBigPaginationBtnClickrRenderPagination(total_pages, nextPage);    
             
-            if (Number(document.querySelector('.pagination__item--select').textContent) === total_pages) {
-                document.querySelector('.pagination__btnRight').disabled = true;
-            } else {
-                document.querySelector('.pagination__btnRight').disabled = false;
-            }
+            paginationFunctions.activityOfRightArrow(total_pages);
         }
        
     })
 }
 
 function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
-    paginationEl.innerHTML = '';
-    document.querySelector('.pagination__btnLeft')?.remove();
-    document.querySelector('.pagination__btnRight')?.remove();
-
+    paginationFunctions.clearPagination(paginationEl);
 
     const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2);
     const m = total_pages - (NUMBER_PAGINATION - 1);
@@ -171,7 +174,6 @@ async function onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWor
         console.error(error);
     }
 }
-
 
 function displayPaginationBig(total_pages) {
     createPaginationArrowLeft(paginationContainerEl);

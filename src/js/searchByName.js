@@ -1,7 +1,7 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
 import apiService from './apiService';
 import { paginationLocalStorage } from './paginationIn-library';
-import { paginationSearch } from './paginationSearch';
+import { paginationSearch } from './pagination-search';
 import renderFilms from './renderFilms';
 import onClickPlayer from './trailerplayer';
 
