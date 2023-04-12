@@ -43,7 +43,7 @@
   .search {
     width: 252px;
     height: 34px;
-    background-color:  #FFFFFF;
+    background-color:  $white;
     border-radius: 100px;
 
     text-align: center;
@@ -67,7 +67,7 @@
         padding: 0;
         border: 0;
         border-radius: 100px;
-        background-color: #FFFFFF;
+        background-color: $white;
         box-sizing: border-box;
     
         height: 34px;
@@ -104,7 +104,7 @@
       padding-left: 14px;
       border: none;
       outline: none;
-      color: #000000;
+      color: $black;
       font-size: 12px;
       line-height: calc(14/12);
       border-radius: 100px;
@@ -121,7 +121,7 @@
 
   }
   input::placeholder {
-      color: #000000;
+      color: $black;
       font-size: 14px;
       line-height: 1.14;
       font-weight: 400;
@@ -178,7 +178,7 @@
             font-size: 32px;
             line-height: calc(38/32);
             font-weight: 500;
-            color:#FFFFFF;
+            color:$white;
             @media screen and (min-width: $tablet) {
                 font-size: 40px;
                 line-height: calc(47/40);
@@ -289,21 +289,23 @@
             letter-spacing: 0em;
             text-align: center;
             cursor: pointer;
-            color: #000000;
-            background-color: #FFFFFF;
+            color: $black;
+            background-color: $white;
             text-transform: uppercase;
             
             
             
             &:hover,
             &:focus {
-                color: white;
-                background-color: black;
+                color: $white;
+                background-color: $black;
                
             }
             &--current{
-                color: #FFFFFF;
-                background-color: #000000;
+
+                color: $white;
+                background-color: $black;
+
 
 
             &:before, 
@@ -343,7 +345,7 @@
             }
 
 
-            }
+           }
 
             @media screen and (min-width: $tablet) {
                 height: 38px;
@@ -378,18 +380,18 @@
         text-align: center;
         cursor: pointer;
         color: $accentColor;
-        background-color: #FFFFFF;
+        background-color: $white;
         text-transform: uppercase;
 
         &:hover,
             &:focus {
-                color: white;
-                background-color: #ae2a28;
+                color: $white;
+                background-color: $accentColor;
                
             }
 
         &--active{
-            color: #FFFFFF;
+            color: $white;
             background-color: $accentColor;
 
             &:before, 

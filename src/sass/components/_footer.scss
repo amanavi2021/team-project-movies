@@ -2,7 +2,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  background-color: #f7f7f7;
+  background-color: $background-color-white-footer;
 
   @media screen and (max-width: calc($tablet - 0.02px)) {
     max-width: 480px;
@@ -49,7 +49,7 @@
   line-height: calc(16 / 14);
   letter-spacing: 0.03em;
   text-align: center;
-  color: #545454;
+  color: $footer-text;
 
   @media screen and (min-width: $tablet) {
     font-size: 16px;
@@ -85,6 +85,6 @@
 
   &:hover,
   &:focus {
-    color: #bb1010;
+    color: $hover;
   }
 }

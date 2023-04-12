@@ -63,11 +63,13 @@ export function toggleModal() {
 
   async function onClickOpen(e) {
     if (
-      e.target === e.currentTarget ||
-      e.target.nodeName === `BUTTON` ||
-      e.target.classList.contains(`trailer-player__svg`) ||
-      e.target.classList.contains(`trailer-player-wrapper`) ||
-      e.target.nodeName === `path`
+      e.target === e.currentTarget
+      || e.target.nodeName === `BUTTON`
+      || e.target.classList.contains(`trailer-player__svg`)
+      || e.target.classList.contains(`trailer-player-wrapper`) 
+      || e.target.nodeName === `path`
+      || e.target.nodeName === `H2`
+      || e.target.nodeName === `P`
     ) {
       return;
     }
@@ -95,6 +97,13 @@ export function toggleModal() {
       refs.filmInfo.innerHTML = await renderList(movie);
 
       // зміна стилю кнопок
+
+      // Кнопка PLAY з'являється після картинки
+      showPlayBtnAfterImgLoad();
+
+         // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
+      // КОД ІНШІ ЧАСТИНИ СКРИПТУ НЕ ЗМІНЮЄ І НЕ ЧІПАЄ(крім використанні id)
+
       const queueBtn = document.querySelector('#queueInModal');
       const watchedBtn = document.querySelector('#watchedInModal');
       const queueLocalStorage = localStore.load('queue');
@@ -176,6 +185,20 @@ export function toggleModal() {
       });
     }
   }
+
+  function showPlayBtnAfterImgLoad() {
+  const imgFilm = document.querySelector('.modal__image');
+      const trailerPlayBtn = document.querySelector('[data-btn-modal]');
+
+      if (imgFilm.complete) {
+        trailerPlayBtn.classList.remove('visually-hidden');
+      } else {
+        imgFilm.addEventListener('load', () => {
+          trailerPlayBtn.classList.remove('visually-hidden')
+        });
+        };
+};
+
 
   function clearModalMovie(ref) {
     ref.innerHTML = '';

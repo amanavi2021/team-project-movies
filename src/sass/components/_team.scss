@@ -57,7 +57,7 @@
 
 .member__role {
   font-size: 12px;
-  color: #bb1010;
+  color: $accentColor;
 }
 
 .member__name {
@@ -67,15 +67,15 @@
 }
 .member__link-git {
   padding-right: 3px;
-  border-right: 1px solid #bb1010;
+  border-right: 1px solid $accentColor;
 }
 
 .member__link {
-  color: #545454;
+  color: $footer-text;
   font-size: 12px;
 
   &:hover,
   &:focus {
-    color: #bb1010;
+    color: $hover;
   }
 }
