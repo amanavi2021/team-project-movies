@@ -1,8 +1,7 @@
 <header class="header">
-  <div class=" container header__container">
-
-    <div class='search__navi'>
-      <form class="search hvr-shadow-radial" id="search-form">
+  <div class="header__container">
+    <div class="search__navi">
+      <form class="search" id="search-form">
         <input
           class="search__input"
           type="text"
@@ -34,10 +33,15 @@
       </svg>
       <span class="header__title">Filmoteka</span>
     </a>
-    <div class="section-theme">
-      <a href="#" class="themetoggle">
-        <span class="material-icons" style="color: white" wght:600>wb_sunny</span></a
-      >
+    <div class="switch__thumb" style="display: flex">
+      <p class="switch__light">light</p>
+      <div class="header__switch">
+        <label class="switch" for="switch">
+          <input id="switch" type="checkbox" style="display: none" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="switch__dark">dark</p>
     </div>
   </div>
 </header>
