@@ -1,6 +1,8 @@
 .footer {
   margin-top: 20px;
 
+  background-color: #f7f7f7;
+
   @media screen and (min-width: $tablet) {
     margin-top: 32px;
   }
@@ -9,10 +11,6 @@
 .footer__container {
   margin-left: auto;
   margin-right: auto;
-  color: #545454;
-  text-align: center;
-
-  background-color: #f7f7f7;
 
   @media screen and (max-width: calc($tablet - 0.02px)) {
     max-width: 480px;
@@ -44,7 +42,8 @@
   font-size: 14px;
   line-height: calc(16 / 14);
   letter-spacing: 0.03em;
-  color: inherit;
+  text-align: center;
+  color: #545454;
 
   @media screen and (min-width: $tablet) {
     font-size: 16px;
