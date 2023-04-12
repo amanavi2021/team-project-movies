@@ -65,38 +65,25 @@ export function toggleModal() {
     ) {
       return;
     }
-    console.log(e.target.nodeName);
+    // console.log(e.target.nodeName);
     // console.log('id', e.target.dataset.id);
 
     try {
       let movieId = e.target.dataset.id;
-     //тест
-     console.log('document', document.querySelector('.nav__link--current').textContent);
-     console.log('document', document.querySelector('.nav__link--current').textContent === 'Home');
-     console.log('document', document.querySelector('.btn--active').dataset.add);
-     //тест
-     let movies =[];
+
+      let movies =[];
       if (document.querySelector('.nav__link--current').textContent ==='Home') {
         movies = apiService.getSavedFilms().results;
       } else {
-        movies = apiService.getWatchedFilms();
-      }
-      // const movies = apiService.getSavedFilms();
-      
-      //        let movieId = e.target.dataset.id;
-      //        const movies = apiService.getSavedFilms();
-
-      //  console.log('movies', movies);
-
-      //const movie = movies.results.find(({id}) => id === Number(movieId));
-      //  console.log('movie by method find', movie)
-      //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
-      //refs.filmInfo.innerHTML = await renderList(movie);
-
+        if (document.querySelector('.btn--active').dataset.add ==="watched"){
+          movies = apiService.getWatchedFilms();
+        } else {
+          movies = apiService.getQueuedFilms();       
+        }        
+            }
       //const movie = movies.results.find(({ id }) => id === Number(movieId));
       const movie = movies.find(({ id }) => id === Number(movieId));
       console.log('movie by method find', movie);
-      //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       refs.filmInfo.innerHTML = await renderList(movie);
 
 
