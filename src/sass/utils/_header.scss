@@ -293,6 +293,8 @@
             background-color: #FFFFFF;
             text-transform: uppercase;
             
+            
+            
             &:hover,
             &:focus {
                 color: white;
@@ -302,33 +304,42 @@
             &--current{
                 color: #FFFFFF;
                 background-color: #000000;
-                -webkit-animation: anim 2s ease infinite;
-                    animation: anim 2s ease infinite;
-                    background-size: 100% 100%;
-                    
-                  
-                  
-                  @-webkit-keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
-                  
-                  @keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
+
+            &:before, 
+            &:after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            z-index: -1;
+            margin: -2%;
+            border-radius: 100px;
+            box-shadow: inset 0 0 0 3px #075e98;
+            animation: anim-nav-link 6s linear infinite; 
+        }
+            &:before {
+            animation-delay: -4s;
+        }
+            &:hover::after, 
+            &:hover::before {
+                background-color: #1a1919;
+            }
+            @keyframes anim-nav-link {
+               0%, 100% {
+                   clip: rect(0px, 220px, 6px, 0px);
+               }
+               25% {
+                   clip: rect(0px, 6px, 220px, 0px);
+               }
+               50% {
+                   clip: rect(218px, 220px, 220px, 0px);
+               }
+               75% {
+            clip: rect(0px, 220px, 220px, 218px);
+               }
+            }
             }
 
             @media screen and (min-width: $tablet) {
@@ -377,31 +388,41 @@
         &--active{
             color: #FFFFFF;
             background-color: $accentColor;
-            -webkit-animation: anim 2s ease infinite;
-                    animation: anim 2s ease infinite;
-                    background-size: 100% 100%;
-                    
-                    @-webkit-keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
-                  
-                  @keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
+            &:before, 
+            &:after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            z-index: -1;
+            margin: -2%;
+            border-radius: 100px;
+            box-shadow: inset 0 0 0 3px #075e98;
+            animation: anim-nav-link 6s linear infinite; 
+        }
+            &:before {
+            animation-delay: -4s;
+        }
+            &:hover::after, 
+            &:hover::before {
+                background-color: #1a1919;
+            }
+            @keyframes anim-nav-link {
+               0%, 100% {
+                   clip: rect(0px, 220px, 6px, 0px);
+               }
+               25% {
+                   clip: rect(0px, 6px, 220px, 0px);
+               }
+               50% {
+                   clip: rect(218px, 220px, 220px, 0px);
+               }
+               75% {
+            clip: rect(0px, 220px, 220px, 218px);
+               }
+            }
         }
 
         @media screen and (min-width: $tablet) {
