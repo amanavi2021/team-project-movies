@@ -1,9 +1,10 @@
 import markupTpl from '../templates/markupFilmMainPage.hbs';
 import apiService from './apiService';
 import { paginationLocalStorage } from './paginationIn-library';
-import { paginationSearch } from './paginationSearch';
+import { paginationSearch } from './pagination-search';
 import renderFilms from './renderFilms';
 import onClickPlayer from './trailerplayer';
+import refs from './service/refs';
 
 
 
@@ -38,20 +39,20 @@ try {
  console.error (error)
   }
   
-  //  Вішаємо слухача на кнопку на картці і при натиску, запускаємо Відео
-  const trailerPlayBTNs = document.querySelectorAll('.trailer-player-btn');
-  trailerPlayBTNs.forEach((button) => button.addEventListener('click', onClickPlayer));
+  //  Вішаємо слухача і при click на кнопку, запускаємо Відео
+  refs.filmsContainer.addEventListener('click', onClickPlayer);
   
 // formRef.reset();
 }
 
 
 async function renderMoviesByName (movies) {
- if (movies.results.length === 0) {
-    
-    // alert("We haven't found movies with that name"); - в Api Service є після перевірки
-    return;
-
-
-// А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто ас
+  if (movies.results.length === 0) {
+     
+     // alert("We haven't found movies with that name"); - в Api Service є після перевірки
+     return;
  
+ 
+ // А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто ас
+  }
+ }

@@ -1,3 +1,9 @@
+.films-gallery{
+    margin-top: 32px;
+}
+
+
+
 .gallery {
     @media screen and (min-width: $tablet) {
         display: grid;
@@ -82,7 +88,7 @@ cursor: pointer;
 .info__genre-year {
     display: flex;
     line-height: 1.33;
-    color: #B92F2C;
+    color: $accentColor;
 
     @media screen and (min-width: $desktop) {
         font-size: 20px;
@@ -91,8 +97,9 @@ cursor: pointer;
 }
 
 .trailer-player-btn {
-
     position: absolute;
+    // opacity: 0;
+    // animation: btn-in 500ms forwards;
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%, -50%);
@@ -112,7 +119,6 @@ cursor: pointer;
     text-transform: uppercase;
     font-family: $mainFont;
     font-weight: 500;
-    //font-size: 70px;
     color: black;
     border-color: transparent;
     
@@ -125,10 +131,12 @@ cursor: pointer;
     
 }
 
-.trailer-player__svg {
-   fill:$accentColor;
-}
+// @keyframes btn-in {
+//        to {
+//             opacity: 1;
+//         }
 
+//     }
 
 .trailer-player-wrapper {
     position: fixed;
@@ -147,4 +155,18 @@ cursor: pointer;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.trailer-player__svg {
+    fill:$accentColor;
+ 
+ }
+ .svg__path-second, .svg__path-first{
+    .trailer-player-btn:hover & {  
+           fill: white;}
+ }
+
+ .svg__path-third{
+    .trailer-player-btn:hover & {  
+         fill: #cf6f55;}
 }

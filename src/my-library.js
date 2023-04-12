@@ -1,4 +1,4 @@
-
+import onClickPlayer from './js/trailerplayer';
 import apiService from './js/apiService';
 import {mask} from './js/loader';
 import * as teamModal from './js/team-members';
@@ -14,7 +14,9 @@ import searchByName from './js/searchByName';
 paginationLocalStorage('watched');
 //onLoadCurrentFilms();
 const filmContainer = document.querySelector('.my-gallery');
-
+//  Вішаємо слухача і при click, запускаємо Відео
+filmContainer.addEventListener('click', onClickPlayer);
+         
 const buttons = document.querySelector('.header__buttons-library');
 buttons.addEventListener('click', onClickBtnLibrary);
 
@@ -30,8 +32,6 @@ function onClickBtnLibrary(e) {
         } else {
             paginationLocalStorage('queue');
             onClassActiveToggle(target);
-
-            
             return;
         };
     };
@@ -57,12 +57,12 @@ async function appendFromLocalStorage(parsedFilms) {
     };
 };
 
-function onLoadCurrentFilms() {
-    if (!localstorage.load('watched')) {
-        return;
-    }
-    appendFromLocalStorage(localstorage.load('watched'));
-}
+// function onLoadCurrentFilms() {
+//     if (!localstorage.load('watched')) {
+//         return;
+//     }
+//     appendFromLocalStorage(localstorage.load('watched'));
+// }
 
 function onClassActiveToggle(target) {
     if (target === btnQueue) {
