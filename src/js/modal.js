@@ -95,7 +95,10 @@ export function toggleModal() {
       // console.log('movie by method find', movie);
       refs.filmInfo.innerHTML = await renderList(movie);
 
-      // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
+      // Кнопка PLAY з'являється після картинки
+      showPlayBtnAfterImgLoad();
+
+         // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
       // КОД ІНШІ ЧАСТИНИ СКРИПТУ НЕ ЗМІНЮЄ І НЕ ЧІПАЄ(крім використанні id)
       const queueBtn = document.querySelector('#queueInModal');
       const watchedBtn = document.querySelector('#watchedInModal');
@@ -178,6 +181,20 @@ export function toggleModal() {
       });
     }
   }
+
+  function showPlayBtnAfterImgLoad() {
+  const imgFilm = document.querySelector('.modal__image');
+      const trailerPlayBtn = document.querySelector('[data-btn-modal]');
+
+      if (imgFilm.complete) {
+        trailerPlayBtn.classList.remove('visually-hidden');
+      } else {
+        imgFilm.addEventListener('load', () => {
+          trailerPlayBtn.classList.remove('visually-hidden')
+        });
+        };
+};
+
 
   function clearModalMovie(ref) {
     ref.innerHTML = '';

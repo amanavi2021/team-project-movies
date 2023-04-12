@@ -1,7 +1,7 @@
 // Кнопка PLAY з'являється після картинки
 export default function showPlayBtnAfterImgLoad() {
   const imgFilms = document.querySelectorAll('.film-card__small-image');
-  const trailerPlayBTN = document.querySelectorAll('.trailer-player-btn');
+  const trailerPlayBTN = document.querySelectorAll('[data-btn-page]');
 
   imgFilms.forEach((image, i) => {
     if (image.complete) {
