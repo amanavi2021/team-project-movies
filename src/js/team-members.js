@@ -144,8 +144,9 @@ function onOpenTeamListModal() {
 function onCloseModal() {
   modalRef.classList.add('is-hidden');
   teamRef.innerHTML = '';
-
   document.body.style.overflow = '';
+
+  removeEventListenerKeydown();
 }
 
 function onBackDropClick(e) {
@@ -158,7 +159,9 @@ function onEscKeyPress(event) {
   if (event.code !== 'Escape') {
     return;
   }
-
-  window.removeEventListener('keydown', onEscKeyPress);
   onCloseModal();
+}
+
+function removeEventListenerKeydown() {
+  window.removeEventListener('keydown', onEscKeyPress);
 }
