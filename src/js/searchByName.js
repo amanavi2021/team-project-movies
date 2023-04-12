@@ -4,6 +4,7 @@ import { paginationLocalStorage } from './paginationIn-library';
 import { paginationSearch } from './pagination-search';
 import renderFilms from './renderFilms';
 import onClickPlayer from './trailerplayer';
+import refs from './service/refs';
 
 
 
