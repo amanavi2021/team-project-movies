@@ -127,7 +127,8 @@ cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
         &:hover {  
-           color: white;}
+           color:$white;
+        }
     
 }
 
@@ -144,7 +145,8 @@ cursor: pointer;
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: $backdrop-background;
+    backdrop-filter: blur(2px);
     z-index: 100;
     overflow: hidden;
 }
@@ -163,10 +165,10 @@ cursor: pointer;
  }
  .svg__path-second, .svg__path-first{
     .trailer-player-btn:hover & {  
-           fill: white;}
+           fill: $white}
  }
 
  .svg__path-third{
     .trailer-player-btn:hover & {  
-         fill: #cf6f55;}
+         fill: $hover;}
 }

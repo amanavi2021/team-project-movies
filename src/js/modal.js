@@ -62,11 +62,13 @@ export function toggleModal() {
 
   async function onClickOpen(e) {
     if (
-      e.target === e.currentTarget ||
-      e.target.nodeName === `BUTTON` ||
-      e.target.classList.contains(`trailer-player__svg`) ||
-      e.target.classList.contains(`trailer-player-wrapper`) ||
-      e.target.nodeName === `path`
+      e.target === e.currentTarget
+      || e.target.nodeName === `BUTTON`
+      || e.target.classList.contains(`trailer-player__svg`)
+      || e.target.classList.contains(`trailer-player-wrapper`) 
+      || e.target.nodeName === `path`
+      || e.target.nodeName === `H2`
+      || e.target.nodeName === `P`
     ) {
       return;
     }

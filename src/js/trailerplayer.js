@@ -9,9 +9,9 @@ export default async function onClickPlayer(event) {
 // перевіряємо, що клік саме по  кнопці play
     if (!event.target.classList.contains('trailer-player-btn') 
         && !event.target.closest('svg, path') 
-        && !event.target.matches('.trailer-player__svg') 
         || event.target.matches('[data-modal-close]') 
         || event.target.matches('.modal__close-icon')
+        || event.target.matches('.modal__close-path')
         )
         {
     return;
