@@ -69,7 +69,7 @@ const teamMembers = [
       'https://media.licdn.com/dms/image/D5603AQEBcXzDdzgetA/profile-displayphoto-shrink_200_200/0/1681136399432?e=1686787200&v=beta&t=39wY9bA1tuVhVuxNQFdnP0-bmNZcD037Qy-cCT-CYLw',
   },
   {
-    name: 'Pavlo Stimpack',
+    name: 'Pavlo Stakhovsky',
     role: 'Developer',
     github: 'https://github.com/Stiroid',
     linkedin: 'https://www.linkedin.com/mwlite/in/stimpack-paul-914084272',
