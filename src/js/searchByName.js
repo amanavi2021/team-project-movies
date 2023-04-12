@@ -5,12 +5,14 @@ import { paginationSearch } from './pagination-search';
 import renderFilms from './renderFilms';
 import onClickPlayer from './trailerplayer';
 import refs from './service/refs';
+import { clearPagination } from './pagination-functions';
 
 
 
 const formRef = document.querySelector('#search-form');
 const containerRef = document.querySelector('.gallery');
 const BtnRef = document.querySelector('.search__button');
+const paginationDigits = document.querySelector('.pagination__box');
 
 formRef.addEventListener('submit', onClick);
 
@@ -29,11 +31,24 @@ apiService.resetPage();
 
 try {
    await apiService.saveFindingFilmsToLocalStorage();
-   //const movies = apiService.getSavedFilms();
+   const movies = apiService.getSavedFilms();
+  console.log(movies);
+
+  const { results } = movies;
+
+  
+
     // const movies = await apiService.fetchFilmByName();
    //  const trending = await apiService.fetchTrandingFilmDay();
    //  console.log('trending', trending);
-  paginationSearch(searchQueryName);
+  
+if (results === []) {
+  clearPagination(paginationDigits);
+  } else { paginationSearch(searchQueryName) };
+  
+  
+
+  
 
 } catch (error) {
  console.error (error)

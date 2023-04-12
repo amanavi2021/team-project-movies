@@ -7,6 +7,7 @@ const NUMBER_PAGINATION = 5;
 const cardContainerEl = document.querySelector('.gallery');
 const paginationEl = document.querySelector('.pagination__box');
 const paginationContainerEl = document.querySelector('.pagination__container')
+const formRef = document.querySelector('#search-form');
 
 function getTotalPage() {
     const savedFilms = localStorage.getItem('currentFilms') || {};
@@ -33,6 +34,13 @@ export async function paginationFeach() {
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
         paginationEl.addEventListener('click', onPaginationBtnClick);
+
+
+        formRef.addEventListener('submit', onFormClickSmall);
+
+        function onFormClickSmall() {
+            paginationEl.removeEventListener('click', onPaginationBtnClick);
+        }
         return;
     }
 
@@ -47,7 +55,9 @@ export async function paginationFeach() {
     btnLeft.disabled = true;
 
 
-    paginationContainerEl.addEventListener('click', (e) => {
+    paginationContainerEl.addEventListener('click', onPaginationClick);
+
+    function onPaginationClick (e) {
         e.preventDefault();
 
         if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
@@ -88,7 +98,13 @@ export async function paginationFeach() {
             paginationFunctions.activityOfRightArrow(total_pages);
         }
        
-    })
+    }
+
+    formRef.addEventListener('submit', onFormClick);
+
+    function onFormClick() {
+        paginationContainerEl.removeEventListener('click', onPaginationClick);
+    }
 }
 
 function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
