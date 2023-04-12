@@ -70,8 +70,19 @@ export function toggleModal() {
 
     try {
       let movieId = e.target.dataset.id;
-      const movies = apiService.getSavedFilms();
-
+     //тест
+     console.log('document', document.querySelector('.nav__link--current').textContent);
+     console.log('document', document.querySelector('.nav__link--current').textContent === 'Home');
+     console.log('document', document.querySelector('.btn--active').dataset.add);
+     //тест
+     let movies =[];
+      if (document.querySelector('.nav__link--current').textContent ==='Home') {
+        movies = apiService.getSavedFilms().results;
+      } else {
+        movies = apiService.getWatchedFilms();
+      }
+      // const movies = apiService.getSavedFilms();
+      
       //        let movieId = e.target.dataset.id;
       //        const movies = apiService.getSavedFilms();
 
@@ -82,7 +93,8 @@ export function toggleModal() {
       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       //refs.filmInfo.innerHTML = await renderList(movie);
 
-      const movie = movies.results.find(({ id }) => id === Number(movieId));
+      //const movie = movies.results.find(({ id }) => id === Number(movieId));
+      const movie = movies.find(({ id }) => id === Number(movieId));
       console.log('movie by method find', movie);
       //  refs.filmInfo.insertAdjacentHTML('beforeend', renderList(movie)) ;
       refs.filmInfo.innerHTML = await renderList(movie);
