@@ -32,11 +32,12 @@ export function toggleModal() {
   refs.modal.addEventListener('click', closeModalOnClickOutside);
 
   function closeModal() {
+
     refs.modal.classList.add('is-hidden');
     document.body.style.overflow = '';
     clearModalMovie(refs.filmInfo);
     removeEventListenerKeydown();
-  }
+   }
 
   function closeModalOnEsc(event) {
     if (event.code !== 'Escape') {
@@ -89,7 +90,7 @@ export function toggleModal() {
       }
       //const movie = movies.results.find(({ id }) => id === Number(movieId));
       const movie = movies.find(({ id }) => id === Number(movieId));
-      console.log('movie by method find', movie);
+      // console.log('movie by method find', movie);
       refs.filmInfo.innerHTML = await renderList(movie);
 
       // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
