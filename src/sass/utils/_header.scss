@@ -1,5 +1,5 @@
 
-  .search__params {
+.search__params {
     display: flex;
     // justify-content: space-between;
     flex-wrap: wrap;
@@ -145,18 +145,20 @@
         padding: 14px;
    
 
-        @media screen and (max-width: $tablet) {
+        @media screen and (max-width: calc($tablet - 0.02px)) {
             margin-left: 20px;
             margin-right: 20px;
         }
 
         @media screen and (min-width: $tablet) {
             background-image: url('../images/hero-tablet.jpg');
-            margin-top: 32px;
-            margin-left: 32px;
-            margin-right: 32px;   
+            margin-top: 32px;   
+            margin-left: auto;
+            margin-right: auto;
             height: 222px;
+            width: 704px;
             padding: 16px;
+           
         }
 
         @media screen and (max-width: $desktop) {
@@ -167,9 +169,7 @@
             background-image: url('../images/hero-desktop.jpg');
             height: 316px;
             padding: 16px 32px;
-            width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 1216px;
         }
 
         }
