@@ -2,26 +2,23 @@ import onClickPlayer from './js/trailerplayer';
 import apiService from './js/apiService';
 import {mask} from './js/loader';
 import * as teamModal from './js/team-members';
-
- import toggleModal from './js/modal';
+import toggleModal from './js/modal';
 import { paginationLocalStorage } from './js/paginationIn-library';
-
 import localstorage from './js/service/localstorage';
 import renderFilms from './js/renderFilms';
 import theme from './js/theme';
 import searchByName from './js/searchByName';
 
 paginationLocalStorage('watched');
-//onLoadCurrentFilms();
 const filmContainer = document.querySelector('.my-gallery');
 //  Вішаємо слухача і при click, запускаємо Відео
 filmContainer.addEventListener('click', onClickPlayer);
-         
-const buttons = document.querySelector('.header__buttons-library');
-buttons.addEventListener('click', onClickBtnLibrary);
 
+const buttons = document.querySelector('.header__buttons-library');
 const btnQueue = document.querySelector('[data-add="queue"]');
 const btnWatched = document.querySelector('[data-add="watched"]');
+
+buttons.addEventListener('click', onClickBtnLibrary);
 
 function onClickBtnLibrary(e) {
     const target = e.target;
@@ -47,22 +44,6 @@ function onClickBtnLibrary(e) {
         };
     };
 };
-
-async function appendFromLocalStorage(parsedFilms) {
-    try {
-        const markup = await renderFilms(parsedFilms).then(result => result);
-        filmContainer.innerHTML = markup;
-    } catch (error) {
-        console.error(error);
-    };
-};
-
-// function onLoadCurrentFilms() {
-//     if (!localstorage.load('watched')) {
-//         return;
-//     }
-//     appendFromLocalStorage(localstorage.load('watched'));
-// }
 
 function onClassActiveToggle(target) {
     if (target === btnQueue) {

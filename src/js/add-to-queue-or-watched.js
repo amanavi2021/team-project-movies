@@ -1,9 +1,11 @@
 import localstorage from "./service/localstorage";
 
-const filmContainer = document.querySelector('.modal');
+const modalContainer = document.querySelector('.modal');
+
+modalContainer.addEventListener('click', onClickBtn);
+
 let queueBtn = null;
 let watchedBtn = null;
-filmContainer.addEventListener('click', onClickBtn) 
 
 const queue = localstorage.load('queue') || [];
 const watched = localstorage.load('watched') || [];
@@ -22,7 +24,7 @@ function onClickBtn(e) {
     };
 };
 
-function addToQueue(id) {
+export function addToQueue(id) {
     // console.log(id);
     const filmsFromLocalStorage = localstorage.load('currentFilms');
     const indexFilm = queue.findIndex(film => film.id === Number(id));
@@ -52,15 +54,16 @@ function addToQueue(id) {
         localstorage.save('queue', queue);
         queueBtn.classList.remove('button-list--active');
         queueBtn.textContent = 'Add to queue';
+        location.reload();
     } else {
         queue.push(results);
         localstorage.save('queue', queue);
         queueBtn.classList.add('button-list--active');
-        queueBtn.textContent = 'Added to queue';
+        queueBtn.textContent = 'Remove from queue';
     };
 };
 
-function addToWatched(id) {
+export function addToWatched(id) {
     const filmsFromLocalStorage = localstorage.load('currentFilms');
     const indexFilm = watched.findIndex(film => film.id === Number(id));
     const findFilm = watched.find(film => film.id === Number(id));
@@ -89,11 +92,12 @@ function addToWatched(id) {
         localstorage.save('watched', watched);
         watchedBtn.classList.remove('button-list--active');
         watchedBtn.textContent = 'Add to watched';
+        location.reload();
     } else {
         watched.push(results);
         localstorage.save('watched', watched);
         watchedBtn.classList.add('button-list--active');
-        watchedBtn.textContent = 'Added to watched';
+        watchedBtn.textContent = 'Remove from watched';
     };
 };
 
@@ -108,3 +112,11 @@ function getBtnRefs(target) {
     };
 };
 
+// async function appendToFilmContainer(parsedFilms) {
+//     try {
+//         const markup = await renderFilms(parsedFilms).then(result => result);
+//         galleryContainer.innerHTML = markup;
+//     } catch (error) {
+//         console.error(error);
+//     };
+// };
