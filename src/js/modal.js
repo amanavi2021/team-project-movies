@@ -3,6 +3,7 @@ import apiService from './apiService';
 import renderFilms from './renderFilms';
 import localStore from './service/localstorage';
 import onClickPlayer from './trailerplayer';
+import { addToQueue, addToWatched } from './add-to-queue-or-watched';
 
 export function toggleModal() {
   const refs = {
@@ -95,11 +96,14 @@ export function toggleModal() {
       // console.log('movie by method find', movie);
       refs.filmInfo.innerHTML = await renderList(movie);
 
+      // зміна стилю кнопок
+
       // Кнопка PLAY з'являється після картинки
       showPlayBtnAfterImgLoad();
 
          // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
       // КОД ІНШІ ЧАСТИНИ СКРИПТУ НЕ ЗМІНЮЄ І НЕ ЧІПАЄ(крім використанні id)
+
       const queueBtn = document.querySelector('#queueInModal');
       const watchedBtn = document.querySelector('#watchedInModal');
       const queueLocalStorage = localStore.load('queue');
@@ -109,7 +113,7 @@ export function toggleModal() {
         for (const film of queueLocalStorage) {
           if (movie.id === film.id) {
             queueBtn.classList.add('button-list--active');
-            queueBtn.textContent = 'Added to queue';
+            queueBtn.textContent = 'Remove from queue';
           }
         }
       }
@@ -117,7 +121,7 @@ export function toggleModal() {
         for (const film of watchedLocalStorage) {
           if (movie.id === film.id) {
             watchedBtn.classList.add('button-list--active');
-            watchedBtn.textContent = 'Added to queue';
+            watchedBtn.textContent = 'Remove from watched';
           }
         }
       }
