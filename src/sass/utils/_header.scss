@@ -302,33 +302,33 @@
             &--current{
                 color: #FFFFFF;
                 background-color: #000000;
-                -webkit-animation: anim 2s ease infinite;
-                    animation: anim 2s ease infinite;
-                    background-size: 100% 100%;
+                // -webkit-animation: anim 2s ease infinite;
+                //     animation: anim 2s ease infinite;
+                //     background-size: 100% 100%;
                     
                   
                   
-                  @-webkit-keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
+                //   @-webkit-keyframes anim {
+                //     from {
+                //       -webkit-transform: rotate(0);
+                //               transform: rotate(0);
+                //     }
+                //     to {
+                //       -webkit-transform: rotate(360deg);
+                //               transform: rotate(360deg);
+                //     }
+                //   }
                   
-                  @keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
+                //   @keyframes anim {
+                //     from {
+                //       -webkit-transform: rotate(0);
+                //               transform: rotate(0);
+                //     }
+                //     to {
+                //       -webkit-transform: rotate(360deg);
+                //               transform: rotate(360deg);
+                //     }
+                //   }
             }
 
             @media screen and (min-width: $tablet) {
@@ -377,31 +377,31 @@
         &--active{
             color: #FFFFFF;
             background-color: $accentColor;
-            -webkit-animation: anim 2s ease infinite;
-                    animation: anim 2s ease infinite;
-                    background-size: 100% 100%;
+            // -webkit-animation: anim 2s ease infinite;
+            //         animation: anim 2s ease infinite;
+            //         background-size: 100% 100%;
                     
-                    @-webkit-keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
+            //         @-webkit-keyframes anim {
+            //         from {
+            //           -webkit-transform: rotate(0);
+            //                   transform: rotate(0);
+            //         }
+            //         to {
+            //           -webkit-transform: rotate(360deg);
+            //                   transform: rotate(360deg);
+            //         }
+            //       }
                   
-                  @keyframes anim {
-                    from {
-                      -webkit-transform: rotate(0);
-                              transform: rotate(0);
-                    }
-                    to {
-                      -webkit-transform: rotate(360deg);
-                              transform: rotate(360deg);
-                    }
-                  }
+            //       @keyframes anim {
+            //         from {
+            //           -webkit-transform: rotate(0);
+            //                   transform: rotate(0);
+            //         }
+            //         to {
+            //           -webkit-transform: rotate(360deg);
+            //                   transform: rotate(360deg);
+            //         }
+            //       }
         }
 
         @media screen and (min-width: $tablet) {
