@@ -4,9 +4,9 @@ import refs from './service/refs';
 import notifier from './service/notifier'
 
 export default async function onClickPlayer(event) {
-// console.log(event.target);
+// console.log('function onClickPlayer(event.target)', event.target);
 
-// перевіряємо, що клік саме по цій кнопці
+// перевіряємо, що клік саме по  кнопці play
     if (!event.target.classList.contains('trailer-player-btn') 
         && !event.target.closest('svg, path') 
         && !event.target.matches('.trailer-player__svg') 
@@ -20,11 +20,12 @@ export default async function onClickPlayer(event) {
     let playerContainer = document.querySelector('.trailer-player-container');
 // const currentFilmId = event.target.closest('img').dataset.id; не розумію чому так не працює
     const currentFilmId = event.target.closest('[data-btn]').querySelector('img').dataset.id;
-// console.log(currentFilmId);
+// console.log('currentFilmId', currentFilmId);
 
 // по ID фільму фечимо трейлер з API
     apiService.filmID = currentFilmId;
     const trailerData = await apiService.fetchTrailerByID();
+// console.log('trailerData', trailerData);    
    
 // запускаємо YouTubePlayer по ID трейлера , якщо він 
     try {
@@ -120,6 +121,8 @@ export default async function onClickPlayer(event) {
         };
     }
     function stopVideo() {
+            document.removeEventListener('click', onWindowClick);
+            window.removeEventListener('keydown', onEscKeyPress);
             playerContainer.remove();
             refs.trailerWrapper.classList.add('none');
             playerContainer = document.createElement('div');
@@ -128,7 +131,7 @@ export default async function onClickPlayer(event) {
             
             refs.body.style.overflow = '';
             
-            window.removeEventListener('keydown', onEscKeyPress);
+           
     }
     
         
