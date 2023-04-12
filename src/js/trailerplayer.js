@@ -4,13 +4,15 @@ import refs from './service/refs';
 import notifier from './service/notifier'
 
 export default async function onClickPlayer(event) {
+// console.log(event.target);
 
 // перевіряємо, що клік саме по цій кнопці
-    if (!event.target.classList.contains('trailer-player-btn') &&
-        !event.target.closest('svg, path') &&
-        !event.target.matches('.trailer-player__svg') ||
-        event.target.matches('[data-modal-close]') ||
-        event.target.matches('.modal__close-icon'))
+    if (!event.target.classList.contains('trailer-player-btn') 
+        && !event.target.closest('svg, path') 
+        && !event.target.matches('.trailer-player__svg') 
+        || event.target.matches('[data-modal-close]') 
+        || event.target.matches('.modal__close-icon')
+        )
         {
     return;
 }
@@ -18,6 +20,7 @@ export default async function onClickPlayer(event) {
     let playerContainer = document.querySelector('.trailer-player-container');
 // const currentFilmId = event.target.closest('img').dataset.id; не розумію чому так не працює
     const currentFilmId = event.target.closest('[data-btn]').querySelector('img').dataset.id;
+// console.log(currentFilmId);
 
 // по ID фільму фечимо трейлер з API
     apiService.filmID = currentFilmId;

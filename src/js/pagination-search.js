@@ -3,6 +3,7 @@ import onLoad from './onLoad';
 import apiService from './apiService';
 import localstorage from './service/localstorage';
 import renderFilms from './renderFilms';
+import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 
 const NUMBER_PAGINATION = 5;
 const cardContainerEl = document.querySelector('.gallery');
@@ -292,6 +293,7 @@ async function appendFromLocalStorage(parsedFilms) {
     try {
         const markup = await renderFilms(parsedFilms).then(result => result);
         cardContainerEl.innerHTML = markup;
+        showPlayBtnAfterImgLoad(); // Кнопка PLAY з'являється після картинки
     } catch (error) {
         console.error(error);
     };

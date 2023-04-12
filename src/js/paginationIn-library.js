@@ -1,5 +1,6 @@
 import * as paginationFunctions from './pagination-functions';
 import renderFilms from './renderFilms';
+import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 
 const NUMBER_PAGINATION = 5;
 const NUMBER_PER_PAGE = 3;
@@ -153,7 +154,8 @@ function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) { //
 async function appendFromLocalStorage(parsedFilms) { // рендер фільмів в контейнер
     try {
         const markup = await renderFilms(parsedFilms).then(result => result); // рядок для рендеру
-        cardContainerEl.innerHTML = markup;
+        cardContainerEl.innerHTML = markup; 
+        showPlayBtnAfterImgLoad(); // Кнопка PLAY з'являється після картинки
     } catch (error) {
         console.error(error);
     };
