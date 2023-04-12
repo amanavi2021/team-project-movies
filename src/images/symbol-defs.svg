@@ -17,10 +17,9 @@
 <path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.1695" d="M22.667 9.333h6.667"></path>
 </symbol>
 
-<symbol id="icon-play" viewBox="0 0 32 32">
-<path fill="#cf6f55" style="fill: var(--color1, #cf6f55)" d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>
-<path fill="#c06046" style="fill: var(--color2, #c06046)" d="M31.725 18.964l-20.129-12.305-1.707 19.713 7.182 5.592c7.341-0.485 13.328-5.921 14.654-12.999z"></path>
-<path fill="#fff" style="fill: var(--color3, #fff)" d="M9.889 26.372v-20.743l17.179 10.372-17.179 10.372zM12.382 10.047v11.906l9.86-5.953-9.86-5.953z"></path>
+<symbol id="icon-arrow-left" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333l9.333-9.333-9.333-9.333"></path>
 </symbol>
 
 </defs>

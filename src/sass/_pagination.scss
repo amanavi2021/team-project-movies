@@ -23,13 +23,59 @@
 }
 
 .pagination__item {
+    font-family: $mainFont;
+    font-weight:500;
+    font-size: 12px;
+    line-height: calc(16/12);
     padding: 5px;
     margin-left: 5px;
     margin-right: 5px;
     cursor: pointer;
+    display:flex; 
+    justify-content: center;
+    align-items: center;
 }
 
 .pagination__item--select {
-    font-weight: 800;
-    color: red;
+    // font-family: $mainFont;
+    // font-weight:500;
+    // font-size: 12px;
+    // line-height: calc(16/12);
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: $accentColor;
+    display:flex; 
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.pagination__btnRight {
+    background-color: #F7F7F7;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: transparent;
+
+}
+
+.pagination__btnLeft{
+    background-color: #F7F7F7;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: transparent;
+    
+}
+
+.pagination__dots {
+    font-family: $mainFont;
+    font-weight:500;
+    font-size: 12px;
+    line-height: calc(16/12);
+    display:flex; 
+    justify-content: center;
+    align-items: center;
+
 }
