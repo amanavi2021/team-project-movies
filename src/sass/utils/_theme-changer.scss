@@ -1,9 +1,10 @@
 .dark {
-  background-image:
-      linear-gradient(to right,
-        rgba(37, 37, 37, 0.7),
-        rgba(37, 37, 37, 0.7)),
-      url("../images/background-black2.jpg");
+  background-image: linear-gradient(
+      to right,
+      rgba(37, 37, 37, 0.7),
+      rgba(37, 37, 37, 0.7)
+    ),
+    url('../images/background-black2.jpg');
   background-color: rgb(37, 37, 37);
   color: #fff;
 }
@@ -17,7 +18,90 @@
   color: #fff;
 }
 
-.section-theme{
-  display: flex;
+.switch__thumb {
+  margin-top: 17px;
   justify-content: center;
+  display: flex;
+  @media screen and (max-width: $tablet) {
+        margin-top: 10px;
+    }
 }
+
+.switch__light,
+.switch__dark {
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.switch {
+  width: 40px;
+  height: 16px;
+  margin: 0 10px;
+  display: block;
+  transform: translateY(-25%);
+}
+
+.slider {
+  cursor: pointer;
+  border: 4px solid rgba(0, 0, 0, 0);
+  border-radius: 30px;
+  transition: all 0.2s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px #ff001b, 0 0 4px #ff001b;
+}
+
+.slider:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: #ff001b;
+  border-radius: 30px;
+  transition: all 0.2s;
+  position: absolute;
+  transform: translate(-24px);
+}
+
+.slider:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: #ff001b;
+  border-radius: 30px;
+  transition: all 0.2s;
+  position: absolute;
+  transform: translate(-24px);
+
+  @media screen and (min-width: 768px) {
+    transform: translate(-20px);
+  }
+}
+
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+  /*translateX(w-h)*/
+  background-color: #ff001b;
+  // @include tablet {
+  //   transform: translateX(20px);
+  // }
+}
+
+input:checked + .slider {
+  box-shadow: 0 0 0 2px #ff001b, 0 0 8px #ff001b;
+}
+
+.switch200 .slider:before {
+  width: 200%;
+  transform: translateX(-82px);
+ 
+}
+
