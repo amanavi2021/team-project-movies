@@ -91,8 +91,9 @@ cursor: pointer;
 }
 
 .trailer-player-btn {
-
     position: absolute;
+    // opacity: 0;
+    // animation: btn-in 500ms forwards;
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%, -50%);
@@ -123,6 +124,13 @@ cursor: pointer;
            color: white;}
     
 }
+
+// @keyframes btn-in {
+//        to {
+//             opacity: 1;
+//         }
+
+//     }
 
 .trailer-player-wrapper {
     position: fixed;

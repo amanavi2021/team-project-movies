@@ -11,7 +11,7 @@ export default async function onClickPlayer(event) {
 
     let playerContainer = document.querySelector('.trailer-player-container');
 // const currentFilmId = event.target.closest('img').dataset.id; не розумію чому так не працює
-    const currentFilmId = event.target.closest('.film-card').querySelector('img').dataset.id;
+    const currentFilmId = event.target.closest('[data-btn]').querySelector('img').dataset.id;
  
 // по ID фільму фечимо трейлер з API
     apiService.filmID = currentFilmId;
