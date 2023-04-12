@@ -30,9 +30,13 @@ function ua() {
   document.querySelector('.footer__text--dev').textContent = 'Розроблено';
   document.querySelector('.footer__text--by').textContent = '';
   document.querySelector('.footer__link').textContent = 'Студентами GoIT';
-
+try {
   document.querySelector('[data-add=queue]').textContent = 'В черзі';
   document.querySelector('[data-add=watched]').textContent = 'Переглянуті';
+} catch (error) {
+  
+}
+  
 
  
   
