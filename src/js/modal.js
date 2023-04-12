@@ -62,16 +62,18 @@ export function toggleModal() {
 
   async function onClickOpen(e) {
     if (
-      e.target === e.currentTarget ||
-      e.target.nodeName === `BUTTON` ||
-      e.target.classList.contains(`trailer-player__svg`) ||
-      e.target.classList.contains(`trailer-player-wrapper`) ||
-      e.target.nodeName === `path`
+      e.target === e.currentTarget
+      || e.target.nodeName === `BUTTON`
+      || e.target.classList.contains(`trailer-player__svg`)
+      || e.target.classList.contains(`trailer-player-wrapper`) 
+      || e.target.nodeName === `path`
+      || e.target.nodeName === `H2`
+      || e.target.nodeName === `P`
     ) {
       return;
     }
-    // console.log(e.target.nodeName);
-    // console.log('id', e.target.dataset.id);
+    console.log(e.target.nodeName);
+    console.log('id', e.target.dataset.id);
 
     try {
       let movieId = e.target.dataset.id;
