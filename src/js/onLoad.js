@@ -4,6 +4,7 @@ import localStore from './service/localstorage'
 import notifier from './service/notifier'
 import refs from './service/refs';
 import onClickPlayer from './trailerplayer';
+import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 
 export default async function onLoad() {
 
@@ -16,9 +17,13 @@ export default async function onLoad() {
         const films = apiService.getSavedFilms();
 // рендеремо поточну сторінку з даних локал сторіджа
         refs.filmsContainer.insertAdjacentHTML('beforeend', await renderFilms(films.results));
+// Кнопка PLAY з'являється після картинки
+        showPlayBtnAfterImgLoad();
     } catch (error) {
             catchError(error);
     };
+
+
 //  Вішаємо слухача і при click на кнопку, запускаємо Відео
     refs.filmsContainer.addEventListener('click', onClickPlayer);
  
