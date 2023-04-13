@@ -6,20 +6,20 @@
 @import './utils/container';
 
 //CТИЛІ ХЕДЕРА
-@import './utils/header';
+@import './components/header';
 
 //  СТИЛІ ФУТЕРА
 @import './components/footer';
 
 // СТИЛІ МОДАЛКИ
 @import './components/modal';
-@import './utils/loader';
+@import './components/loader';
 
 // СТИЛІ ГАЛЕРЕЇ
-@import './utils/gallery';
+@import './components/gallery';
 
 // СТИЛІ ПАГІНАЦІЇ
-@import './pagination';
+@import './components/pagination';
 
 // СТИЛІ УЧАСНИКІВ КОМАНДИ
 @import './components/team';
