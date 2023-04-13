@@ -30,7 +30,8 @@ export function clearPagination(container) { //очищення пагінаці
 }
 
 export function activityOfRightArrow(page) {
-     if (Number(document.querySelector('.pagination__item--select').textContent) === page) {
+    
+    if (Number(document.querySelector('.pagination__item--select').textContent) === page) {
                 document.querySelector('.pagination__btnRight').disabled = true;
             } else {
                 document.querySelector('.pagination__btnRight').disabled = false;

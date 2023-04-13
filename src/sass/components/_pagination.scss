@@ -59,6 +59,8 @@
     border-radius: 5px;
     border-color: transparent;
 
+    cursor: pointer;
+
 }
 
 .pagination__btnLeft{
@@ -67,7 +69,13 @@
     height: 40px;
     border-radius: 5px;
     border-color: transparent;
+
     
+}
+
+.pagination__btnLeft:hover,
+.pagination__btnRight:hover {
+    cursor: pointer;
 }
 
 .pagination__dots {

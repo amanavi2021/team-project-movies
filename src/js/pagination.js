@@ -24,16 +24,16 @@ function getTotalPage() {
 
 export async function paginationFeach() {
 
-    const total_pages = getTotalPage();
+    const totalPages = getTotalPage();
     
     await onLoad(); 
     
-    if (total_pages <= NUMBER_PAGINATION + 2 && total_pages >= 1) {
+    if (totalPages <= NUMBER_PAGINATION + 2 && totalPages >= 1) {
 
-        paginationFunctions.displayPaginationSmall(total_pages, paginationEl);
+        paginationFunctions.displayPaginationSmall(totalPages, paginationEl);
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
-         if (total_pages === 1) {
+         if (totalPages === 1) {
                 paginationFunctions.clearPagination(paginationEl);
             }
         paginationEl.addEventListener('click', onPaginationBtnClick);
@@ -50,7 +50,7 @@ export async function paginationFeach() {
 
     paginationEl.innerHTML = '';
     
-    paginationFunctions.displayPaginationBig(total_pages, paginationContainerEl, paginationEl);
+    paginationFunctions.displayPaginationBig(totalPages, paginationContainerEl, paginationEl);
     document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
     const btnLeft = document.querySelector('.pagination__btnLeft');
@@ -72,9 +72,9 @@ export async function paginationFeach() {
              const currentPage = Number(e.target.textContent);        
         
             onBigPaginationBtnClickrRenderFilms(currentPage);
-            onBigPaginationBtnClickrRenderPagination(total_pages, currentPage); 
+            onBigPaginationBtnClickrRenderPagination(totalPages, currentPage); 
 
-            paginationFunctions.activityArrows(currentPage, total_pages);
+            paginationFunctions.activityArrows(currentPage, totalPages);
         }
 
         if (e.target.classList.contains('pagination__btnLeft')) {
@@ -84,7 +84,7 @@ export async function paginationFeach() {
             const previousPage = activePageNumber - 1;
 
             onBigPaginationBtnClickrRenderFilms(previousPage);
-            onBigPaginationBtnClickrRenderPagination(total_pages, previousPage); 
+            onBigPaginationBtnClickrRenderPagination(totalPages, previousPage); 
             
             paginationFunctions.activityOfLeftArrow(1);
 
@@ -97,9 +97,9 @@ export async function paginationFeach() {
             const nextPage = activePageNumber + 1;
 
             onBigPaginationBtnClickrRenderFilms(nextPage);
-            onBigPaginationBtnClickrRenderPagination(total_pages, nextPage);    
+            onBigPaginationBtnClickrRenderPagination(totalPages, nextPage);    
             
-            paginationFunctions.activityOfRightArrow(total_pages);
+            paginationFunctions.activityOfRightArrow(totalPages);
         }
        
     }
@@ -112,19 +112,19 @@ export async function paginationFeach() {
     }
 }
 
-function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
+function onBigPaginationBtnClickrRenderPagination(totalPages, currentPage) {
     paginationFunctions.clearPagination(paginationEl);
 
     const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2);
-    const m = total_pages - (NUMBER_PAGINATION - 1);
+    const m = totalPages - (NUMBER_PAGINATION - 1);
 
 
     if (currentPage < n) {
-        paginationFunctions.displayPaginationBig(total_pages, paginationContainerEl, paginationEl);
+        paginationFunctions.displayPaginationBig(totalPages, paginationContainerEl, paginationEl);
     } else if (currentPage >= n && currentPage <= m) {
-        paginationFunctions.displayPaginationBigMiddle(total_pages, currentPage, paginationContainerEl, paginationEl);
+        paginationFunctions.displayPaginationBigMiddle(totalPages, currentPage, paginationContainerEl, paginationEl);
     } else {
-        paginationFunctions.displayPaginationBigFinish(total_pages, paginationContainerEl, paginationEl);
+        paginationFunctions.displayPaginationBigFinish(totalPages, paginationContainerEl, paginationEl);
     }
 
     document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
