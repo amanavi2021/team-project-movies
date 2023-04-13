@@ -9,6 +9,15 @@ import renderFilms from './js/renderFilms';
 import theme from './js/theme';
 import searchByName from './js/searchByName';
 import languageApi from './js/language-changer';
+import refs from './js/service/refs';
+
+// виводить картинку якщо переглянутих немає
+if (localstorage.load('watched')===[] || localstorage.load('watched')===undefined)
+{ refs.filmsContainer.classList.add('gallery-blank');
+ }
+else {
+    refs.filmsContainer.classList.remove('gallery-blank'); 
+}
 
 paginationLocalStorage('watched');
 const filmContainer = document.querySelector('.my-gallery');

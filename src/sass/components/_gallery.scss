@@ -172,3 +172,30 @@ cursor: pointer;
     .trailer-player-btn:hover & {  
          fill: $hover;}
 }
+
+.gallery-blank {
+    height: 1000px;
+    background-image: url('../images/blank.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.my-gallery__text{
+   
+    font-family: $mainFont;
+    font-weight: 500;
+    font-size: 40px;
+    text-transform: uppercase;
+   
+    z-index: 100;
+    color: red;
+    margin-top: 50;
+
+    
+}
