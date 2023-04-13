@@ -128,12 +128,21 @@
     }
 
     .header{
-        // position: fixed;
-        // z-index: 10;
-        // left: 0;
-        // top: 0;
-        // width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
+        @media screen and (max-width: calc($tablet - 0.02px)) {
+            max-width: 480px;
+        }
 
+        @media screen and (min-width: $tablet) {
+            width: $tablet;
+        }
+
+        @media screen and (min-width: $desktop) {
+            width: $desktop;
+        }
+        
+  
         &__container{
         background-image: url('../images/hero-mobile.jpg');
         background-repeat: no-repeat;
@@ -144,8 +153,8 @@
         height:460px;
         padding: 14px;
    
-
         @media screen and (max-width: calc($tablet - 0.02px)) {
+            max-width: 480px;
             margin-left: 20px;
             margin-right: 20px;
         }
