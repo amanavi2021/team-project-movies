@@ -86,6 +86,9 @@ export async function paginationSearch(currentSearchWord) {
             displayPaginationSmall(total_pages);
             document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
             console.log(currentSearchWord);
+            if (total_pages === 1) {
+                paginationFunctions.clearPagination(paginationEl);
+            }
         }
         catch {
         console.log('fetch problem');

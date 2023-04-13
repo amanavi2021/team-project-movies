@@ -20,8 +20,25 @@ export function paginationLocalStorage(placeKey) {
     
     if (filmsNumber === 0) {                 //якщо фільмів немає то очищуємо контейнер для фільмів (можливо перед цим в контейнері відображались з попередньої вкладки) і виходмо
         cardContainerEl.innerHTML = '';
+        paginationFunctions.clearPagination(paginationEl);
         return;
     }
+        
+          if (placeKey === 'watched') {
+                document.querySelector('button[data-add="queque"]')?.addEventListener('click', () => {
+                    paginationEl.removeEventListener('click', onDigitPaginationClick);
+                    paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
+            }
+            )
+        }
+
+        if (placeKey === 'queue') {
+            document.querySelector('button[data-add="watched"]')?.addEventListener('click', () => {
+                 paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
+                 paginationEl.removeEventListener('click', onDigitPaginationClick);
+            }      
+            )
+        }
 
     const total_pages = Math.ceil(filmsNumber / NUMBER_PER_PAGE); // кількість сторінок 
     const films = filmsList(parsedSavedFilms, NUMBER_PER_PAGE, 1); // ріжемо необхідну кількість фільмів для ст 1 
@@ -37,7 +54,11 @@ export function paginationLocalStorage(placeKey) {
 
         paginationEl.addEventListener('click', onDigitPaginationClick);
 
-        function onDigitPaginationClick (e) { // делегування на контейнер 
+         if (total_pages === 1) {
+                paginationFunctions.clearPagination(paginationEl);
+         }
+        
+        function onDigitPaginationClick(e) { // делегування на контейнер 
             e.preventDefault();
 
             if (!e.target.classList.contains('pagination__item')) { // якщо вибрали не li (сторінку) не реагуємо
@@ -57,14 +78,16 @@ export function paginationLocalStorage(placeKey) {
         }
 
         if (placeKey === 'watched') {
-            document.querySelector('button[data-add="queue"]').addEventListener('click', () =>
-                
-                paginationEl.removeEventListener('click', onDigitPaginationClick)
+            document.querySelector('button[data-add="queue"]')?.addEventListener('click', () =>
+            {
+                paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
+                paginationEl.removeEventListener('click', onDigitPaginationClick);
+                }
             )
         }
 
          if (placeKey === 'queue') {
-             document.querySelector('button[data-add="watched"]').addEventListener('click', () => {
+             document.querySelector('button[data-add="watched"]')?.addEventListener('click', () => {
                 paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
                 paginationEl.removeEventListener('click', onDigitPaginationClick);
             }
@@ -129,7 +152,7 @@ export function paginationLocalStorage(placeKey) {
         }
             
             if (placeKey === 'watched') {
-                document.querySelector('button[data-add="queque"]').addEventListener('click', () => {
+                document.querySelector('button[data-add="queque"]')?.addEventListener('click', () => {
                     paginationEl.removeEventListener('click', onDigitPaginationClick);
                     paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
             }
@@ -137,7 +160,7 @@ export function paginationLocalStorage(placeKey) {
         }
 
          if (placeKey === 'queue') {
-            document.querySelector('button[data-add="watched"]').addEventListener('click', () => {
+            document.querySelector('button[data-add="watched"]')?.addEventListener('click', () => {
                  paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
                  paginationEl.removeEventListener('click', onDigitPaginationClick);
             }      
@@ -184,7 +207,7 @@ function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) { //
         paginationFunctions.displayPaginationBigFinish(total_pages, paginationContainerEl, paginationEl); //пагінація з крапками біля 1 сторінки
     }
 
-    document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select'); // поточну сторінку робимо активною
+    document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select'); // поточну сторінку робимо активною
 }
 
 async function appendFromLocalStorage(parsedFilms) { // рендер фільмів в контейнер
