@@ -33,7 +33,7 @@ export function toggleModal() {
   refs.modal.addEventListener('click', closeModalOnClickOutside);
 
   function closeModal() {
-
+ 
     refs.modal.classList.add('is-hidden');
     document.body.style.overflow = '';
     clearModalMovie(refs.filmInfo);
@@ -98,8 +98,6 @@ export function toggleModal() {
       // console.log('movie by method find', movie);
       refs.filmInfo.innerHTML = await renderList(movie);
 
-      // зміна стилю кнопок
-
       // Кнопка PLAY з'являється після картинки
       showPlayBtnAfterImgLoad();
 
@@ -133,9 +131,9 @@ export function toggleModal() {
     }
     window.addEventListener('keydown', closeModalOnEsc);
     refs.modal.classList.remove('is-hidden');
-
+    document.body.style.overflow = 'hidden';
     // renderList();
-    //document.body.style.overflow = 'hidden';
+  
   }
 
   // function onClickClose() {
