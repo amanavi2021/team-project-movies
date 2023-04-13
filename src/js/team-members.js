@@ -1,16 +1,18 @@
 const teamMembers = [
   {
     name: 'Nadiia Maltseva',
-    uaname: 'Надія Мальцева',
+    uaName: 'Надія Мальцева',
     role: 'Team Lead',
+    roleUa: 'ТімЛід',
     github: 'https://github.com/amanavi2021',
     linkedin: '',
     photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04GN1KPCKW-89b080b31dc6-512',
   },
   {
     name: 'Oleksandr Karpiuk',
-    uaname: 'Олександр Карпюк',
+    uaName: 'Олександр Карпюк',
     role: 'Scrum Master',
+    roleUa: 'Скрам Майстер',
     github: 'https://github.com/Oleksandr-Karpiuk',
     linkedin: 'https://www.linkedin.com/in/oleksandr-karpiuk/',
     photo:
@@ -18,8 +20,9 @@ const teamMembers = [
   },
   {
     name: 'Olga Tolstykhina',
-    uaname: 'Ольга Толстукхіна',
+    uaName: 'Ольга Толстихіна ',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/OlgaT0709',
     linkedin: 'https://www.linkedin.com/in/olga-tolstikhina-developer/',
     photo:
@@ -27,8 +30,9 @@ const teamMembers = [
   },
   {
     name: 'Liliia Paliichuk',
-    uaname: 'Ліля Палічук',
+    uaName: 'Ліля Палічук',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/lili2628',
     linkedin: 'https://www.linkedin.com/in/liliia-paliichuk-a0605579/',
     photo:
@@ -36,24 +40,27 @@ const teamMembers = [
   },
   {
     name: 'Natalia Malovana',
-    uaname: 'Наталя Малована',
+    uaName: 'Наталя Малована',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/NataliaTalia',
     linkedin: 'https://www.linkedin.com/in/natalia-malovana-468817271/',
     photo: 'https://avatars.githubusercontent.com/u/113437905?v=4',
   },
   {
     name: 'Ulyana Yashan',
-    uaname: 'Ульяна Яшан',
+    uaName: 'Ульяна Яшан',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/UlyanaYashan',
     linkedin: '',
     photo: 'https://ca.slack-edge.com/T04FPHYQ4M8-U04GM3XL69J-ef50e678fe2f-512',
   },
   {
     name: 'Ruslan Bulda',
-    uaname: 'Руслан Булда',
+    uaName: 'Руслан Булда',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/rbulda50',
     linkedin:
       'https://www.linkedin.com/in/%D1%80%D1%83%D1%81%D0%BB%D0%B0%D0%BD-%D0%B1%D1%83%D0%BB%D0%B4%D0%B0-8a0345204/',
@@ -61,8 +68,9 @@ const teamMembers = [
   },
   {
     name: 'Anatolii Matsakov',
-    uaname: 'Анатолій Мацаков',
+    uaName: 'Анатолій Мацаков',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/WipeRrr',
     linkedin: 'https://www.linkedin.com/in/anatoliy-matsakov-85b934261/',
     photo:
@@ -70,8 +78,9 @@ const teamMembers = [
   },
   {
     name: 'Olesia Manina',
-    uaname: 'Олеся Маніна',
+    uaName: 'Олеся Маніна',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/OlesiaManina',
     linkedin: 'https://www.linkedin.com/in/olesia-manina-206592271/',
     photo:
@@ -79,8 +88,9 @@ const teamMembers = [
   },
   {
     name: 'Pavlo Stakhovsky',
-    uaname: 'Павло Стаховський',
+    uaName: 'Павло Стаховський',
     role: 'Developer',
+    roleUa: 'Розробник',
     github: 'https://github.com/Stiroid',
     linkedin: 'https://www.linkedin.com/mwlite/in/stimpack-paul-914084272',
     photo:
@@ -88,8 +98,8 @@ const teamMembers = [
   },
   {
     name: 'Yaroslav Voinalovich',
-    uaname: 'Ярослав Войналовіч',
-    role: 'Developer',
+    uaName: 'Ярослав Войналовіч',
+    roleUa: 'Розробник',
     github: 'https://github.com/Voinalovych91',
     linkedin: 'https://www.linkedin.com/in/yaroslav-voinalovich-8a2b87271/',
     photo:
@@ -97,8 +107,8 @@ const teamMembers = [
   },
   {
     name: 'Yaroslav Hrytsutenko',
-    uaname: 'Ярослав Гриценко',
-    role: 'Developer',
+    uaName: 'Ярослав Гриценко',
+    roleUa: 'Розробник',
     github: 'https://github.com/HrytsutenkoYaroslav',
     linkedin: 'https://www.linkedin.com/in/yaroslav-hrytsutenko-340538184/',
     photo:
@@ -130,14 +140,14 @@ export function loadIntoTeamModal(teamMembers) {
             />      
         </div>
         <div class="member__info">
-          <p class="member__name">${member.uaname}</p>
+          <p class="member__name">${member.uaName}</p>
           <a class="member__link member__link-git" 
              href="${member.github}" 
              target="_blank">github</a>
           <a class="member__link" 
           href="${member.linkedin}" 
           target="_blank">linkedin</a>
-          <p class="member__role">${member.role}</p>
+          <p class="member__role">${member.roleUa}</p>
         </div>
       </li>`;
       }
