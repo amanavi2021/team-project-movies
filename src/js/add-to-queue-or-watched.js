@@ -54,20 +54,21 @@ export function addToQueue(id) {
     localstorage.save('queue', queue);
     queueBtn.classList.remove('button-list--active');
     if (localStorage.getItem('language') === 'ua') {
-      queueBtn.textContent = 'Видалити з черги';
+      queueBtn.textContent = 'Додати до черги';
     } else {
-      queueBtn.textContent = 'Remove from queue';
+      queueBtn.textContent = 'Add to queue';
     }
+      location.reload();
   } else {
     queue.push(results);
     localstorage.save('queue', queue);
     queueBtn.classList.add('button-list--active');
     if (localStorage.getItem('language') === 'ua') {
-      queueBtn.textContent = 'Додати до черги';
+      queueBtn.textContent = 'Видалити з черги';
     } else {
-      queueBtn.textContent = 'Add to queue';
-    }
-  }
+      queueBtn.textContent = 'Remove from queue';
+    };
+  };
 };
 
 export function addToWatched(id) {
@@ -112,7 +113,7 @@ export function addToWatched(id) {
            watchedBtn.textContent = 'Видалити з переглянутого';
          } else {
            watchedBtn.textContent = 'Remove from watched';
-         }
+      };
     };
 };
 
