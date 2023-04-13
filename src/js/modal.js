@@ -60,6 +60,7 @@ export function toggleModal() {
   }
 
   refs.filmClick.addEventListener('click', onClickOpen);
+  refs.filmClick.addEventListener('touchstart', onClickOpen); // тест
   refs.closeModal.addEventListener('click', closeModal);
   refs.playerClick.addEventListener('click', onClickPlayer);
 
