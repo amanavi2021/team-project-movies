@@ -1,6 +1,5 @@
 import axios from 'axios';
 import localStore from './service/localstorage'
-import notifier from './service/notifier'
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '837953248391225ae7c8e73f09921895';
@@ -30,7 +29,6 @@ class ApiService {
 
         //const queryString = `${BASE_URL}search/keyword?api_key=${API_KEY}&query=${this.searchQuery}`;
         const queryString = `${BASE_URL}/search/movie?api_key=${API_KEY}&page=${this.pageNumber}&query=${this.searchQuery}`;
-        notifier.warning('No such film, try again...');
         return this.#fetchData(queryString); 
        
     }
@@ -49,33 +47,34 @@ class ApiService {
         return this.#fetchData(queryString); 
     }
 
-// збереження результату запиту найпопулярніших фільмів дня в локальну змінну
+// запит і збереження результату запиту найпопулярніших фільмів дня в локальну змінну
     async saveTrandingFilmDayToLocalStorage() {
         const trandingFilmDay = await this.fetchTrandingFilmDay();
         localStore.save(LOCAL_STORAGE_TF, trandingFilmDay);
     }
 
-    // отримання збереженного результату запиту найпопулярніших фільмів дня або пошуку фільмів з локальної змінної
-    getSavedFilms() {
-     return localStore.load(LOCAL_STORAGE_TF)||{};
-      }
-
-    // отримання збереженного результату запиту переглянутих фільмів з локальної змінної
-    getWatchedFilms() {
-        return localStore.load(LOCAL_STORAGE_W)||{};
-         }
-
-    // отримання збереженного результату запиту фільмів у черзі з локальної змінної
-    getQueuedFilms() {
-        return localStore.load(LOCAL_STORAGE_Q)||{};
-         }
-
-     // збереження результату запиту фільмів за назвою
+// запит і збереження результату запиту фільмів за назвою
      async saveFindingFilmsToLocalStorage() {
         const findingFilms = await this.fetchFilmByName();
         localStore.save(LOCAL_STORAGE_TF, findingFilms);
     }  
-    
+
+// отримання збереженного результату запиту найпопулярніших фільмів дня або пошуку фільмів з локальної змінної
+    getSavedFilms() {
+     return localStore.load(LOCAL_STORAGE_TF)||{};
+      }
+
+// отримання збереженного результату запиту переглянутих фільмів з локальної змінної
+    getWatchedFilms() {
+        return localStore.load(LOCAL_STORAGE_W)||{};
+         }
+
+// отримання збереженного результату запиту фільмів у черзі з локальної змінної
+    getQueuedFilms() {
+        return localStore.load(LOCAL_STORAGE_Q)||{};
+         }
+
+  
 
 //збереження результату запиту переліку жанрів, якщо до цього вони не були збережені
     async saveGenresToLocalStorage() {
