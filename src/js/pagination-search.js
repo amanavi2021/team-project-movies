@@ -40,11 +40,11 @@ export async function paginationSearch(currentSearchWord) {
     });
     
 
-    console.log(currentSearchWord);
+   // console.log(currentSearchWord);
 
     const localStorageData = getTotalPage();
     const { pageNumber, firstPageFilms, total_results } = localStorageData;
-    const total_pages = pageNumber;
+   // const total_pages = pageNumber;
 
     if (total_results === 0) {
         cardContainerEl.innerHTML = '';
@@ -52,14 +52,14 @@ export async function paginationSearch(currentSearchWord) {
         console.log('nothing is found');
         return;
     }
-    console.log(total_pages);
+    //console.log(total_pages);
 
     appendFromLocalStorage(firstPageFilms);
 
     paginationFunctions.clearPagination(paginationEl);
 
-    if (total_pages <= NUMBER_PAGINATION + 2 && total_pages >= 1) {
-        displayPaginationSmall(total_pages);
+    if (pageNumber <= NUMBER_PAGINATION + 2 && pageNumber >= 1) {
+        displayPaginationSmall(pageNumber);
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
         paginationEl.addEventListener('click', onPageClick);
@@ -89,13 +89,13 @@ async function onPageClick(e) {
         
         
         const movies = await apiService.fetchFilmByName();
-        console.log(movies);
+        //console.log(movies);
         paginationFunctions.clearPagination(paginationEl);
         appendFromLocalStorage(movies.results);
-        displayPaginationSmall(total_pages);
+        displayPaginationSmall(pageNumber);
         document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
-        console.log(currentSearchWord);
-        if (total_pages === 1) {
+       // console.log(currentSearchWord);
+        if (pageNumber === 1) {
             paginationFunctions.clearPagination(paginationEl);
         }
     }
@@ -108,7 +108,7 @@ async function onPageClick(e) {
     paginationEl.innerHTML = '';
     paginationFunctions.clearPagination(paginationEl);
 
-    displayPaginationBig(total_pages);
+    displayPaginationBig(pageNumber);
     document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
     const btnLeft = document.querySelector('.pagination__btnLeft');
@@ -130,9 +130,9 @@ async function onPageClick(e) {
              const currentPage = Number(e.target.textContent);        
         
             onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWord);
-            onBigPaginationBtnClickrRenderPagination(total_pages, currentPage); 
+            onBigPaginationBtnClickrRenderPagination(pageNumber, currentPage); 
 
-            paginationFunctions.activityArrows(currentPage, total_pages);
+            paginationFunctions.activityArrows(currentPage, pageNumber);
         }
 
         if (e.target.classList.contains('pagination__btnLeft')) {
@@ -142,7 +142,7 @@ async function onPageClick(e) {
             const previousPage = activePageNumber - 1;
 
             onBigPaginationBtnClickrRenderFilms(previousPage, currentSearchWord);
-            onBigPaginationBtnClickrRenderPagination(total_pages, previousPage); 
+            onBigPaginationBtnClickrRenderPagination(pageNumber, previousPage); 
 
             paginationFunctions.activityOfLeftArrow(1);
             
@@ -155,7 +155,7 @@ async function onPageClick(e) {
             const nextPage = activePageNumber + 1;
 
             onBigPaginationBtnClickrRenderFilms(nextPage, currentSearchWord);
-            onBigPaginationBtnClickrRenderPagination(total_pages, nextPage);    
+            onBigPaginationBtnClickrRenderPagination(pageNumber, nextPage);    
             
             paginationFunctions.activityOfRightArrow(total_pages);
         }
@@ -163,19 +163,19 @@ async function onPageClick(e) {
     }
 }
 
-function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
+function onBigPaginationBtnClickrRenderPagination(pageNumber, currentPage) {
     paginationFunctions.clearPagination(paginationEl);
 
     const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2);
-    const m = total_pages - (NUMBER_PAGINATION - 1);
+    const m = pageNumber - (NUMBER_PAGINATION - 1);
 
 
     if (currentPage < n) {
-        displayPaginationBig(total_pages);
+        displayPaginationBig(pageNumber);
     } else if (currentPage >= n && currentPage <= m) {
-        displayPaginationBigMiddle(total_pages, currentPage);
+        displayPaginationBigMiddle(pageNumber, currentPage);
     } else {
-        displayPaginationBigFinish(total_pages);
+        displayPaginationBigFinish(pageNumber);
     }
 
     document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
@@ -188,7 +188,7 @@ async function onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWor
     
     try {  
         const movies = await apiService.fetchFilmByName();
-        console.log(movies);
+       // console.log(movies);
         appendFromLocalStorage(movies.results);
     }
     catch {
@@ -196,7 +196,7 @@ async function onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWor
     }
 }
 
-function displayPaginationBig(total_pages) {
+function displayPaginationBig(pageNumber) {
     createPaginationArrowLeft(paginationContainerEl);
 
     const ulEl = document.createElement('ul');
@@ -209,7 +209,7 @@ function displayPaginationBig(total_pages) {
 
     createPaginationDots(ulEl);
 
-    const finishPage = displayPaginationBtn(total_pages);
+    const finishPage = displayPaginationBtn(pageNumber);
     ulEl.appendChild(finishPage);
 
     paginationEl.appendChild(ulEl);
@@ -217,7 +217,7 @@ function displayPaginationBig(total_pages) {
     createPaginationArrowRight(paginationContainerEl);
 }
 
-function displayPaginationBigFinish(total_pages) {
+function displayPaginationBigFinish(pageNumber) {
     createPaginationArrowLeft(paginationContainerEl);
 
     const ulEl = document.createElement('ul');
@@ -228,7 +228,7 @@ function displayPaginationBigFinish(total_pages) {
 
     createPaginationDots(ulEl);
 
-    for (let i = total_pages - (NUMBER_PAGINATION - 1); i <= total_pages; i += 1) {
+    for (let i = pageNumber - (NUMBER_PAGINATION - 1); i <= pageNumber; i += 1) {
         const liEl = displayPaginationBtn(i);
         ulEl.appendChild(liEl);
     }
@@ -238,7 +238,7 @@ function displayPaginationBigFinish(total_pages) {
     createPaginationArrowRight(paginationContainerEl);
 }
 
-function displayPaginationBigMiddle(total_pages, currentPage) {
+function displayPaginationBigMiddle(pageNumber, currentPage) {
     createPaginationArrowLeft(paginationContainerEl);
 
     const ulEl = document.createElement('ul');
@@ -256,7 +256,7 @@ function displayPaginationBigMiddle(total_pages, currentPage) {
 
     createPaginationDots(ulEl);
 
-    const lastPage = displayPaginationBtn(total_pages);
+    const lastPage = displayPaginationBtn(pageNumber);
     ulEl.appendChild(lastPage);
 
     paginationEl.appendChild(ulEl);
@@ -264,12 +264,12 @@ function displayPaginationBigMiddle(total_pages, currentPage) {
     createPaginationArrowRight(paginationContainerEl);
 }
 
-function displayPaginationSmall(totalPages) {
+function displayPaginationSmall(pageNumber) {
        
     const ulEl = document.createElement('ul');
     ulEl.classList.add('pagination__list');
 
-    for (let i = 0; i < totalPages; i += 1) {
+    for (let i = 0; i < pageNumber; i += 1) {
         const liEl = displayPaginationBtn(i + 1);
         ulEl.appendChild(liEl);
     }
