@@ -13,6 +13,10 @@ import refs from './js/service/refs';
 
 // виводить картинку якщо переглянутих немає
 console.log(refs.filmsContainer);
+console.log(localstorage.load('watched'));
+console.log(localstorage.load('watched')===[] );
+console.log(localstorage.load('watched')===undefined);
+
 if (localstorage.load('watched')===[] || localstorage.load('watched')===undefined)
 { refs.filmsContainer.classList.add('gallery-blank');
 console.log(refs.filmsContainer);
