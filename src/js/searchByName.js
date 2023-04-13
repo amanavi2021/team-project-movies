@@ -27,7 +27,7 @@ async function onClick (e) {
   apiService.resetPage();
 
   try {
-  
+    
     // запит фільма за ключовим словом 
     const  findingFilms = await apiService.fetchFilmByName();
     // додаємо перевірку, якщо нічого не знайдено, Notifier
