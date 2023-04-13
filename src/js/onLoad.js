@@ -25,6 +25,7 @@ export default async function onLoad() {
 
 
 //  Вішаємо слухача і при click на кнопку, запускаємо Відео
-    refs.filmsContainer.addEventListener('click', onClickPlayer);
- 
+        refs.filmsContainer.addEventListener('click', onClickPlayer);
+        refs.filmsContainer.addEventListener('touchstart', onClickPlayer);
+        
 };

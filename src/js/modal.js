@@ -60,7 +60,7 @@ export function toggleModal() {
   }
 
   refs.filmClick.addEventListener('click', onClickOpen);
-  refs.filmClick.addEventListener('touchstart', onClickOpen); // тест
+  refs.filmClick.addEventListener('touchstart', onClickOpen); 
   refs.closeModal.addEventListener('click', closeModal);
   refs.playerClick.addEventListener('click', onClickPlayer);
 
@@ -72,7 +72,9 @@ export function toggleModal() {
       e.target.classList.contains(`trailer-player-wrapper`) ||
       e.target.nodeName === `path` ||
       e.target.nodeName === `H2` ||
-      e.target.nodeName === `P`
+      e.target.nodeName === `P` ||
+      e.target.nodeName === `UL` ||
+      e.target.nodeName === `LI`
     ) {
       return;
     }

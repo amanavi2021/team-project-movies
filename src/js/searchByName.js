@@ -42,7 +42,8 @@ async function onClick (e) {
   localStore.save('currentFilms', findingFilms);
   paginationSearch(searchQueryName);
   //  Вішаємо слухача і при click на кнопку, запускаємо Відео
-  refs.filmsContainer.addEventListener('click', onClickPlayer);
+    refs.filmsContainer.addEventListener('click', onClickPlayer);
+    refs.filmsContainer.addEventListener('touchstart', onClickPlayer);
 
   } catch (error) {
             catchError(error, 'Something went wrong...');
