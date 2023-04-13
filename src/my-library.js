@@ -14,6 +14,7 @@ import refs from './js/service/refs';
 // виводить картинку якщо переглянутих немає
 if (localstorage.load('watched')===[] || localstorage.load('watched')===undefined)
 { refs.filmsContainer.classList.add('gallery-blank');
+console.log(refs.filmsContainer);
  }
 else {
     refs.filmsContainer.classList.remove('gallery-blank'); 
