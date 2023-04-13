@@ -64,7 +64,15 @@ export async function paginationSearch(currentSearchWord) {
 
         paginationEl.addEventListener('click', onPageClick);
         
-    async function onPageClick (e) {
+            //document.querySelector('.pagination__item--select').classList.remove('pagination__item--select');
+        
+        }
+      
+        
+     return;
+    }
+
+async function onPageClick (e) {
         if (!e.target.classList.contains('pagination__item')) {
             return;
         }
@@ -86,18 +94,15 @@ export async function paginationSearch(currentSearchWord) {
             displayPaginationSmall(total_pages);
             document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
             console.log(currentSearchWord);
+            if (total_pages === 1) {
+                paginationFunctions.clearPagination(paginationEl);
+            }
         }
         catch {
         console.log('fetch problem');
         }
             
-        //document.querySelector('.pagination__item--select').classList.remove('pagination__item--select');
-        
-        }
-      
-        
-     return;
-    }
+
 
     paginationEl.innerHTML = '';
     paginationFunctions.clearPagination(paginationEl);
