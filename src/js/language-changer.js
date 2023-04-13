@@ -18,8 +18,8 @@ function ua() {
   btnEn.disabled = false;
   btnUa.disabled = true;
   localStorage.setItem('language', 'ua');
-  document.querySelectorAll('.switch__light').textContent = 'Світло';
-  document.querySelectorAll('.switch__dark').textContent = 'Темно';
+  document.querySelector('.switch__light').textContent = 'Світло';
+  document.querySelector('.switch__dark').textContent = 'Темно';
  
   document.querySelector('.search__input').placeholder = 'Знайти фільм';
   document.querySelector('.nav__link--home ').textContent = 'Головна';
@@ -58,8 +58,8 @@ function en() {
   document.querySelector('.footer__text--dev').textContent = 'Developed with';
   document.querySelector('.footer__text--by').textContent = 'by';
   document.querySelector('.footer__link').textContent = 'GoIT Students';
-  // document.querySelectorAll('.switch__light').textContent = 'light';
-  // document.querySelectorAll('.switch__dark').textContent = 'dark';
+  document.querySelector('.switch__light').textContent = 'light';
+  document.querySelector('.switch__dark').textContent = 'dark';
   // document.querySelector('[data-add="queue"]').textContent = 'Queue';
   // document.querySelector('[data-add="watched"]').textContent = 'Watched';
 }

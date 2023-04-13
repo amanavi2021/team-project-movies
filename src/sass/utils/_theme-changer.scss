@@ -47,7 +47,7 @@
 
 .slider {
   cursor: pointer;
-  border: 4px solid $black;
+  // border: 4px solid $black;
   border-radius: 30px;
   transition: all 0.2s;
   position: absolute;
@@ -56,14 +56,14 @@
   left: 0;
   right: 0;
   overflow: hidden;
-  box-shadow: 0 0 0 2px $accentColor, 0 0 4px $accentColor;
+  box-shadow: 0 0 0 2px #1c1a1a, 0 0 4px #1c1a1a;
 }
 
 .slider:before {
   content: '';
   width: 100%;
   height: 100%;
-  background-color: $accentColor;
+  background-color: #1c1a1a;
   border-radius: 30px;
   transition: all 0.2s;
   position: absolute;
@@ -74,7 +74,7 @@
   content: '';
   width: 100%;
   height: 100%;
-  background-color: $accentColor;
+  background-color: #1c1a1a;
   border-radius: 30px;
   transition: all 0.2s;
   position: absolute;
@@ -89,14 +89,14 @@
 input:checked + .slider:before {
   transform: translateX(24px);
   /*translateX(w-h)*/
-  background-color: $accentColor;
+  background-color: #1c1a1a;
   // @include tablet {
   //   transform: translateX(20px);
   // }
 }
 
 input:checked + .slider {
-  box-shadow: 0 0 0 2px $accentColor, 0 0 8px $accentColor;
+  box-shadow: 0 0 0 2px #1c1a1a, 0 0 8px #1c1a1a;
 }
 
 .switch200 .slider:before {
