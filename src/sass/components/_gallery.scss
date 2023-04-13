@@ -17,6 +17,7 @@
     }}
 
 .film-card {
+position: relative;
 cursor: pointer;
     @media screen and (max-width: calc($tablet - 0.02px)) {
         margin-top: 20px;
@@ -37,7 +38,7 @@ cursor: pointer;
 }
 
 .film-card__small-image {
-    position: relative;
+ 
     width: 100%;
     border-radius: 5px;
     object-fit: cover;
