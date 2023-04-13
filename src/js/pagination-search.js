@@ -8,7 +8,8 @@ import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 const NUMBER_PAGINATION = 5;
 const cardContainerEl = document.querySelector('.gallery');
 const paginationEl = document.querySelector('.pagination__box');
-const paginationContainerEl = document.querySelector('.pagination__container')
+const paginationContainerEl = document.querySelector('.pagination__container');
+const formRef = document.querySelector('#search-form');
 
 function getTotalPage() {
     const savedFilms = localStorage.getItem('currentFilms') || {};
@@ -18,12 +19,14 @@ function getTotalPage() {
         let pageNumber = 0;
         let firstPageFilms = [];
 
-        if (savedFilms !== {}) {
-            pageNumber = parsedSavedFilms.total_pages;
-            firstPageFilms = parsedSavedFilms.results;
+        const { total_results, total_pages, results } = parsedSavedFilms;
+
+        if (total_results !== 0) {
+            pageNumber = total_pages;
+            firstPageFilms = results;
         }
 
-        return { pageNumber, firstPageFilms } ;
+        return { pageNumber, firstPageFilms, total_results } ;
     } catch {
         console.log('nothing');
     }
@@ -31,12 +34,19 @@ function getTotalPage() {
 
 
 export async function paginationSearch(currentSearchWord) {
+    formRef.addEventListener('submit', () => {
+        paginationEl.removeEventListener('click', onPageClick);
+        paginationContainerEl.removeEventListener('click', onBigPaginatinClick);
+    });
+    
+
+    console.log(currentSearchWord);
 
     const localStorageData = getTotalPage();
-    const { pageNumber, firstPageFilms } = localStorageData;
+    const { pageNumber, firstPageFilms, total_results } = localStorageData;
     const total_pages = pageNumber;
 
-    if (total_pages === 0) {
+    if (total_results === 0) {
         cardContainerEl.innerHTML = '';
         paginationFunctions.clearPagination(paginationEl);
         console.log('nothing is found');
@@ -52,7 +62,9 @@ export async function paginationSearch(currentSearchWord) {
         displayPaginationSmall(total_pages);
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
-     paginationEl.addEventListener('click', async (e) => {
+        paginationEl.addEventListener('click', onPageClick);
+        
+    async function onPageClick (e) {
         if (!e.target.classList.contains('pagination__item')) {
             return;
         }
@@ -73,6 +85,7 @@ export async function paginationSearch(currentSearchWord) {
             appendFromLocalStorage(movies.results);
             displayPaginationSmall(total_pages);
             document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
+            console.log(currentSearchWord);
         }
         catch {
         console.log('fetch problem');
@@ -80,11 +93,10 @@ export async function paginationSearch(currentSearchWord) {
             
         //document.querySelector('.pagination__item--select').classList.remove('pagination__item--select');
         
-         
+        }
+      
         
-        });
-        
-        return;
+     return;
     }
 
     paginationEl.innerHTML = '';
@@ -98,7 +110,9 @@ export async function paginationSearch(currentSearchWord) {
 
     btnLeft.disabled = true;
 
-    paginationContainerEl.addEventListener('click', (e) => {
+    paginationContainerEl.addEventListener('click', onBigPaginatinClick);
+
+    function onBigPaginatinClick (e) {
         e.preventDefault();
 
         if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
@@ -140,7 +154,7 @@ export async function paginationSearch(currentSearchWord) {
             paginationFunctions.activityOfRightArrow(total_pages);
         }
        
-    })
+    }
 }
 
 function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {

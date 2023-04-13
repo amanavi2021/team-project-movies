@@ -5,9 +5,12 @@ import refs from './service/refs';
 import notifier from './service/notifier'
 import localStore from './service/localstorage'
 import catchError from './service/catcherror';
+import { clearPagination } from './pagination-functions';
 
-
-
+const formRef = document.querySelector('#search-form');
+const containerRef = document.querySelector('.gallery');
+const BtnRef = document.querySelector('.search__button');
+const paginationDigits = document.querySelector('.pagination__box');
 
 refs.formSearch.addEventListener('submit', onClick);
 
@@ -31,6 +34,7 @@ async function onClick (e) {
     notifier.warning('No such film, try again...');
     refs.formSearch.reset();
     return;
+
   }
   
   // Якщо ЗНАЙДЕНО, записуємо в localStoridge і запускаємо пагінацію по знайденому фільму
