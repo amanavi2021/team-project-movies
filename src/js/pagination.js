@@ -26,16 +26,13 @@ export async function paginationFeach() {
 
     const total_pages = getTotalPage();
     
-    await onLoad(); 
+    onLoad(); 
     
     if (total_pages <= NUMBER_PAGINATION + 2 && total_pages >= 1) {
 
         paginationFunctions.displayPaginationSmall(total_pages, paginationEl);
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
-         if (total_pages === 1) {
-                paginationFunctions.clearPagination(paginationEl);
-            }
         paginationEl.addEventListener('click', onPaginationBtnClick);
 
 
@@ -133,18 +130,18 @@ function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
 async function onBigPaginationBtnClickrRenderFilms(currentPage) {
     cardContainerEl.innerHTML = '';
     apiService.pageNumber = currentPage;
-    await onLoad();
+    onLoad();
 }
 
 
-async function onPaginationBtnClick(e) {
+function onPaginationBtnClick(e) {
     if (!e.target.classList.contains('pagination__item')) {
         return;
     }
     cardContainerEl.innerHTML = '';
     apiService.pageNumber = Number(e.target.textContent);
 
-    await onLoad();
+    onLoad();
 
     document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
 }   
