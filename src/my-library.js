@@ -12,6 +12,7 @@ import languageApi from './js/language-changer';
 import refs from './js/service/refs';
 
 // виводить картинку якщо переглянутих немає
+console.log(refs.filmsContainer);
 if (localstorage.load('watched')===[] || localstorage.load('watched')===undefined)
 { refs.filmsContainer.classList.add('gallery-blank');
 console.log(refs.filmsContainer);
