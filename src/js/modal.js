@@ -37,6 +37,8 @@ export function toggleModal() {
     document.body.style.overflow = '';
     clearModalMovie(refs.filmInfo);
     removeEventListenerKeydown();
+
+    //////// пагінація при закритті модалки
    }
 
   function closeModalOnEsc(event) {
