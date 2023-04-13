@@ -1,9 +1,14 @@
 import localstorage from './service/localstorage';
 
-const filmContainer = document.querySelector('.modal');
+const modalContainer = document.querySelector('.modal');
+
+modalContainer.addEventListener('click', onClickBtn);
+
 let queueBtn = null;
 let watchedBtn = null;
+
 filmContainer.addEventListener('click', onClickBtn);
+
 
 const queue = localstorage.load('queue') || [];
 const watched = localstorage.load('watched') || [];
@@ -22,13 +27,13 @@ function onClickBtn(e) {
   }
 }
 
-function addToQueue(id) {
-  // console.log(id);
-  const filmsFromLocalStorage = localstorage.load('currentFilms');
-  const indexFilm = queue.findIndex(film => film.id === Number(id));
-  const findFilm = queue.find(film => film.id === Number(id));
 
-  let results = {};
+export function addToQueue(id) {
+    // console.log(id);
+    const filmsFromLocalStorage = localstorage.load('currentFilms');
+    const indexFilm = queue.findIndex(film => film.id === Number(id));
+    const findFilm = queue.find(film => film.id === Number(id));
+
 
   for (const film of filmsFromLocalStorage.results) {
     if (film.id === Number(id)) {
@@ -75,6 +80,7 @@ function addToWatched(id) {
 
   let results = {};
 
+
   for (const film of filmsFromLocalStorage.results) {
     if (film.id === Number(id)) {
       results = {
@@ -91,6 +97,7 @@ function addToWatched(id) {
       };
     }
   }
+
 
   if (findFilm) {
     watched.splice(indexFilm, 1);
@@ -123,3 +130,14 @@ function getBtnRefs(target) {
     return;
   }
 }
+
+
+// async function appendToFilmContainer(parsedFilms) {
+//     try {
+//         const markup = await renderFilms(parsedFilms).then(result => result);
+//         galleryContainer.innerHTML = markup;
+//     } catch (error) {
+//         console.error(error);
+//     };
+// };
+

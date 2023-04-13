@@ -1,58 +1,55 @@
-import markupTpl from '../templates/markupFilmMainPage.hbs';
 import apiService from './apiService';
-import { paginationLocalStorage } from './paginationIn-library';
 import { paginationSearch } from './pagination-search';
-import renderFilms from './renderFilms';
 import onClickPlayer from './trailerplayer';
 import refs from './service/refs';
-
-
+import notifier from './service/notifier'
+import localStore from './service/localstorage'
+import catchError from './service/catcherror';
+import { clearPagination } from './pagination-functions';
 
 const formRef = document.querySelector('#search-form');
 const containerRef = document.querySelector('.gallery');
 const BtnRef = document.querySelector('.search__button');
+const paginationDigits = document.querySelector('.pagination__box');
 
-formRef.addEventListener('submit', onClick);
+refs.formSearch.addEventListener('submit', onClick);
 
 async function onClick (e) {
- e.preventDefault();
+  e.preventDefault();
 
- apiService.query = e.currentTarget.elements.searchQuery.value.trim();
-  console.log(apiService.query)
   const searchQueryName = e.currentTarget.elements.searchQuery.value.trim();
+  apiService.query = searchQueryName;
 
- if(e.target.elements.searchQuery.value.trim() === "") {
+  if(e.target.elements.searchQuery.value.trim() === "") {
     return
   }
 
-apiService.resetPage();
+  apiService.resetPage();
 
-try {
-   await apiService.saveFindingFilmsToLocalStorage();
-   //const movies = apiService.getSavedFilms();
-    // const movies = await apiService.fetchFilmByName();
-   //  const trending = await apiService.fetchTrandingFilmDay();
-   //  console.log('trending', trending);
-  paginationSearch(searchQueryName);
+  try {
+    // запит фільма за ключовим словом 
+    const  findingFilms = await apiService.fetchFilmByName();
+    // додаємо перевірку, якщо нічого не знайдено, Notifier
+    if ( findingFilms.results.length === 0) {
+    notifier.warning('No such film, try again...');
+    refs.formSearch.reset();
+    return;
 
-} catch (error) {
- console.error (error)
   }
   
+  // Якщо ЗНАЙДЕНО, записуємо в localStoridge і запускаємо пагінацію по знайденому фільму
+  localStore.save('currentFilms', findingFilms);
+  paginationSearch(searchQueryName);
   //  Вішаємо слухача і при click на кнопку, запускаємо Відео
   refs.filmsContainer.addEventListener('click', onClickPlayer);
+
+  } catch (error) {
+            catchError(error, 'Something went wrong...');
+    };
   
-// formRef.reset();
+
+  
+refs.formSearch.reset();
 }
 
 
-async function renderMoviesByName (movies) {
-  if (movies.results.length === 0) {
-     
-     // alert("We haven't found movies with that name"); - в Api Service є після перевірки
-     return;
- 
- 
- // А навіщо ідентична функція, коли я робила вже renderFilms ? вона просто ас
-  }
- }
