@@ -1,6 +1,7 @@
 const teamMembers = [
   {
     name: 'Nadiia Maltseva',
+    uaname: 'Надія Мальцева',
     role: 'Team Lead',
     github: 'https://github.com/amanavi2021',
     linkedin: '',
@@ -8,6 +9,7 @@ const teamMembers = [
   },
   {
     name: 'Oleksandr Karpiuk',
+    uaname: 'Олександр Карпюк',
     role: 'Scrum Master',
     github: 'https://github.com/Oleksandr-Karpiuk',
     linkedin: 'https://www.linkedin.com/in/oleksandr-karpiuk/',
@@ -16,6 +18,7 @@ const teamMembers = [
   },
   {
     name: 'Olga Tolstykhina',
+    uaname: 'Ольга Толстукхіна',
     role: 'Developer',
     github: 'https://github.com/OlgaT0709',
     linkedin: 'https://www.linkedin.com/in/olga-tolstikhina-developer/',
@@ -24,6 +27,7 @@ const teamMembers = [
   },
   {
     name: 'Liliia Paliichuk',
+    uaname: 'Ліля Палічук',
     role: 'Developer',
     github: 'https://github.com/lili2628',
     linkedin: 'https://www.linkedin.com/in/liliia-paliichuk-a0605579/',
@@ -32,6 +36,7 @@ const teamMembers = [
   },
   {
     name: 'Natalia Malovana',
+    uaname: 'Наталя Малована',
     role: 'Developer',
     github: 'https://github.com/NataliaTalia',
     linkedin: 'https://www.linkedin.com/in/natalia-malovana-468817271/',
@@ -39,6 +44,7 @@ const teamMembers = [
   },
   {
     name: 'Ulyana Yashan',
+    uaname: 'Ульяна Яшан',
     role: 'Developer',
     github: 'https://github.com/UlyanaYashan',
     linkedin: '',
@@ -46,6 +52,7 @@ const teamMembers = [
   },
   {
     name: 'Ruslan Bulda',
+    uaname: 'Руслан Булда',
     role: 'Developer',
     github: 'https://github.com/rbulda50',
     linkedin:
@@ -54,6 +61,7 @@ const teamMembers = [
   },
   {
     name: 'Anatolii Matsakov',
+    uaname: 'Анатолій Мацаков',
     role: 'Developer',
     github: 'https://github.com/WipeRrr',
     linkedin: 'https://www.linkedin.com/in/anatoliy-matsakov-85b934261/',
@@ -62,6 +70,7 @@ const teamMembers = [
   },
   {
     name: 'Olesia Manina',
+    uaname: 'Олеся Маніна',
     role: 'Developer',
     github: 'https://github.com/OlesiaManina',
     linkedin: 'https://www.linkedin.com/in/olesia-manina-206592271/',
@@ -70,6 +79,7 @@ const teamMembers = [
   },
   {
     name: 'Pavlo Stakhovsky',
+    uaname: 'Павло Стаховський',
     role: 'Developer',
     github: 'https://github.com/Stiroid',
     linkedin: 'https://www.linkedin.com/mwlite/in/stimpack-paul-914084272',
@@ -78,6 +88,7 @@ const teamMembers = [
   },
   {
     name: 'Yaroslav Voinalovich',
+    uaname: 'Ярослав Войналовіч',
     role: 'Developer',
     github: 'https://github.com/Voinalovych91',
     linkedin: 'https://www.linkedin.com/in/yaroslav-voinalovich-8a2b87271/',
@@ -86,6 +97,7 @@ const teamMembers = [
   },
   {
     name: 'Yaroslav Hrytsutenko',
+    uaname: 'Ярослав Гриценко',
     role: 'Developer',
     github: 'https://github.com/HrytsutenkoYaroslav',
     linkedin: 'https://www.linkedin.com/in/yaroslav-hrytsutenko-340538184/',
@@ -103,11 +115,34 @@ const modalRef = document.querySelector('[data-modal]');
 openModalRef.addEventListener('click', onOpenTeamListModal);
 closeModalRef.addEventListener('click', onCloseModal);
 modalRef.addEventListener('click', onBackDropClick);
-
+const isLanguageUA = localStorage.getItem('language') === 'ua';
 export function loadIntoTeamModal(teamMembers) {
   const markup = teamMembers
     .map(member => {
-      return `
+      if(localStorage.getItem('language') === 'ua'){
+        return `
+      <li class="member__card">
+        <div class="member__thumb">        
+            <img class="member__image" width='120' 
+            src="${member.photo}"
+            alt=${member.uaname}
+            loading="lazy"
+            />      
+        </div>
+        <div class="member__info">
+          <p class="member__name">${member.uaname}</p>
+          <a class="member__link member__link-git" 
+             href="${member.github}" 
+             target="_blank">github</a>
+          <a class="member__link" 
+          href="${member.linkedin}" 
+          target="_blank">linkedin</a>
+          <p class="member__role">${member.role}</p>
+        </div>
+      </li>`;
+      }
+      else {
+             return `
       <li class="member__card">
         <div class="member__thumb">        
             <img class="member__image" width='120' 
@@ -127,6 +162,7 @@ export function loadIntoTeamModal(teamMembers) {
           <p class="member__role">${member.role}</p>
         </div>
       </li>`;
+      }
     })
     .join('');
 

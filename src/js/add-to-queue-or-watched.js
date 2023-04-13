@@ -59,7 +59,15 @@ export function addToQueue(id) {
         queue.push(results);
         localstorage.save('queue', queue);
         queueBtn.classList.add('button-list--active');
-        queueBtn.textContent = 'Remove from queue';
+        if (localStorage.getItem('language') === 'ua') {
+          queueBtn.textContent = 'Видалити з черги';
+        } else {
+            if (localStorage.getItem('language') === 'ua') {
+              queueBtn.textContent = 'Додати до черги';
+            } else {
+              queueBtn.textContent = 'Add to queue';
+            }
+        }
     };
 };
 
@@ -91,13 +99,21 @@ export function addToWatched(id) {
         watched.splice(indexFilm, 1);
         localstorage.save('watched', watched);
         watchedBtn.classList.remove('button-list--active');
-        watchedBtn.textContent = 'Add to watched';
+            if (localStorage.getItem('language') === 'ua') {
+              watchedBtn.textContent = 'Додати до переглянутого';
+            } else {
+              watchedBtn.textContent = 'Add to watched';
+            }
         location.reload();
     } else {
         watched.push(results);
         localstorage.save('watched', watched);
         watchedBtn.classList.add('button-list--active');
-        watchedBtn.textContent = 'Remove from watched';
+         if (localStorage.getItem('language') === 'ua') {
+           watchedBtn.textContent = 'Видалити з переглянутого';
+         } else {
+           watchedBtn.textContent = 'Remove from watched';
+         }
     };
 };
 
