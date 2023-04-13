@@ -66,18 +66,19 @@ export async function paginationSearch(currentSearchWord) {
         
             //document.querySelector('.pagination__item--select').classList.remove('pagination__item--select');
         
-        }
+        
+        return;
+    }
       
         
-     return;
-    }
+     
 
-async function onPageClick (e) {
-        if (!e.target.classList.contains('pagination__item')) {
-            return;
-        }
+async function onPageClick(e) {
+    if (!e.target.classList.contains('pagination__item')) {
+        return;
+    }
     
-        try {  
+    try {
         const currentPage = Number(e.target.textContent);
 
         cardContainerEl.innerHTML = '';
@@ -87,21 +88,21 @@ async function onPageClick (e) {
             
         
         
-            const movies = await apiService.fetchFilmByName();
-            console.log(movies);
+        const movies = await apiService.fetchFilmByName();
+        console.log(movies);
+        paginationFunctions.clearPagination(paginationEl);
+        appendFromLocalStorage(movies.results);
+        displayPaginationSmall(total_pages);
+        document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
+        console.log(currentSearchWord);
+        if (total_pages === 1) {
             paginationFunctions.clearPagination(paginationEl);
-            appendFromLocalStorage(movies.results);
-            displayPaginationSmall(total_pages);
-            document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
-            console.log(currentSearchWord);
-            if (total_pages === 1) {
-                paginationFunctions.clearPagination(paginationEl);
-            }
         }
-        catch {
+    }
+    catch {
         console.log('fetch problem');
-        }
-            
+    }
+}       
 
 
     paginationEl.innerHTML = '';
