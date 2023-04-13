@@ -1,0 +1,459 @@
+
+.search__params {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // margin-left: auto;
+    // margin-right: auto;
+   
+
+    @media screen and (min-width: $tablet) {
+        flex-wrap: nowrap;
+        margin-left:0;
+        margin-right:0;
+
+    }
+
+  
+  }
+  .search__navi {
+    position: relative;
+    display: flex;
+    gap:8px;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    // margin-left: auto;
+    margin-right: auto;
+    
+    
+    // @media screen and (max-width: $tablet
+    // ) {
+    //     margin-bottom: 322px;
+    // }
+
+    @media screen and (min-width: $tablet) {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin-left:0;
+        margin-right:0;
+
+    }
+  }
+
+
+
+  .search {
+    width: 252px;
+    height: 34px;
+    background-color:  $white;
+    border-radius: 100px;
+
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    
+    @media screen and (min-width: $tablet) {
+        width: 165px;
+        height: 38px;
+
+    }
+    @media screen and (min-width: 1200px) {
+        width: 187px;
+        height: 42px;
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 100px;
+        background-color: $white;
+        box-sizing: border-box;
+    
+        height: 34px;
+        width: 34px;
+        @media screen and (min-width: $tablet) {
+            height: 38px;
+            width: 38px;
+    
+        }
+    
+        @media screen and (min-width: $desktop) {
+            height: 42px;
+            width: 42px;
+        }
+
+    }
+    
+    &__icon {
+        width: 14px;
+        height: 14px;
+
+        @media screen and (min-width: $tablet) {
+            width: 16px;
+            height: 16px;
+        }
+
+    }
+}
+
+
+  .search__input {
+    //   width: 84px;
+    //   height: 16px;
+      padding-left: 14px;
+      border: none;
+      outline: none;
+      color: $black;
+      font-size: 12px;
+      line-height: calc(14/12);
+      border-radius: 100px;
+
+      @media screen and (min-width: $tablet) {
+      font-size: 14px;
+      line-height: calc(16/14);
+      width: 127px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        width: 145px;
+    }
+
+  }
+  input::placeholder {
+      color: $black;
+      font-size: 14px;
+      line-height: 1.14;
+      font-weight: 400;
+    }
+
+    .header{
+        margin-left: auto;
+        margin-right: auto;
+        @media screen and (max-width: calc($tablet - 0.02px)) {
+            max-width: 480px;
+        }
+
+        @media screen and (min-width: $tablet) {
+            width: $tablet;
+        }
+
+        @media screen and (min-width: $desktop) {
+            width: $desktop;
+        }
+        
+  
+        &__container{
+        background-image: url('../images/hero-mobile.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+       
+        border-radius: 15px;
+        margin-top: 20px;
+        height:460px;
+        padding: 14px;
+        position: relative;
+   
+        @media screen and (max-width: calc($tablet - 0.02px)) {
+            max-width: 480px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        @media screen and (min-width: $tablet) {
+            background-image: url('../images/hero-tablet.jpg');
+            margin-top: 32px;   
+            margin-left: auto;
+            margin-right: auto;
+            height: 222px;
+            width: 704px;
+            padding: 16px;
+           
+        }
+
+        @media screen and (max-width: calc($desktop - 0.02px)) {
+            background-size: cover;
+        }
+
+        @media screen and (min-width: $desktop) {
+            background-image: url('../images/hero-desktop.jpg');
+            height: 316px;
+            padding: 16px 32px;
+            width: 1216px;
+        }
+
+        }
+
+        &__title {
+            font-size: 32px;
+            line-height: calc(38/32);
+            font-weight: 500;
+            color:$white;
+            @media screen and (min-width: $tablet) {
+                font-size: 40px;
+                line-height: calc(47/40);
+                
+            }
+    
+            @media screen and (min-width: $desktop) {
+                font-size: 64px;
+                line-height: calc(75/64);
+        }
+        }
+
+        &__nav {
+            display: flex;
+            gap:4px;
+          
+        }
+        &__buttons-library{
+            display: flex;
+            gap:4px;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+           
+
+            @media screen and (max-width: calc($tablet - 0.02px)) {
+            margin-top: 322px;
+    }
+
+            @media screen and (min-width: $tablet) {
+            position: absolute;
+            right: 0;
+            // margin-right: 0;
+    }
+        }
+
+        &__logo {
+            width: 32px;
+            height: 32px;
+
+
+            @media screen and (min-width: $tablet) {
+              
+                width: 40px;
+                height: 40px;
+            }
+    
+            @media screen and (min-width: $desktop) {
+                width: 59px;
+                height: 59px;
+
+        }
+    }
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media screen and (min-width: $tablet) {
+              
+        margin-top: 90px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            margin-top: 151px;
+
+    }
+}
+
+
+.logo-home {
+    @media screen and (max-width: calc($tablet - 0.02px)) {
+        margin-top: 308px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.logo-library {
+
+    @media screen and (max-width: calc($tablet - 0.02px)) {
+        position: absolute;
+        top: 368px;
+        left: 50%;
+        transform: translate(-50%);
+       
+    }
+}
+
+    .nav__link {
+        
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 0;
+            border-radius: 100px;
+            padding: 10px 26px;
+            box-sizing: border-box;
+          
+            // width: 87px;
+            height: 34px;
+          
+            font-family: $mainFont;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: calc(14 / 12);
+            letter-spacing: 0em;
+            text-align: center;
+            cursor: pointer;
+            color: $black;
+            background-color: $white;
+            text-transform: uppercase;
+            
+            
+            
+            &:hover,
+            &:focus {
+                color: $white;
+                background-color: $black;
+               
+            }
+            &--current{
+
+                color: $white;
+                background-color: $black;
+
+
+
+            &:before, 
+            &:after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            z-index: -1;
+            margin: -2%;
+            border-radius: 100px;
+            box-shadow: inset 0 0 0 3px #075e98;
+            animation: anim-nav-link 6s linear infinite; 
+        }
+            &:before {
+            animation-delay: -4s;
+        }
+            &:hover::after, 
+            &:hover::before {
+                background-color: #1a1919;
+            }
+            @keyframes anim-nav-link {
+               0%, 100% {
+                   clip: rect(0px, 220px, 6px, 0px);
+               }
+               25% {
+                   clip: rect(0px, 6px, 220px, 0px);
+               }
+               50% {
+                   clip: rect(218px, 220px, 220px, 0px);
+               }
+               75% {
+            clip: rect(0px, 220px, 220px, 218px);
+               }
+            }
+
+
+           }
+
+            @media screen and (min-width: $tablet) {
+                height: 38px;
+            }
+    
+            @media screen and (min-width: $desktop) {
+                height: 42px;
+            }
+    }
+
+
+
+    .btn{
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: 100px;
+        padding: 10px 26px;
+        box-sizing: border-box;
+      
+        // width: 87px;
+        height: 34px;
+      
+        font-family: $mainFont;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: calc(14 / 12);
+        letter-spacing: 0em;
+        text-align: center;
+        cursor: pointer;
+        color: $accentColor;
+        background-color: $white;
+        text-transform: uppercase;
+
+        &:hover,
+            &:focus {
+                color: $white;
+                background-color: $accentColor;
+               
+            }
+
+        &--active{
+            color: $white;
+            background-color: $accentColor;
+
+            &:before, 
+            &:after {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            z-index: -1;
+            margin: -2%;
+            border-radius: 100px;
+            box-shadow: inset 0 0 0 3px #075e98;
+            animation: anim-nav-link 6s linear infinite; 
+        }
+            &:before {
+            animation-delay: -4s;
+        }
+            &:hover::after, 
+            &:hover::before {
+                background-color: #1a1919;
+            }
+            @keyframes anim-nav-link {
+               0%, 100% {
+                   clip: rect(0px, 220px, 6px, 0px);
+               }
+               25% {
+                   clip: rect(0px, 6px, 220px, 0px);
+               }
+               50% {
+                   clip: rect(218px, 220px, 220px, 0px);
+               }
+               75% {
+            clip: rect(0px, 220px, 220px, 218px);
+               }
+            }
+
+        }
+
+        @media screen and (min-width: $tablet) {
+            height: 38px;
+        }
+
+        @media screen and (min-width: $desktop) {
+            height: 42px;
+        }
+}
