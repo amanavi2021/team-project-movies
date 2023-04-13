@@ -9,7 +9,7 @@ const paginationEl = document.querySelector('.pagination__box');
 const paginationContainerEl = document.querySelector('.pagination__container')
 const formRef = document.querySelector('#search-form');
 
-function getTotalPage() {
+function getFilmsFromStoradge() {
     const savedFilms = localStorage.getItem('currentFilms') || {};
     try {
         const parsedSavedFilms = JSON.parse(savedFilms);
@@ -21,10 +21,9 @@ function getTotalPage() {
     }
 }
 
-
 export async function paginationFeach() {
 
-    const totalPages = getTotalPage();
+    const totalPages = getFilmsFromStoradge();
     
     await onLoad(); 
     
@@ -35,10 +34,9 @@ export async function paginationFeach() {
 
          if (totalPages === 1) {
                 paginationFunctions.clearPagination(paginationEl);
-            }
+         }
+        
         paginationEl.addEventListener('click', onPaginationBtnClick);
-
-
         formRef.addEventListener('submit', onFormClickSmall);
 
         function onFormClickSmall() {
@@ -57,7 +55,6 @@ export async function paginationFeach() {
     const btnRight = document.querySelector('.pagination__btnRight');
 
     btnLeft.disabled = true;
-
 
     paginationContainerEl.addEventListener('click', onPaginationClick);
 
@@ -87,7 +84,6 @@ export async function paginationFeach() {
             onBigPaginationBtnClickrRenderPagination(totalPages, previousPage); 
             
             paginationFunctions.activityOfLeftArrow(1);
-
             }
 
         if (e.target.classList.contains('pagination__btnRight')) {
@@ -101,7 +97,6 @@ export async function paginationFeach() {
             
             paginationFunctions.activityOfRightArrow(totalPages);
         }
-       
     }
 
     formRef.addEventListener('submit', onFormClick);

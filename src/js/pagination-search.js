@@ -11,22 +11,22 @@ const paginationEl = document.querySelector('.pagination__box');
 const paginationContainerEl = document.querySelector('.pagination__container');
 const formRef = document.querySelector('#search-form');
 
-function getTotalPage() {
-    const savedFilms = localStorage.getItem('currentFilms') || {};
+function getFilmsForFirstPageFromStoradge() {
+    const savedFilms = localStorage.getItem('currentFilms') || {};   // дістаємо фільми зі сховища
 
     try {
-        const parsedSavedFilms = JSON.parse(savedFilms);
+        const parsedSavedFilms = JSON.parse(savedFilms);    // парс результату зі сховища
         let pageNumber = 0;
         let firstPageFilms = [];
 
-        const { total_results, total_pages, results } = parsedSavedFilms;
+        const { total_results, total_pages, results } = parsedSavedFilms; // деструктуризуємо заг к-сть фільмів, заг к-сть сторінок, масив фільмів
 
-        if (total_results !== 0) {
+        if (total_results !== 0) {             // якщо заг к-сть фільмів не 0 то записуємо значення в змінні
             pageNumber = total_pages;
             firstPageFilms = results;
         }
 
-        return { pageNumber, firstPageFilms, total_results } ;
+        return { pageNumber, firstPageFilms, total_results } ;  // повертаємо з функції заг к-сть фільмів, заг к-сть сторінок, масив фільмів
     } catch {
         console.log('nothing');
     }
@@ -34,121 +34,98 @@ function getTotalPage() {
 
 
 export async function paginationSearch(currentSearchWord) {
-    formRef.addEventListener('submit', () => {
-        paginationEl.removeEventListener('click', onPageClick);
+    formRef.addEventListener('submit', () => {                                // слухаємо сабміт форми пошуку
+        paginationEl.removeEventListener('click', onPageClick);               // знімаємо слухачів з пагінації головної сторінки 
         paginationContainerEl.removeEventListener('click', onBigPaginatinClick);
     });
-    
 
-   // console.log(currentSearchWord);
-
-    const localStorageData = getTotalPage();
+    const localStorageData = getFilmsForFirstPageFromStoradge();        // викликаємо функцію для першої сторінки з даними зі сховища
     const { pageNumber, firstPageFilms, total_results } = localStorageData;
-   // const total_pages = pageNumber;
 
-    if (total_results === 0) {
+    if (total_results === 0) {                  // якщо пошук не дав результатів
         cardContainerEl.innerHTML = '';
-        paginationFunctions.clearPagination(paginationEl);
-        console.log('nothing is found');
+        paginationFunctions.clearPagination(paginationEl); 
+
         return;
     }
-    //console.log(total_pages);
 
-    appendFromLocalStorage(firstPageFilms);
+    appendFromLocalStorage(firstPageFilms);   // рендер карток фільмів першої сторінки
 
-    paginationFunctions.clearPagination(paginationEl);
+    paginationFunctions.clearPagination(paginationEl);  // очищуємо контейнери пагінації
 
-    if (pageNumber <= NUMBER_PAGINATION + 2 && pageNumber >= 1) {
-        displayPaginationSmall(pageNumber);
-        document.querySelector('.js-page-1').classList.add('pagination__item--select');
+    if (pageNumber <= NUMBER_PAGINATION + 2 && pageNumber >= 1) {       // якщо к-сть сторінок більша 7
+        paginationFunctions.displayPaginationSmall(pageNumber, paginationEl);             // рендер пагінації без крапок і стрілок
+        document.querySelector('.js-page-1').classList.add('pagination__item--select');  // активна сторінка
 
-        paginationEl.addEventListener('click', onPageClick);
-        
-            //document.querySelector('.pagination__item--select').classList.remove('pagination__item--select');
-        
+        paginationEl.addEventListener('click', onPageClick);   // слухаємо сторінки пагінації 
         
         return;
     }
-      
-        
-     
 
-async function onPageClick(e) {
-    if (!e.target.classList.contains('pagination__item')) {
-        return;
-    }
-    
-    try {
-        const currentPage = Number(e.target.textContent);
-
-        cardContainerEl.innerHTML = '';
-        paginationFunctions.clearPagination(paginationEl);
-        apiService.pageNumber = currentPage;
-        apiService.query = currentSearchWord;
-            
+    async function onPageClick(e) {          // колбек, що робить запити за вибраною сторінкою малої пагінації
+        if (!e.target.classList.contains('pagination__item')) {   // перевіряємо чи клікаємо на сторінки пагінації
+            return;  
+        }
         
-        
-        const movies = await apiService.fetchFilmByName();
-        //console.log(movies);
+        const currentPage = Number(e.target.textContent);    // визначаємо номер поточної сторінки    
+       
         paginationFunctions.clearPagination(paginationEl);
-        appendFromLocalStorage(movies.results);
-        displayPaginationSmall(pageNumber);
-        document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
-       // console.log(currentSearchWord);
-        if (pageNumber === 1) {
+        
+        onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWord);  // рендер карток фільмів, отриманих з фетчу
+        
+        paginationFunctions.displayPaginationSmall(pageNumber, paginationEl);          // рендер малої пагінації
+        document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');    // робимо вибрану сторінку активною
+        
+         if (pageNumber === 1) {      // якщо к-сть сторінок 1 то очищуємо пагінацію
             paginationFunctions.clearPagination(paginationEl);
         }
-    }
-    catch {
-        console.log('fetch problem');
-    }
-}       
-
+    }       
+          ////////// якщо кількість сторінок більша 7 (пагінація велика: стрілки та крапки)
 
     paginationEl.innerHTML = '';
     paginationFunctions.clearPagination(paginationEl);
 
-    displayPaginationBig(pageNumber);
-    document.querySelector('.js-page-1').classList.add('pagination__item--select');
+    paginationFunctions.displayPaginationBig(pageNumber, paginationContainerEl, paginationEl);   // рендер великої пагінації на 1 сторінку
+    document.querySelector('.js-page-1').classList.add('pagination__item--select'); // активна 1 сторінка
 
-    const btnLeft = document.querySelector('.pagination__btnLeft');
-    const btnRight = document.querySelector('.pagination__btnRight');
+    const btnLeft = document.querySelector('.pagination__btnLeft');  // ліва стрілка
+    const btnRight = document.querySelector('.pagination__btnRight'); // права стрілка
 
-    btnLeft.disabled = true;
+    btnLeft.disabled = true;   // ліва стрілка неактивна, бо ми на ст 1
 
-    paginationContainerEl.addEventListener('click', onBigPaginatinClick);
+    paginationContainerEl.addEventListener('click', onBigPaginatinClick); // слухаємо сторінки та стрілки пагінації
 
     function onBigPaginatinClick (e) {
         e.preventDefault();
 
         if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
-            return;
+            return;   // перевіряємо умову, що клікнули на цифру або стрілку
         };
 
        
-        if (e.target.classList.contains('pagination__item')) {
-             const currentPage = Number(e.target.textContent);        
+        if (e.target.classList.contains('pagination__item')) {   // якщо вибрали цифру
+             const currentPage = Number(e.target.textContent);    // поточна сторінка 
         
-            onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWord);
-            onBigPaginationBtnClickrRenderPagination(pageNumber, currentPage); 
+            onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWord);  // рендер карток фільмів
+            onBigPaginationBtnClickrRenderPagination(pageNumber, currentPage);    // рендер великої пагінації
 
-            paginationFunctions.activityArrows(currentPage, pageNumber);
+            paginationFunctions.activityArrows(currentPage, pageNumber); //якщо вибрана 1 або остання сторінка, то робимо неактивними відповідні стрілки
         }
 
-        if (e.target.classList.contains('pagination__btnLeft')) {
+        if (e.target.classList.contains('pagination__btnLeft')) {  //якщо клікнули на ліву стрілку
                 
-            const activePage = document.querySelector('.pagination__item--select');
+            const activePage = document.querySelector('.pagination__item--select');   // запамятовуємо активну сторінку при кліці
             const activePageNumber = Number(activePage.textContent);
-            const previousPage = activePageNumber - 1;
+            const previousPage = activePageNumber - 1;   // отримуємо попередню сторінку (бо ліва стрілка клікнута), за якою буде пошук та рендер
 
-            onBigPaginationBtnClickrRenderFilms(previousPage, currentSearchWord);
-            onBigPaginationBtnClickrRenderPagination(pageNumber, previousPage); 
+            onBigPaginationBtnClickrRenderFilms(previousPage, currentSearchWord);  // рендер карток фільмів за пошуковим словом та сторінкою
+            onBigPaginationBtnClickrRenderPagination(pageNumber, previousPage);  // рендер великої пагінації
 
-            paginationFunctions.activityOfLeftArrow(1);
+            paginationFunctions.activityOfLeftArrow(1);  // якщо буде рендер по 1, то робимо ліву стрілку неактивною
             
             }
 
-        if (e.target.classList.contains('pagination__btnRight')) {
+        if (e.target.classList.contains('pagination__btnRight')) { // все те ж саме з правою стрілкою
               
             const activePage = document.querySelector('.pagination__item--select');
             const activePageNumber = Number(activePage.textContent);
@@ -163,155 +140,42 @@ async function onPageClick(e) {
     }
 }
 
-function onBigPaginationBtnClickrRenderPagination(pageNumber, currentPage) {
+function onBigPaginationBtnClickrRenderPagination(pageNumber, currentPage) { // функція визначає, яку з трьох видів пагінації рендерити з огляду на вибрану сторінку
     paginationFunctions.clearPagination(paginationEl);
 
-    const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2);
-    const m = pageNumber - (NUMBER_PAGINATION - 1);
+    const n = NUMBER_PAGINATION - (Math.ceil(NUMBER_PAGINATION / 3) - 2); // до 5 сторінок
+    const m = pageNumber - (NUMBER_PAGINATION - 1); // якщо сторінка більша за заг к-сть сторіноу - 4
 
 
     if (currentPage < n) {
-        displayPaginationBig(pageNumber);
+        paginationFunctions.displayPaginationBig(pageNumber, paginationContainerEl, paginationEl);  // рендер пагінації з крапками біля заг к-сті сторінок
     } else if (currentPage >= n && currentPage <= m) {
-        displayPaginationBigMiddle(pageNumber, currentPage);
+        paginationFunctions.displayPaginationBigMiddle(pageNumber, currentPage, paginationContainerEl, paginationEl); // рендер пагінації з 5 цифр посередині і крапками по боках
     } else {
-        displayPaginationBigFinish(pageNumber);
+        paginationFunctions.displayPaginationBigFinish(pageNumber, paginationContainerEl, paginationEl); // рендер пагінації з крапками біля першої сторінки
     }
 
-    document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
+    document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select'); // робимо активною вибрану сторінку
 }
 
 async function onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWord) {
     cardContainerEl.innerHTML = '';
-    apiService.pageNumber = currentPage;
-    apiService.query = currentSearchWord;
+    apiService.pageNumber = currentPage;  // записуємо в властивість класу фетчу поточну сторінку
+    apiService.query = currentSearchWord;   // записуємо в властивість класу Фетчу ключ пошуку
     
     try {  
-        const movies = await apiService.fetchFilmByName();
-       // console.log(movies);
-        appendFromLocalStorage(movies.results);
+        const movies = await apiService.fetchFilmByName();  // чекаємо результатів пошуку
+      
+        appendFromLocalStorage(movies.results);   // рендер карток фільмів, отриманих з фетчу
     }
     catch {
         console.error(error);
     }
 }
 
-function displayPaginationBig(pageNumber) {
-    createPaginationArrowLeft(paginationContainerEl);
-
-    const ulEl = document.createElement('ul');
-    ulEl.classList.add('pagination__list');
-
-    for (let i = 0; i < NUMBER_PAGINATION; i += 1) {
-        const liEl = displayPaginationBtn(i + 1);
-        ulEl.appendChild(liEl);
-    }
-
-    createPaginationDots(ulEl);
-
-    const finishPage = displayPaginationBtn(pageNumber);
-    ulEl.appendChild(finishPage);
-
-    paginationEl.appendChild(ulEl);
-
-    createPaginationArrowRight(paginationContainerEl);
-}
-
-function displayPaginationBigFinish(pageNumber) {
-    createPaginationArrowLeft(paginationContainerEl);
-
-    const ulEl = document.createElement('ul');
-    ulEl.classList.add('pagination__list');
-
-    const firstPage = displayPaginationBtn(1);
-    ulEl.appendChild(firstPage);
-
-    createPaginationDots(ulEl);
-
-    for (let i = pageNumber - (NUMBER_PAGINATION - 1); i <= pageNumber; i += 1) {
-        const liEl = displayPaginationBtn(i);
-        ulEl.appendChild(liEl);
-    }
-
-    paginationEl.appendChild(ulEl);
-
-    createPaginationArrowRight(paginationContainerEl);
-}
-
-function displayPaginationBigMiddle(pageNumber, currentPage) {
-    createPaginationArrowLeft(paginationContainerEl);
-
-    const ulEl = document.createElement('ul');
-    ulEl.classList.add('pagination__list');
-
-    const firstPage = displayPaginationBtn(1);
-    ulEl.appendChild(firstPage);
-
-    createPaginationDots(ulEl);
-
-    for (let i = currentPage - (Math.ceil(NUMBER_PAGINATION / 2) - 1); i <= currentPage + (Math.ceil(NUMBER_PAGINATION / 2) - 1); i += 1) {
-        const liEl = displayPaginationBtn(i);
-        ulEl.appendChild(liEl);
-    }
-
-    createPaginationDots(ulEl);
-
-    const lastPage = displayPaginationBtn(pageNumber);
-    ulEl.appendChild(lastPage);
-
-    paginationEl.appendChild(ulEl);
-
-    createPaginationArrowRight(paginationContainerEl);
-}
-
-function displayPaginationSmall(pageNumber) {
-       
-    const ulEl = document.createElement('ul');
-    ulEl.classList.add('pagination__list');
-
-    for (let i = 0; i < pageNumber; i += 1) {
-        const liEl = displayPaginationBtn(i + 1);
-        ulEl.appendChild(liEl);
-    }
-       
-        paginationEl.appendChild(ulEl);
-}
-    
-function displayPaginationBtn(page) {
-    const liEl = document.createElement('li');
-    liEl.classList.add('pagination__item', `js-page-${page}`);
-    liEl.innerText = page;
-
-    return liEl;
-}
-
-    
-
-function createPaginationDots(parrent) {
-    const liEl = document.createElement('li');
-    liEl.classList.add('pagination__dots');
-    liEl.innerText = '...';
-    parrent.appendChild(liEl);
-}
-
-function createPaginationArrowLeft(parrent) {
-    const btnLeft = document.createElement('button');
-    btnLeft.classList.add('pagination__btnLeft');
-    btnLeft.innerText = '<';
-    btnLeft.type = "button";
-    parrent.prepend(btnLeft);
-}
-
-function createPaginationArrowRight(parrent) {
-    const btnRight = document.createElement('button');
-    btnRight.classList.add('pagination__btnRight');
-    btnRight.innerText = '>';
-    btnRight.type = "button";
-    parrent.append(btnRight);
-}
 async function appendFromLocalStorage(parsedFilms) {
     try {
-        const markup = await renderFilms(parsedFilms).then(result => result);
+        const markup = await renderFilms(parsedFilms).then(result => result); 
         cardContainerEl.innerHTML = markup;
         showPlayBtnAfterImgLoad(); // Кнопка PLAY з'являється після картинки
     } catch (error) {
