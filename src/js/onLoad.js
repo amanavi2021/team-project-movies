@@ -1,10 +1,10 @@
 import apiService from './apiService'
 import renderFilms from './renderFilms';
 import localStore from './service/localstorage'
-import notifier from './service/notifier'
 import refs from './service/refs';
 import onClickPlayer from './trailerplayer';
 import showPlayBtnAfterImgLoad from './service/play-btn-delay'
+import catchError from './service/catcherror';
 
 export default async function onLoad() {
 
@@ -20,15 +20,11 @@ export default async function onLoad() {
 // Кнопка PLAY з'являється після картинки
         showPlayBtnAfterImgLoad();
     } catch (error) {
-            catchError(error);
+            catchError(error, 'Something went wrong...');
     };
 
 
 //  Вішаємо слухача і при click на кнопку, запускаємо Відео
     refs.filmsContainer.addEventListener('click', onClickPlayer);
  
-function catchError(error) {
-    notifier.error('Something went wrong...');
-    console.error('Get onLoad error: ', error.message);
-    };
 };

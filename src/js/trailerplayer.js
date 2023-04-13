@@ -1,7 +1,7 @@
 import YouTubeIframeLoader from 'youtube-iframe';
 import apiService from './apiService';
 import refs from './service/refs';
-import notifier from './service/notifier'
+import catchError from './service/catcherror';
 
 export default async function onClickPlayer(event) {
 // console.log('function onClickPlayer(event.target)', event.target);
@@ -42,7 +42,7 @@ export default async function onClickPlayer(event) {
 
 // якщо щось піде не так, буде меседж Sorry, no trailer 
     } catch (error) {
-            catchError(error);
+            catchError(error, 'Sorry, no trailer found...');
     };
 
 
@@ -103,7 +103,7 @@ export default async function onClickPlayer(event) {
             document.addEventListener('click', onWindowClick);
             window.addEventListener('keydown', onEscKeyPress);
         } catch (error) {
-            catchError(error);
+            catchError(error, 'Sorry, no trailer found...');
         }
     };
 
@@ -133,11 +133,4 @@ export default async function onClickPlayer(event) {
             
            
     }
-    
-        
-    function catchError(error) {
-        notifier.info('Sorry, no trailer');
-        console.error('Get trailer error: ', error.message);
-
-    };
-};
+ };
