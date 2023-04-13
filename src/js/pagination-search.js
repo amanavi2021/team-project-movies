@@ -8,7 +8,8 @@ import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 const NUMBER_PAGINATION = 5;
 const cardContainerEl = document.querySelector('.gallery');
 const paginationEl = document.querySelector('.pagination__box');
-const paginationContainerEl = document.querySelector('.pagination__container')
+const paginationContainerEl = document.querySelector('.pagination__container');
+const formRef = document.querySelector('#search-form');
 
 function getTotalPage() {
     const savedFilms = localStorage.getItem('currentFilms') || {};
@@ -18,11 +19,11 @@ function getTotalPage() {
         let pageNumber = 0;
         let firstPageFilms = [];
 
-        const { total_results } = parsedSavedFilms;
+        const { total_results, total_pages, results } = parsedSavedFilms;
 
         if (total_results !== 0) {
-            pageNumber = parsedSavedFilms.total_pages;
-            firstPageFilms = parsedSavedFilms.results;
+            pageNumber = total_pages;
+            firstPageFilms = results;
         }
 
         return { pageNumber, firstPageFilms, total_results } ;
@@ -33,6 +34,13 @@ function getTotalPage() {
 
 
 export async function paginationSearch(currentSearchWord) {
+    formRef.addEventListener('submit', () => {
+        paginationEl.removeEventListener('click', onPageClick);
+        paginationContainerEl.removeEventListener('click', onBigPaginatinClick);
+    });
+    
+
+    console.log(currentSearchWord);
 
     const localStorageData = getTotalPage();
     const { pageNumber, firstPageFilms, total_results } = localStorageData;
@@ -54,8 +62,8 @@ export async function paginationSearch(currentSearchWord) {
         displayPaginationSmall(total_pages);
         document.querySelector('.js-page-1').classList.add('pagination__item--select');
 
-     paginationEl.addEventListener('click', onPageClick);
-          
+        paginationEl.addEventListener('click', onPageClick);
+        
     async function onPageClick (e) {
         if (!e.target.classList.contains('pagination__item')) {
             return;
@@ -77,6 +85,7 @@ export async function paginationSearch(currentSearchWord) {
             appendFromLocalStorage(movies.results);
             displayPaginationSmall(total_pages);
             document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
+            console.log(currentSearchWord);
         }
         catch {
         console.log('fetch problem');

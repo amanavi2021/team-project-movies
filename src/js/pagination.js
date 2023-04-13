@@ -40,6 +40,7 @@ export async function paginationFeach() {
 
         function onFormClickSmall() {
             paginationEl.removeEventListener('click', onPaginationBtnClick);
+            paginationContainerEl.removeEventListener('click', onPaginationClick);
         }
         return;
     }
@@ -104,6 +105,7 @@ export async function paginationFeach() {
 
     function onFormClick() {
         paginationContainerEl.removeEventListener('click', onPaginationClick);
+        paginationEl.removeEventListener('click', onPaginationBtnClick);
     }
 }
 
@@ -122,7 +124,7 @@ function onBigPaginationBtnClickrRenderPagination(total_pages, currentPage) {
         paginationFunctions.displayPaginationBigFinish(total_pages, paginationContainerEl, paginationEl);
     }
 
-    document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select');
+    document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select');
 }
 
 async function onBigPaginationBtnClickrRenderFilms(currentPage) {

@@ -34,7 +34,6 @@ try {
    const movies = apiService.getSavedFilms();
   console.log(movies);
 
-  const { results } = movies;
 
   
 
@@ -42,9 +41,7 @@ try {
    //  const trending = await apiService.fetchTrandingFilmDay();
    //  console.log('trending', trending);
   
-if (results === []) {
-  clearPagination(paginationDigits);
-  } else { paginationSearch(searchQueryName) };
+ paginationSearch(searchQueryName) 
   
   
 

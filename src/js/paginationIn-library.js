@@ -35,7 +35,9 @@ export function paginationLocalStorage(placeKey) {
         paginationFunctions.displayPaginationSmall(total_pages, paginationEl); // рендер пагінації без стрілок 
         document.querySelector('.js-page-1').classList.add('pagination__item--select'); // першу сторінку робимо активною
 
-        paginationEl.addEventListener('click', (e) => { // делегування на контейнер 
+        paginationEl.addEventListener('click', onDigitPaginationClick);
+
+        function onDigitPaginationClick (e) { // делегування на контейнер 
             e.preventDefault();
 
             if (!e.target.classList.contains('pagination__item')) { // якщо вибрали не li (сторінку) не реагуємо
@@ -51,8 +53,24 @@ export function paginationLocalStorage(placeKey) {
 
             onBigPaginationBtnClickrRenderFilms(currentPage, parsedSavedFilms);  // рендер необхідної частини фільму залежно від вибраної сторінки
             paginationFunctions.displayPaginationSmall(total_pages, paginationEl); // рендер пагінації без стрілок
-            document.querySelector(`.js-page-${currentPage}`).classList.add('pagination__item--select'); // клікнуту сторінку робимо активною
-        });
+            document.querySelector(`.js-page-${currentPage}`)?.classList.add('pagination__item--select'); // клікнуту сторінку робимо активною
+        }
+
+        if (placeKey === 'watched') {
+            document.querySelector('button[data-add="queue"]').addEventListener('click', () =>
+                
+                paginationEl.removeEventListener('click', onDigitPaginationClick)
+            )
+        }
+
+         if (placeKey === 'queue') {
+             document.querySelector('button[data-add="watched"]').addEventListener('click', () => {
+                paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
+                paginationEl.removeEventListener('click', onDigitPaginationClick);
+            }
+                
+            )
+        }
         
         return;
     }
@@ -68,7 +86,9 @@ export function paginationLocalStorage(placeKey) {
 
     btnLeft.disabled = true; // ліва стрілка неактивна бо ст 1
 
-    paginationContainerEl.addEventListener('click', (e) => { // слухаємо контейнер, в якому стрілки (кнопки) і числова пагінація (список)
+        paginationContainerEl.addEventListener('click', onArrowPaginationClick);
+
+        function onArrowPaginationClick (e)  { // слухаємо контейнер, в якому стрілки (кнопки) і числова пагінація (список)
         e.preventDefault();
 
         if (!e.target.classList.contains('pagination__item') && !e.target.classList.contains('pagination__btnLeft') && !e.target.classList.contains('pagination__btnRight') ) {
@@ -106,8 +126,24 @@ export function paginationLocalStorage(placeKey) {
                 onBigPaginationBtnClickrRenderPagination(total_pages, nextPage); 
                 
                 paginationFunctions.activityOfRightArrow(total_pages);  // якщо рендерили по останній сторінці, то права стрілка стає неактивною
+        }
+            
+            if (placeKey === 'watched') {
+                document.querySelector('button[data-add="queque"]').addEventListener('click', () => {
+                    paginationEl.removeEventListener('click', onDigitPaginationClick);
+                    paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
             }
-    })
+            )
+        }
+
+         if (placeKey === 'queue') {
+            document.querySelector('button[data-add="watched"]').addEventListener('click', () => {
+                 paginationContainerEl.removeEventListener('click', onArrowPaginationClick);
+                 paginationEl.removeEventListener('click', onDigitPaginationClick);
+            }      
+            )
+        }
+    }
     } catch {
         console.log('nothing are parsed');
     }
