@@ -151,23 +151,3 @@ export function displayPaginationBig(totalPages, container, list) {
     createPaginationArrowRight(container); //// paginationContainerEl
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

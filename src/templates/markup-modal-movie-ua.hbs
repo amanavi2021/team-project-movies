@@ -6,9 +6,9 @@
     loading='lazy'
     data-id='{{id}}'
   />
-      <button class="trailer-player-btn visually-hidden" type="button"  aria-label="Play trailer" data-btn-modal> 
+      <button class="trailer-player-btn" type="button"  aria-label="Play trailer"> 
       
-        <svg width="50" height="50" class="trailer-player__svg" viewbox="0 0 32 32">
+        <svg width="30" height="30" class="trailer-player__svg" viewbox="0 0 32 32">
           <path class="svg__path-first" fill="#cf6f55"
             d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>
           <path class="svg__path-second" fill="#c06046"
@@ -27,7 +27,7 @@
   </h2>
   <ul class='film-card__info-list'>
     <li class='film-card__info-el'>
-      <p class='film-card__info-item'>Vote / Votes</p>
+      <p class='film-card__info-item'>Рейтинг / Голосів</p>
       <p class='film-card__info-item--value'>
         <span class='info-item__highlight-red'>
            {{#if vote_average}}
@@ -43,7 +43,7 @@
       </p>
     </li>
     <li class='film-card__info-el'>
-      <p class='film-card__info-item'>Popularity</p>
+      <p class='film-card__info-item'>Популярність</p>
       <p class='film-card__info-item--value'>
         {{#if popularity}}
             {{popularity}}
@@ -51,7 +51,7 @@
       </p>
     </li>
     <li class='film-card__info-el'>
-      <p class='film-card__info-item'>Original Title</p>
+      <p class='film-card__info-item'>Оригінальна Назва</p>
       <p class='film-card__info-item--value'>
          {{#if original_title}}
             {{original_title}}
@@ -59,7 +59,7 @@
       </p>
     </li>
     <li class='film-card__info-el'>
-      <p class='film-card__info-item'>Genre</p>
+      <p class='film-card__info-item'>Жанр</p>
       <p class='film-card__info-item--value'>
         {{#if genreList}}
         {{genreList}}
@@ -67,7 +67,7 @@
       </p>
     </li>
   </ul>
-  <h3 class='film-card__title'>About</h3>
+  <h3 class='film-card__title'>Про фільм</h3>
   <p class='film-card__overview'>
     {{#if overview}}
         {{overview}}
@@ -79,14 +79,14 @@
         type='button'
         class='button-list button-list__watched hvr-float-shadow hvr-buzz-out'
         id='watchedInModal'
-      >Add to watched</button>
+      >Додати до переглянутого</button>
     </li>
     <li class='list-buttons-item'>
       <button
         type='button'
         class='button-list button-list__queue hvr-float-shadow hvr-buzz-out'
         id='queueInModal'
-      >Add to queue</button>
+      >Додати до черги</button>
     </li>
   </ul>
 </div>
