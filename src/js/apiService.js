@@ -8,6 +8,15 @@ const LOCAL_STORAGE_G = 'genres';
 const LOCAL_STORAGE_Q = 'queue';
 const LOCAL_STORAGE_W = 'watched';
 
+let language = 'en-US';
+function checkedLanguage() {
+  if (localStorage.getItem('language') === 'ua') {
+    language = 'uk-UA';
+  } else {
+    language = 'en-US';
+  }
+}
+
 //клас робить HTTP-запит на ресурс і повертає дані (об'єкт)
 class ApiService {
     constructor() {
@@ -19,31 +28,32 @@ class ApiService {
 
 // запит  найпопулярніших фільмів дня       
     async fetchTrandingFilmDay() {    
-        const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.pageNumber}`;
+        checkedLanguage(); 
+        const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}&page=${this.pageNumber}&language=${language}`;
         return this.#fetchData(queryString); 
     }
 
    
 // запит фільма за ключовим словом 
     async fetchFilmByName() {    
-
+checkedLanguage(); 
         //const queryString = `${BASE_URL}search/keyword?api_key=${API_KEY}&query=${this.searchQuery}`;
-        const queryString = `${BASE_URL}/search/movie?api_key=${API_KEY}&page=${this.pageNumber}&query=${this.searchQuery}`;
+        const queryString = `${BASE_URL}/search/movie?api_key=${API_KEY}&page=${this.pageNumber}&query=${this.searchQuery}&language=${language}`;
         return this.#fetchData(queryString); 
        
     }
     
 // запит повної інформації за ID
     async fetchFullInfoByID() {    
-
-        const queryString = `${BASE_URL}movie/${this.filmID}?api_key=${API_KEY}`;
+checkedLanguage(); 
+        const queryString = `${BASE_URL}movie/${this.filmID}?api_key=${API_KEY}&language=${language}`;
         return this.#fetchData(queryString); 
     }
 
 // запит трейлера за ID  
      async fetchTrailerByID() {    
-
-        const queryString = `${BASE_URL}movie/${this.filmID}/videos?api_key=${API_KEY}`;
+checkedLanguage(); 
+        const queryString = `${BASE_URL}movie/${this.filmID}/videos?api_key=${API_KEY}&language=${language}`;
         return this.#fetchData(queryString); 
     }
 
@@ -87,8 +97,9 @@ class ApiService {
     }
 
 // запит переліку жанрів 
-    async #fetchGenres(){
-        const queryString =`${BASE_URL}genre/movie/list?api_key=${API_KEY}`;
+    async #fetchGenres() {
+        checkedLanguage(); 
+        const queryString = `${BASE_URL}genre/movie/list?api_key=${API_KEY}&language=${language}`;
         return this.#fetchData(queryString); 
     }
     
