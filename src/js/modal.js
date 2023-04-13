@@ -1,4 +1,5 @@
 import markupModalMovie from '../templates/markup-modal-movie.hbs';
+import markupModalMovieUa from '../templates/markup-modal-movie-ua.hbs';
 import apiService from './apiService';
 import renderFilms from './renderFilms';
 import localStore from './service/localstorage';
@@ -33,15 +34,14 @@ export function toggleModal() {
   refs.modal.addEventListener('click', closeModalOnClickOutside);
 
   function closeModal() {
-
     refs.modal.classList.add('is-hidden');
     document.body.style.overflow = '';
     clearModalMovie(refs.filmInfo);
     removeEventListenerKeydown();
 
+  }
     //////// пагінація при закритті модалки
-   }
-
+    
   function closeModalOnEsc(event) {
     if (event.code !== 'Escape') {
       return;
@@ -83,7 +83,8 @@ export function toggleModal() {
 
       let movies = [];
       if (
-        document.querySelector('.nav__link--current').textContent === 'Home'
+        document.querySelector('.nav__link--current').textContent === 'Home' ||
+        'Головна'
       ) {
         movies = apiService.getSavedFilms().results;
       } else {
@@ -148,11 +149,12 @@ export function toggleModal() {
     await apiService.saveGenresToLocalStorage();
     const genres = localStore.load('genres') || [];
     // console.log('GENRES', genres);
-
+    const isLanguageUA = localStorage.getItem('language') === 'ua';
     const {
       poster_path,
       backdrop_path,
       title,
+      original_title,
       genre_ids,
       release_date,
       id,
@@ -170,21 +172,44 @@ export function toggleModal() {
         return genre.name;
       });
       if (genre_ids.length === 0) {
-        genreList.push('Other');
+        if (localStorage.getItem('language') === 'ua') {
+          genreList.push('Інше');
+        } else {
+          genreList.push('Other');
+        }
       }
       genreList = genreList.join(', ');
-      return markupModalMovie({
-        poster_path,
-        backdrop_path,
-        title,
-        genreList,
-        year,
-        id,
-        popularity,
-        vote_average,
-        vote_count,
-        overview,
-      });
+      if (localStorage.getItem('language') === 'ua') {
+        return markupModalMovieUa({
+          isLanguageUA,
+          poster_path,
+          backdrop_path,
+          title,
+          genreList,
+          year,
+          id,
+          popularity,
+          vote_average,
+          vote_count,
+          overview,
+          original_title,
+        });
+      } else {
+        return markupModalMovie({
+          isLanguageUA,
+          poster_path,
+          backdrop_path,
+          title,
+          genreList,
+          year,
+          id,
+          popularity,
+          vote_average,
+          vote_count,
+          overview,
+          original_title,
+        });
+      }
     }
   }
 

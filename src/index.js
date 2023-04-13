@@ -6,7 +6,7 @@ import toggleModal from './js/modal';
 import searchByName from './js/searchByName';
 import theme from './js/theme';
 import addToQueueOrWatched from './js/add-to-queue-or-watched'
-
+import languageApi from './js/language-changer'
 // pageHeaderAutoSize()
 // toggleModal();
 
