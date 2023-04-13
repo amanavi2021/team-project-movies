@@ -22,7 +22,11 @@ export default async function renderFilms(films) {
 
     if (genreList.length > 2 || genre_ids.length === 0) {
       genreList = genreList.slice(0, 2);
-      genreList.push('Other');
+       if (localStorage.getItem('language') === 'ua') {
+         genreList.push('Інші');
+       } else {
+         genreList.push('Other');
+       }
     };
 
     genreList = genreList.join(', ');
