@@ -9,9 +9,10 @@ import renderFilms from './js/renderFilms';
 import theme from './js/theme';
 import searchByName from './js/searchByName';
 import languageApi from './js/language-changer';
-import blankPage from './js/service/blank-page'
+import onGalleryReview from './js/service/blank-page'
 
 paginationLocalStorage('watched');
+onGalleryReview('watched');
 const filmContainer = document.querySelector('.my-gallery');
 //  Вішаємо слухача і при click, запускаємо Відео
 filmContainer.addEventListener('click', onClickPlayer);
@@ -24,10 +25,15 @@ const btnWatched = document.querySelector('[data-add="watched"]');
 buttons.addEventListener('click', onClickBtnLibrary);
 
 function onClickBtnLibrary(e) {
+   
     const target = e.target;
+   
+    onGalleryReview(target.dataset.add);
+  
     if (target === btnQueue) {
         if (!localstorage.load('queue')) {
             onClassActiveToggle(target);
+            filmContainer.innerHTML='';
             return;
         } else {
             paginationLocalStorage('queue');
@@ -39,6 +45,7 @@ function onClickBtnLibrary(e) {
     if (target === btnWatched) {
         if (!localstorage.load('watched')) {
             onClassActiveToggle(target);
+            filmContainer.innerHTML='';
             return;
         } else {
             paginationLocalStorage('watched');
@@ -46,6 +53,7 @@ function onClickBtnLibrary(e) {
             return;
         };
     };
+
 };
 
 function onClassActiveToggle(target) {
