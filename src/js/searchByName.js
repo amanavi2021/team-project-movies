@@ -21,16 +21,17 @@ async function onClick (e) {
   apiService.query = searchQueryName;
 
   if(e.target.elements.searchQuery.value.trim() === "") {
-    return
+    return;
   }
 
   apiService.resetPage();
 
   try {
+  
     // запит фільма за ключовим словом 
     const  findingFilms = await apiService.fetchFilmByName();
     // додаємо перевірку, якщо нічого не знайдено, Notifier
-    if ( findingFilms.results.length === 0) {
+   if ( findingFilms.results.length === 0) {
     notifier.warning('No such film, try again...');
     refs.formSearch.reset();
     return;
