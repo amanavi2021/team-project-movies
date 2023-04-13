@@ -43,7 +43,7 @@
     // font-size: 12px;
     // line-height: calc(16/12);
     border-radius: 5px;
-    color: #FFFFFF;
+    color: $white;
     background-color: $accentColor;
     display:flex; 
     justify-content: center;
@@ -53,7 +53,7 @@
 }
 
 .pagination__btnRight {
-    background-color: #F7F7F7;
+    background-color: $background-color-white-footer;
     width: 40px;
     height: 40px;
     border-radius: 5px;
@@ -62,7 +62,7 @@
 }
 
 .pagination__btnLeft{
-    background-color: #F7F7F7;
+    background-color: $background-color-white-footer;
     width: 40px;
     height: 40px;
     border-radius: 5px;
