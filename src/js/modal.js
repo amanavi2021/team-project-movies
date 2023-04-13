@@ -113,27 +113,29 @@ export function toggleModal() {
       if (queueLocalStorage) {
         for (const film of queueLocalStorage) {
           if (movie.id === film.id) {
-            queueBtn.classList.add('button-list--active');
-             if (localStorage.getItem('language') === 'ua') {
-               queueBtn.textContent = 'Видалити з черги';
-             } else {
-               if (localStorage.getItem('language') === 'ua') {
-                 watchedBtn.textContent = 'Видалити з переглянутого';
-               } else {
-                 watchedBtn.textContent = 'Remove from watched';
-               }
-             }
-          }
-        }
-      }
+            if (localStorage.getItem('language') === 'ua') {
+              queueBtn.classList.add('button-list--active');
+              queueBtn.textContent = 'Видалити з черги';
+            } else {
+              queueBtn.classList.add('button-list--active');
+              queueBtn.textContent = 'Remove from queue';
+            };
+          };
+        };
+      };
       if (watchedLocalStorage) {
         for (const film of watchedLocalStorage) {
           if (movie.id === film.id) {
-            watchedBtn.classList.add('button-list--active');
-            watchedBtn.textContent = 'Remove from watched';
-          }
-        }
-      }
+            if (localStorage.getItem('language') === 'ua') {
+              watchedBtn.classList.add('button-list--active');
+              watchedBtn.textContent = 'Видалити з переглянутого';
+            } else {
+              watchedBtn.classList.add('button-list--active');
+              watchedBtn.textContent = 'Remove from watched';
+            };
+          };
+        };
+      };
       // зміна стилю кнопок
     } catch (error) {
       console.error(error);
