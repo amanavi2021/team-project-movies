@@ -22,10 +22,14 @@
   margin-top: 17px;
   justify-content: center;
   display: flex;
-  @media screen and (max-width: $tablet) {
-        margin-top: 10px;
-    }
+  @media screen and (max-width: calc($tablet - 0.02px)) {
+    margin-top: 0;
+    position: absolute;
+    right: 0;
+    top: 104px;
+  }
 }
+
 
 .switch__light,
 .switch__dark {
