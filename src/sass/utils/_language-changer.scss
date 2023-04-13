@@ -1,16 +1,17 @@
 .language-container {
 
-  @media screen and (max-width: 439px) {
+  @media screen and (max-width: calc($tablet - 0.02px)) {
     position: absolute;
       top: 84px;
       left: 0;
     }
 
-  @media screen and (min-width: 440px) and (max-width: calc($tablet - 0.02px)) {
-      position: absolute;
-      top: 5px;
-      right: 0;
-    }
+  
+  @media screen and (min-width: $tablet) and (max-width: calc($desktop - 0.02px)) {
+    position: absolute;
+    top: 46px;
+    left: 0;
+  }
   color: $white;
   display: flex;
   align-items: center;
