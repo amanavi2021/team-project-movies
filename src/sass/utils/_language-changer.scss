@@ -1,5 +1,17 @@
 .language-container {
-  color: #fff;
+
+  @media screen and (max-width: 439px) {
+    position: absolute;
+      top: 84px;
+      left: 0;
+    }
+
+  @media screen and (min-width: 440px) and (max-width: calc($tablet - 0.02px)) {
+      position: absolute;
+      top: 5px;
+      right: 0;
+    }
+  color: $white;
   display: flex;
   align-items: center;
 }
@@ -35,9 +47,9 @@
 }
 
 .active-btn {
-  background: #ff001b;
-  border-color: #ff001b;
-  box-shadow: 0 0 7px 5px rgba(190, 49, 49, 0.6);
+  background: $accentColor;
+  border-color: $accentColor;
+  box-shadow: 0 0 7px 5px $hover;
 }
 
 .en {
@@ -46,8 +58,8 @@
 
 .lang--btn:hover,
 .lang--btn:focus {
-  border-color: #ff001b;
-  box-shadow: 0 0 7px 5px rgba(177, 11, 11, 0.925);
+  border-color: $hover;
+  box-shadow: 0 0 7px 5px $hover;
 }
 
 :focus,
