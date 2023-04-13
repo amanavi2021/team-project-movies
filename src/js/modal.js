@@ -114,7 +114,15 @@ export function toggleModal() {
         for (const film of queueLocalStorage) {
           if (movie.id === film.id) {
             queueBtn.classList.add('button-list--active');
-            queueBtn.textContent = 'Remove from queue';
+             if (localStorage.getItem('language') === 'ua') {
+               queueBtn.textContent = 'Видалити з черги';
+             } else {
+               if (localStorage.getItem('language') === 'ua') {
+                 watchedBtn.textContent = 'Видалити з переглянутого';
+               } else {
+                 watchedBtn.textContent = 'Remove from watched';
+               }
+             }
           }
         }
       }

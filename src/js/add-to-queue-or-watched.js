@@ -49,26 +49,25 @@ export function addToQueue(id) {
         };
     };
     
-    if (findFilm) {
-        queue.splice(indexFilm, 1);
-        localstorage.save('queue', queue);
-        queueBtn.classList.remove('button-list--active');
-        queueBtn.textContent = 'Add to queue';
-        location.reload();
+  if (findFilm) {
+    queue.splice(indexFilm, 1);
+    localstorage.save('queue', queue);
+    queueBtn.classList.remove('button-list--active');
+    if (localStorage.getItem('language') === 'ua') {
+      queueBtn.textContent = 'Видалити з черги';
     } else {
-        queue.push(results);
-        localstorage.save('queue', queue);
-        queueBtn.classList.add('button-list--active');
-        if (localStorage.getItem('language') === 'ua') {
-          queueBtn.textContent = 'Видалити з черги';
-        } else {
-            if (localStorage.getItem('language') === 'ua') {
-              queueBtn.textContent = 'Додати до черги';
-            } else {
-              queueBtn.textContent = 'Add to queue';
-            }
-        }
-    };
+      queueBtn.textContent = 'Remove from queue';
+    }
+  } else {
+    queue.push(results);
+    localstorage.save('queue', queue);
+    queueBtn.classList.add('button-list--active');
+    if (localStorage.getItem('language') === 'ua') {
+      queueBtn.textContent = 'Додати до черги';
+    } else {
+      queueBtn.textContent = 'Add to queue';
+    }
+  }
 };
 
 export function addToWatched(id) {
