@@ -6,7 +6,10 @@ import notifier from './service/notifier'
 import localStore from './service/localstorage'
 import catchError from './service/catcherror';
 
-refs.formSerch.addEventListener('submit', onClick);
+
+
+
+refs.formSearch.addEventListener('submit', onClick);
 
 async function onClick (e) {
   e.preventDefault();
@@ -26,7 +29,7 @@ async function onClick (e) {
     // додаємо перевірку, якщо нічого не знайдено, Notifier
     if ( findingFilms.results.length === 0) {
     notifier.warning('No such film, try again...');
-    refs.formSerch.reset();
+    refs.formSearch.reset();
     return;
   }
   
@@ -42,7 +45,7 @@ async function onClick (e) {
   
 
   
-refs.formSerch.reset();
+refs.formSearch.reset();
 }
 
 

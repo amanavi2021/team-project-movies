@@ -4,7 +4,7 @@ const refs = {
   filmsContainer: document.querySelector('.gallery'),
   trailerWrapper: document.querySelector('.trailer-player-wrapper'), 
   playerContainer: document.querySelector('.trailer-player-container'), 
-  formSerch: document.querySelector('#search-form'),
+  formSearch: document.querySelector('#search-form'),
 
 
 };
