@@ -106,11 +106,16 @@ checkedLanguage();
 // базова функція fetch
     async #fetchData(queryString) {
          try {
-            const response = await axios.get(queryString);
+             const response = await axios.get(queryString);
+              // Set cache headers
+            response.headers.set('Cache-Control', 'max-age=31536000');
+            response.headers.set('ETag', '');
+            response.headers.set('Last-Modified', new Date().toUTCString());
+            //  console.log(response.headers)
             const data = await response.data;
             return data;
         } catch (error) {
-            throw Error;
+            throw new Error(error);
         }
     };
 
