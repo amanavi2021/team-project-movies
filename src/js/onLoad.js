@@ -5,7 +5,7 @@ import refs from './service/refs';
 import onClickPlayer from './trailerplayer';
 import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 import catchError from './service/catcherror';
-import * as onTouch from './service/ontouch-scroll-check';
+
 
 export default async function onLoad() {
 
@@ -25,9 +25,9 @@ export default async function onLoad() {
     };
 
 
-//  Вішаємо слухача і при click на кнопку (чи touchstart/move для мобілки ), запускаємо Відео
+//  Вішаємо слухача і при click на кнопку (чи touch для мобілки ), запускаємо Відео
         refs.filmsContainer.addEventListener('click', onClickPlayer);
-        refs.filmsContainer.addEventListener('touchstart', onTouch.onTouchStart);
-        refs.filmsContainer.addEventListener('touchmove', onTouch.onTouchMove);
+        refs.filmsContainer.addEventListener('touchstart', onClickPlayer);
+
         
 };
