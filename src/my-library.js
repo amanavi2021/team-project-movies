@@ -16,7 +16,7 @@ onGalleryReview('watched');
 const filmContainer = document.querySelector('.my-gallery');
 //  Вішаємо слухача і при click, запускаємо Відео
 filmContainer.addEventListener('click', onClickPlayer);
-filmContainer.addEventListener('touchstart', onClickPlayer);
+// filmContainer.addEventListener('touchstart', onClickPlayer);
 
 const buttons = document.querySelector('.header__buttons-library');
 const btnQueue = document.querySelector('[data-add="queue"]');
