@@ -21,7 +21,7 @@
     position: relative;
     display: flex;
     gap:8px;
-    flex-direction: column-reverse;
+    // flex-direction: column-reverse;
     flex-wrap: wrap;
     // margin-left: auto;
     margin-right: auto;
@@ -218,7 +218,7 @@
            
 
             @media screen and (max-width: calc($tablet - 0.02px)) {
-            margin-top: 322px;
+            margin-top: 354px;
     }
 
             @media screen and (min-width: $tablet) {
@@ -278,7 +278,7 @@
 
     @media screen and (max-width: calc($tablet - 0.02px)) {
         position: absolute;
-        top: 368px;
+        top: 363px;
         left: 50%;
         transform: translate(-50%);
        
