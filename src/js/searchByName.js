@@ -12,7 +12,9 @@ const containerRef = document.querySelector('.gallery');
 const BtnRef = document.querySelector('.search__button');
 const paginationDigits = document.querySelector('.pagination__box');
 
-refs.formSearch.addEventListener('submit', onClick);
+if (refs.formSearch) {
+  refs.formSearch.addEventListener('submit', onClick);
+};
 
 async function onClick (e) {
   e.preventDefault();
