@@ -3,7 +3,6 @@
   margin-right: auto;
 
   background-color: $background-color-white-footer;
-
   @media screen and (max-width: calc($tablet - 0.02px)) {
     max-width: 480px;
   }
@@ -18,6 +17,7 @@
 }
 
 .footer__container {
+  transition: background-color 300ms ease-in-out;
   @media screen and (max-width: calc($tablet - 0.02px)) {
     max-width: 480px;
 

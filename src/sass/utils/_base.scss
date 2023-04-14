@@ -1,13 +1,13 @@
-body{
+body {
   font-family: $mainFont;
   font-size: 14px;
-  color: $black;
-  background-image:
-    linear-gradient(to right,
+  color: #000;
+  background-image: linear-gradient(
+      to right,
       rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 0.9)),
-    url("../images/background-white.jpg");
-  transition: background-image 250ms ease-in-out;
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('../images/background-white.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -18,6 +18,7 @@ body{
   scroll-behavior: smooth;
   background-attachment: fixed;
 
+  transition: color 300ms ease-in-out
 }
 
 // reset styles
@@ -49,6 +50,4 @@ ul {
 
 a {
   text-decoration: none;
-  
 }
-
