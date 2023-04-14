@@ -6,7 +6,7 @@ import localStore from './service/localstorage';
 import onClickPlayer from './trailerplayer';
 import { addToQueue, addToWatched } from './add-to-queue-or-watched';
 import catchError from './service/catcherror';
-import * as onTouch from './service/ontouch-scroll-check';
+import onTouch from './service/ontouch-scroll-check';
 
 export function toggleModal() {
   const refs = {
@@ -59,16 +59,17 @@ export function toggleModal() {
     window.removeEventListener('keydown', closeModalOnEsc);
   }
 
- function onTouchMove(event) {
-    if (onTouch.onTouchMove(event) === true) {
+ function onTouchOpen(event) {
+    if (!onTouch.onTouchMove(event)) {
       onClickOpen();
-    }
+    } 
   }
 
+  
   // вішаємо слухача для відкриття модалкі на компі, а також на мобільних пристраях
   refs.filmClick.addEventListener('click', onClickOpen);
-  refs.filmClick.addEventListener('touchstart', onTouch.onTouchStart);
-  refs.filmClick.addEventListener('touchmove', onTouchMove);
+  refs.filmClick.addEventListener('touchstart', onTouchOpen);
+  refs.filmClick.addEventListener('touchmove', onTouch.onTouchMove);
 
   refs.closeModal.addEventListener('click', closeModal);
   refs.playerClick.addEventListener('click', onClickPlayer);

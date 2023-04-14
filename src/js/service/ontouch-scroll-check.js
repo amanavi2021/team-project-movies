@@ -1,18 +1,25 @@
 let startY;
+let onTouchMoveEnabled = true;
 
-export function onTouchStart(event) {
+const onTouchStart = (event) => {
   const touch = event.touches[0];
   startY = touch.clientY;
+  return onTouchMoveEnabled = true;
 }
 
-export function onTouchMove(event) {
+const onTouchMove = (event) => {
   const touch = event.touches[0];
   const deltaY = touch.clientY - startY;
 
   // Перевіряємо чи є скрол по вертикалі
   if (Math.abs(deltaY) > 10) {
-    return;
+    onTouchMoveEnabled = false;
   }
+  return onTouchMoveEnabled;
+}
 
-  return true;
- }
+export default{
+  onTouchStart,
+  onTouchMove,
+
+}
