@@ -67,17 +67,14 @@ export function toggleModal() {
 
     const teamRef = document.querySelector('.team-list');
     teamRef.innerHTML = '';
-
+    // console.log(e.target.nodeName);
     if (
       e.target === e.currentTarget ||
       e.target.nodeName === `BUTTON` ||
       e.target.classList.contains(`trailer-player__svg`) ||
       e.target.classList.contains(`trailer-player-wrapper`) ||
       e.target.nodeName === `path` ||
-      e.target.nodeName === `H2` ||
-      e.target.nodeName === `P` ||
-      e.target.nodeName === `UL` ||
-      e.target.nodeName === `LI`
+      e.target.nodeName !== `IMG`
     ) {
       return;
     }

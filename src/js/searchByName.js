@@ -45,7 +45,7 @@ async function onClick (e) {
   paginationSearch(searchQueryName);
   //  Вішаємо слухача і при click на кнопку, запускаємо Відео
     refs.filmsContainer.addEventListener('click', onClickPlayer);
-    refs.filmsContainer.addEventListener('touchstart', onClickPlayer);
+    // refs.filmsContainer.addEventListener('touchstart', onClickPlayer);
 
   } catch (error) {
             catchError(error, 'Something went wrong...');
