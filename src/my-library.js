@@ -9,7 +9,7 @@ import renderFilms from './js/renderFilms';
 import theme from './js/theme';
 import searchByName from './js/searchByName';
 import languageApi from './js/language-changer';
-import onGalleryReview from './js/service/blank-page'
+import {onGalleryReview, showBlankPage} from './js/service/blank-page'
 
 paginationLocalStorage('watched');
 onGalleryReview('watched');
