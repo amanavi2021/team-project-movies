@@ -25,11 +25,9 @@ const btnWatched = document.querySelector('[data-add="watched"]');
 buttons.addEventListener('click', onClickBtnLibrary);
 
 function onClickBtnLibrary(e) {
-   
     const target = e.target;
-   
     onGalleryReview(target.dataset.add);
-  
+    
     if (target === btnQueue) {
         if (!localstorage.load('queue')) {
             onClassActiveToggle(target);
