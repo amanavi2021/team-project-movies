@@ -7,11 +7,13 @@
     url('../images/background-black2.jpg');
   background-color: $background-color-black;
   color: $white;
+  transition: color 300ms ease-in-out
 }
 
 .dark__footer {
   background-color: $background-color-black-footer;
   color: $white;
+  transition: background-color 300ms ease-in-out;
 }
 
 .dark_theme-text {
@@ -29,7 +31,6 @@
     top: 104px;
   }
 }
-
 
 .switch__light,
 .switch__dark {
@@ -89,7 +90,6 @@
   }
 }
 
-
 input:checked + .slider:before {
   transform: translateX(24px);
   /*translateX(w-h)*/
@@ -106,6 +106,4 @@ input:checked + .slider {
 .switch200 .slider:before {
   width: 200%;
   transform: translateX(-82px);
- 
 }
-
