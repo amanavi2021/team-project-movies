@@ -35,10 +35,8 @@ export function toggleModal() {
   refs.modal.addEventListener('click', closeModalOnClickOutside);
 
   function closeModal() {
-
     refs.modal.classList.add('is-hidden');
     document.body.style.overflow = '';
-    clearModalMovie(refs.filmInfo);
     removeEventListenerKeydown();
   }
   //////// пагінація при закритті модалки
@@ -81,7 +79,7 @@ export function toggleModal() {
     }
     // console.log(e.target.nodeName);
     // console.log('id', e.target.dataset.id);
-
+    clearModalMovie(refs.filmInfo);
     try {
       let movieId = e.target.dataset.id;
       let movies = [];

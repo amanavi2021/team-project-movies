@@ -1,12 +1,13 @@
 body{
   font-family: $mainFont;
   font-size: 14px;
-  color: #000;
+  color: $black;
   background-image:
     linear-gradient(to right,
       rgba(255, 255, 255, 0.9),
       rgba(255, 255, 255, 0.9)),
     url("../images/background-white.jpg");
+  transition: background-image 250ms ease-in-out;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
