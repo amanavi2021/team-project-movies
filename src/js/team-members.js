@@ -98,7 +98,7 @@ const teamMembers = [
   },
   {
     name: 'Yaroslav Voinalovich',
-    uaName: 'Ярослав Войналовіч',
+    uaName: 'Ярослав Войналович',
     roleUa: 'Розробник',
     github: 'https://github.com/Voinalovych91',
     linkedin: 'https://www.linkedin.com/in/yaroslav-voinalovich-8a2b87271/',
@@ -189,7 +189,7 @@ function onOpenTeamListModal() {
 
 function onCloseModal() {
   modalRef.classList.add('is-hidden');
-  teamRef.innerHTML = '';
+  // teamRef.innerHTML = '';
   document.body.style.overflow = '';
 
   removeEventListenerKeydown();
