@@ -59,17 +59,17 @@ export function toggleModal() {
     window.removeEventListener('keydown', closeModalOnEsc);
   }
 
-//  function onTouchOpen(event) {
-//     if (!onTouch.onTouchMove(event)) {
-//       onClickOpen();
-//     } 
-//   }
+ function onTouchOpen(event) {
+    if (!onTouch.onTouchMove(event)) {
+      onClickOpen();
+    } 
+  }
 
   
   // вішаємо слухача для відкриття модалкі на компі, а також на мобільних пристраях
   refs.filmClick.addEventListener('click', onClickOpen);
-  // refs.filmClick.addEventListener('touchstart', onTouchOpen);
-  // refs.filmClick.addEventListener('touchmove', onTouch.onTouchMove);
+  refs.filmClick.addEventListener('touchstart', onTouchOpen);
+  refs.filmClick.addEventListener('touchmove', onTouch.onTouchMove);
 
   refs.closeModal.addEventListener('click', closeModal);
   refs.playerClick.addEventListener('click', onClickPlayer);
