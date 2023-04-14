@@ -1,5 +1,6 @@
 import renderFilms from "./renderFilms";
 import localstorage from "./service/localstorage";
+import {onGalleryReview, showBlankPage} from './service/blank-page';
 
 const modalContainer = document.querySelector('.modal');
 const filmContainer = document.querySelector('.libary-gallery');
@@ -147,6 +148,9 @@ async function updateFilmContainer(key) {
       const parsedFilms = localstorage.load(`${key}`)
     const markup = await renderFilms(parsedFilms).then(result => result);
         filmContainer.innerHTML = markup;
+        //виводить картинку 
+        showBlankPage(markup);
+        // 
     } catch (error) {
         console.error(error);
     };

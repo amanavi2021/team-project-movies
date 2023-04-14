@@ -16,9 +16,9 @@ export function onGalleryReview(btnType) {
 }
 
 
-export function showBlankPage(filmsNumber) {
+export function showBlankPage(info) {
        
-     if (!filmsNumber) 
+     if (!info) 
     { refs.filmsContainer.classList.add('gallery-blank');
 
      }
