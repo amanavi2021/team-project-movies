@@ -2,9 +2,9 @@ import renderFilms from "./renderFilms";
 import localstorage from "./service/localstorage";
 
 const modalContainer = document.querySelector('.modal');
-// const filmContainerQueue = document.querySelector('.libary-gallery-queue');
-// const filmContainerWatched = document.querySelector('.libary-watched-gallery');
 const filmContainer = document.querySelector('.libary-gallery');
+const queueInGallery = document.querySelector('[data-add="queue"]');
+const watchedInGallery = document.querySelector('[data-add="watched"]');
 
 modalContainer.addEventListener('click', onClickBtn);
 
@@ -57,8 +57,7 @@ export function addToQueue(id) {
       queue.splice(indexFilm, 1);
       localstorage.save('queue', queue);
       queueBtn.classList.remove('button-list--active');
-
-    if (filmContainer) {
+    if (filmContainer && queueInGallery.classList.contains('btn--active')) {
       updateFilmContainer('queue');
     }
     if (localStorage.getItem('language') === 'ua') {
@@ -69,10 +68,9 @@ export function addToQueue(id) {
   } else {
       queue.push(results);
       localstorage.save('queue', queue);
-      if (filmContainer) {
-      updateFilmContainer('watched');
+      if (filmContainer && queueInGallery.classList.contains('btn--active')) {
+        updateFilmContainer('queue');
     }
-
     queueBtn.classList.add('button-list--active');
     if (localStorage.getItem('language') === 'ua') {
       queueBtn.textContent = 'Видалити з черги';
@@ -110,11 +108,9 @@ export function addToWatched(id) {
         watched.splice(indexFilm, 1);
         localstorage.save('watched', watched);
         watchedBtn.classList.remove('button-list--active');
-
-        if (filmContainer) {
+      if (filmContainer && watchedInGallery.classList.contains('btn--active')) {
             updateFilmContainer('watched');
           }
-
             if (localStorage.getItem('language') === 'ua') {
               watchedBtn.textContent = 'Додати до переглянутого';
             } else {
@@ -124,8 +120,8 @@ export function addToWatched(id) {
         watched.push(results);
         localstorage.save('watched', watched);
         watchedBtn.classList.add('button-list--active');
-      if (filmContainer) {
-            updateFilmContainer('queue');
+      if (filmContainer && watchedInGallery.classList.contains('btn--active')) {
+            updateFilmContainer('watched');
           }
          if (localStorage.getItem('language') === 'ua') {
            watchedBtn.textContent = 'Видалити з переглянутого';
