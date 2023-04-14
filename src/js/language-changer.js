@@ -20,8 +20,9 @@ function ua() {
   localStorage.setItem('language', 'ua');
   document.querySelector('.switch__light').textContent = 'Світло';
   document.querySelector('.switch__dark').textContent = 'Темно';
- 
-  document.querySelector('.search__input').placeholder = 'Знайти фільм';
+  if(document.querySelector('.search__input')) {
+    document.querySelector('.search__input').placeholder = 'Знайти фільм';
+  };
   document.querySelector('.nav__link--home ').textContent = 'Головна';
   document.querySelector('.nav__link--library').textContent = 'Бібліотека';
   document.querySelector('.footer__text--rights').textContent =
@@ -50,7 +51,9 @@ function en() {
   btnUa.disabled = false;
   localStorage.setItem('language', 'en');
 
+  if(document.querySelector('.search__input')) {
   document.querySelector('.search__input').placeholder = 'Movie Search';
+  };
   document.querySelector('.nav__link--home').textContent = 'Home';
   document.querySelector('.nav__link--library').textContent = 'My Library';
   document.querySelector('.footer__text--rights').textContent =
