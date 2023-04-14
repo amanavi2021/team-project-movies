@@ -1,6 +1,10 @@
+import renderFilms from "./renderFilms";
 import localstorage from "./service/localstorage";
 
 const modalContainer = document.querySelector('.modal');
+// const filmContainerQueue = document.querySelector('.libary-gallery-queue');
+// const filmContainerWatched = document.querySelector('.libary-watched-gallery');
+const filmContainer = document.querySelector('.libary-gallery');
 
 modalContainer.addEventListener('click', onClickBtn);
 
@@ -50,18 +54,25 @@ export function addToQueue(id) {
     };
     
   if (findFilm) {
-    queue.splice(indexFilm, 1);
-    localstorage.save('queue', queue);
-    queueBtn.classList.remove('button-list--active');
+      queue.splice(indexFilm, 1);
+      localstorage.save('queue', queue);
+      queueBtn.classList.remove('button-list--active');
+
+    if (filmContainer) {
+      updateFilmContainer('queue');
+    }
     if (localStorage.getItem('language') === 'ua') {
       queueBtn.textContent = 'Додати до черги';
     } else {
       queueBtn.textContent = 'Add to queue';
     }
-      location.reload();
   } else {
-    queue.push(results);
-    localstorage.save('queue', queue);
+      queue.push(results);
+      localstorage.save('queue', queue);
+      if (filmContainer) {
+      updateFilmContainer('watched');
+    }
+
     queueBtn.classList.add('button-list--active');
     if (localStorage.getItem('language') === 'ua') {
       queueBtn.textContent = 'Видалити з черги';
@@ -99,16 +110,23 @@ export function addToWatched(id) {
         watched.splice(indexFilm, 1);
         localstorage.save('watched', watched);
         watchedBtn.classList.remove('button-list--active');
+
+        if (filmContainer) {
+            updateFilmContainer('watched');
+          }
+
             if (localStorage.getItem('language') === 'ua') {
               watchedBtn.textContent = 'Додати до переглянутого';
             } else {
               watchedBtn.textContent = 'Add to watched';
             }
-        location.reload();
     } else {
         watched.push(results);
         localstorage.save('watched', watched);
         watchedBtn.classList.add('button-list--active');
+      if (filmContainer) {
+            updateFilmContainer('queue');
+          }
          if (localStorage.getItem('language') === 'ua') {
            watchedBtn.textContent = 'Видалити з переглянутого';
          } else {
@@ -128,11 +146,12 @@ function getBtnRefs(target) {
     };
 };
 
-// async function appendToFilmContainer(parsedFilms) {
-//     try {
-//         const markup = await renderFilms(parsedFilms).then(result => result);
-//         galleryContainer.innerHTML = markup;
-//     } catch (error) {
-//         console.error(error);
-//     };
-// };
+async function updateFilmContainer(key) {
+  try {
+      const parsedFilms = localstorage.load(`${key}`)
+    const markup = await renderFilms(parsedFilms).then(result => result);
+        filmContainer.innerHTML = markup;
+    } catch (error) {
+        console.error(error);
+    };
+};

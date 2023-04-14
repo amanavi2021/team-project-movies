@@ -13,7 +13,7 @@ import onGalleryReview from './js/service/blank-page'
 
 paginationLocalStorage('watched');
 onGalleryReview('watched');
-const filmContainer = document.querySelector('.my-gallery');
+const filmContainer = document.querySelector('.libary-gallery');
 //  Вішаємо слухача і при click, запускаємо Відео
 filmContainer.addEventListener('click', onClickPlayer);
 filmContainer.addEventListener('touchstart', onClickPlayer);

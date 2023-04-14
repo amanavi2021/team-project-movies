@@ -105,9 +105,7 @@ export function toggleModal() {
       // Кнопка PLAY з'являється після картинки
       showPlayBtnAfterImgLoad();
 
-      // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
-      // КОД ІНШІ ЧАСТИНИ СКРИПТУ НЕ ЗМІНЮЄ І НЕ ЧІПАЄ(крім використанні id)
-
+      // зміна стилю кнопок
       const queueBtn = document.querySelector('#queueInModal');
       const watchedBtn = document.querySelector('#watchedInModal');
       const queueLocalStorage = localStore.load('queue');
