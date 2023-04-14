@@ -5,6 +5,7 @@ import renderFilms from './renderFilms';
 import localStore from './service/localstorage';
 import onClickPlayer from './trailerplayer';
 import { addToQueue, addToWatched } from './add-to-queue-or-watched';
+import catchError from './service/catcherror';
 
 export function toggleModal() {
   const refs = {
@@ -83,19 +84,18 @@ export function toggleModal() {
 
     try {
       let movieId = e.target.dataset.id;
-
       let movies = [];
-      if (
-        document.querySelector('.nav__link--current').textContent === 'Home' ||
-        'Головна'
-      ) {
+      if  (
+    document.querySelector('.nav__link--current').textContent === 'Home' ||
+    document.querySelector('.nav__link--current').textContent === 'Головна'
+){
         movies = apiService.getSavedFilms().results;
-      } else {
-        if (document.querySelector('.btn--active').dataset.add === 'watched') {
-          movies = apiService.getWatchedFilms();
         } else {
-          movies = apiService.getQueuedFilms();
-        }
+          if (document.querySelector('.btn--active').dataset.add === 'watched') {
+            movies = apiService.getWatchedFilms();
+          } else {
+            movies = apiService.getQueuedFilms();
+          } 
       }
       //const movie = movies.results.find(({ id }) => id === Number(movieId));
       const movie = movies.find(({ id }) => id === Number(movieId));
@@ -141,7 +141,7 @@ export function toggleModal() {
       };
       // зміна стилю кнопок
     } catch (error) {
-      console.error(error);
+      catchError(error, 'Something went wrong, kindly reload')
     }
     window.addEventListener('keydown', closeModalOnEsc);
     refs.modal.classList.remove('is-hidden');
