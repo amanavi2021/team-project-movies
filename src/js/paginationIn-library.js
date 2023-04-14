@@ -1,6 +1,7 @@
 import * as paginationFunctions from './pagination-functions';
 import renderFilms from './renderFilms';
-import showPlayBtnAfterImgLoad from './service/play-btn-delay'
+import showPlayBtnAfterImgLoad from './service/play-btn-delay';
+import {onGalleryReview, showBlankPage} from './service/blank-page';
 
 const NUMBER_PAGINATION = 5;
 const NUMBER_PER_PAGE = 20;
@@ -30,13 +31,17 @@ export function paginationLocalStorage(placeKey) {
 
     const savedFilms = localStorage.getItem(`${placeKey}`) || []; // дістаємо зі сховища рядок фільмів за відповідним ключем
 
+    
     try {
         const parsedSavedFilms = JSON.parse(savedFilms); // робимо парс отриманого рядка в масив
         const filmsNumber = parsedSavedFilms.length; // отримуємо кількість усіх фільмів, що є в сховищі
-    
+   
     if (filmsNumber === 0) {                 //якщо фільмів немає то очищуємо контейнер для фільмів (можливо перед цим в контейнері відображались з попередньої вкладки) і виходмо
         cardContainerEl.innerHTML = '';
         paginationFunctions.clearPagination(paginationEl);
+        // якщо немає фільмів показати пусту сторінку
+        showBlankPage(filmsNumber);
+        // 
         return;
     }
         

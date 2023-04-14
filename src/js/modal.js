@@ -6,6 +6,7 @@ import localStore from './service/localstorage';
 import onClickPlayer from './trailerplayer';
 import { addToQueue, addToWatched } from './add-to-queue-or-watched';
 import catchError from './service/catcherror';
+import * as onTouch from './service/ontouch-scroll-check';
 
 export function toggleModal() {
   const refs = {
@@ -35,10 +36,8 @@ export function toggleModal() {
   refs.modal.addEventListener('click', closeModalOnClickOutside);
 
   function closeModal() {
-
     refs.modal.classList.add('is-hidden');
     document.body.style.overflow = '';
-    clearModalMovie(refs.filmInfo);
     removeEventListenerKeydown();
   }
   //////// пагінація при закритті модалки
@@ -60,28 +59,38 @@ export function toggleModal() {
     window.removeEventListener('keydown', closeModalOnEsc);
   }
 
+ function onTouchMove(event) {
+    if (onTouch.onTouchMove(event) === true) {
+      onClickOpen();
+    }
+  }
+
+  // вішаємо слухача для відкриття модалкі на компі, а також на мобільних пристраях
   refs.filmClick.addEventListener('click', onClickOpen);
-  refs.filmClick.addEventListener('touchstart', onClickOpen); 
+  refs.filmClick.addEventListener('touchstart', onTouch.onTouchStart);
+  refs.filmClick.addEventListener('touchmove', onTouchMove);
+
   refs.closeModal.addEventListener('click', closeModal);
   refs.playerClick.addEventListener('click', onClickPlayer);
 
   async function onClickOpen(e) {
+
+    const teamRef = document.querySelector('.team-list');
+    teamRef.innerHTML = '';
+    // console.log(e.target.nodeName);
     if (
       e.target === e.currentTarget ||
       e.target.nodeName === `BUTTON` ||
       e.target.classList.contains(`trailer-player__svg`) ||
       e.target.classList.contains(`trailer-player-wrapper`) ||
       e.target.nodeName === `path` ||
-      e.target.nodeName === `H2` ||
-      e.target.nodeName === `P` ||
-      e.target.nodeName === `UL` ||
-      e.target.nodeName === `LI`
+      e.target.nodeName !== `IMG`
     ) {
       return;
     }
     // console.log(e.target.nodeName);
     // console.log('id', e.target.dataset.id);
-
+    clearModalMovie(refs.filmInfo);
     try {
       let movieId = e.target.dataset.id;
       let movies = [];
@@ -105,9 +114,7 @@ export function toggleModal() {
       // Кнопка PLAY з'являється після картинки
       showPlayBtnAfterImgLoad();
 
-      // зміна стилю кнопок(РЕФАКТОРИТИ БУДЕ РУСЛАН!!!)
-      // КОД ІНШІ ЧАСТИНИ СКРИПТУ НЕ ЗМІНЮЄ І НЕ ЧІПАЄ(крім використанні id)
-
+      // зміна стилю кнопок
       const queueBtn = document.querySelector('#queueInModal');
       const watchedBtn = document.querySelector('#watchedInModal');
       const queueLocalStorage = localStore.load('queue');

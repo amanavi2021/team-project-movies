@@ -6,6 +6,7 @@ import onClickPlayer from './trailerplayer';
 import showPlayBtnAfterImgLoad from './service/play-btn-delay'
 import catchError from './service/catcherror';
 
+
 export default async function onLoad() {
 
 // очищаємо локал сторідж від інфо з попередніх сторінок
@@ -24,8 +25,9 @@ export default async function onLoad() {
     };
 
 
-//  Вішаємо слухача і при click на кнопку, запускаємо Відео
+//  Вішаємо слухача і при click на кнопку (чи touch для мобілки ), запускаємо Відео
         refs.filmsContainer.addEventListener('click', onClickPlayer);
         refs.filmsContainer.addEventListener('touchstart', onClickPlayer);
+
         
 };

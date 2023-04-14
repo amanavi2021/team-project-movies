@@ -9,14 +9,14 @@ import renderFilms from './js/renderFilms';
 import theme from './js/theme';
 import searchByName from './js/searchByName';
 import languageApi from './js/language-changer';
-import onGalleryReview from './js/service/blank-page'
+import {onGalleryReview, showBlankPage} from './js/service/blank-page'
 
 paginationLocalStorage('watched');
 onGalleryReview('watched');
-const filmContainer = document.querySelector('.my-gallery');
+const filmContainer = document.querySelector('.libary-gallery');
 //  Вішаємо слухача і при click, запускаємо Відео
 filmContainer.addEventListener('click', onClickPlayer);
-filmContainer.addEventListener('touchstart', onClickPlayer);
+// filmContainer.addEventListener('touchstart', onClickPlayer);
 
 const buttons = document.querySelector('.header__buttons-library');
 const btnQueue = document.querySelector('[data-add="queue"]');
