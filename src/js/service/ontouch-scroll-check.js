@@ -1,6 +1,3 @@
-import refs from './refs';
-import onClickPlayer from '../trailerplayer';
-
 let startY;
 
 export function onTouchStart(event) {
@@ -17,6 +14,5 @@ export function onTouchMove(event) {
     return;
   }
 
-  // І тільки якщо немає скролу, то відкриваємо картинку
-  onClickPlayer();
-}
+  return true;
+ }
