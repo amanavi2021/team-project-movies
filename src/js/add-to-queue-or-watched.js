@@ -58,7 +58,7 @@ export function addToQueue(id) {
       localstorage.save('queue', queue);
       queueBtn.classList.remove('button-list--active');
 
-    if (filmContainer) {
+    if (filmContainer && queueBtn.classList.contains('btn--active')) {
       updateFilmContainer('queue');
     }
     if (localStorage.getItem('language') === 'ua') {
@@ -69,10 +69,9 @@ export function addToQueue(id) {
   } else {
       queue.push(results);
       localstorage.save('queue', queue);
-      if (filmContainer) {
-      updateFilmContainer('watched');
+      if (filmContainer && queueBtn.classList.contains('btn--active')) {
+      updateFilmContainer('queue');
     }
-
     queueBtn.classList.add('button-list--active');
     if (localStorage.getItem('language') === 'ua') {
       queueBtn.textContent = 'Видалити з черги';
@@ -110,11 +109,9 @@ export function addToWatched(id) {
         watched.splice(indexFilm, 1);
         localstorage.save('watched', watched);
         watchedBtn.classList.remove('button-list--active');
-
-        if (filmContainer) {
+      if (filmContainer && watchedBtn.classList.contains('btn--active')) {
             updateFilmContainer('watched');
           }
-
             if (localStorage.getItem('language') === 'ua') {
               watchedBtn.textContent = 'Додати до переглянутого';
             } else {
@@ -124,8 +121,8 @@ export function addToWatched(id) {
         watched.push(results);
         localstorage.save('watched', watched);
         watchedBtn.classList.add('button-list--active');
-      if (filmContainer) {
-            updateFilmContainer('queue');
+      if (filmContainer && watchedBtn.classList.contains('btn--active')) {
+            updateFilmContainer('watched');
           }
          if (localStorage.getItem('language') === 'ua') {
            watchedBtn.textContent = 'Видалити з переглянутого';
