@@ -66,6 +66,10 @@ export function toggleModal() {
   refs.playerClick.addEventListener('click', onClickPlayer);
 
   async function onClickOpen(e) {
+
+    const teamRef = document.querySelector('.team-list');
+    teamRef.innerHTML = '';
+
     if (
       e.target === e.currentTarget ||
       e.target.nodeName === `BUTTON` ||
