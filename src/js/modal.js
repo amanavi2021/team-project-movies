@@ -164,7 +164,7 @@ export function toggleModal() {
   // }
 
   async function renderList(movie) {
-    // console.log('renderList called with movie:', movie);
+  //  console.log('renderList called with movie:', movie);
     await apiService.saveGenresToLocalStorage();
     const genres = localStore.load('genres') || [];
     // console.log('GENRES', genres);

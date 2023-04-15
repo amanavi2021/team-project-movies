@@ -3,7 +3,8 @@ import onLoad from './onLoad';
 import apiService from './apiService';
 import localstorage from './service/localstorage';
 import renderFilms from './renderFilms';
-import showPlayBtnAfterImgLoad from './service/play-btn-delay'
+import showPlayBtnAfterImgLoad from './service/play-btn-delay';
+import localStore from './service/localstorage';
 
 const NUMBER_PAGINATION = 5;
 const cardContainerEl = document.querySelector('.gallery');
@@ -165,7 +166,9 @@ async function onBigPaginationBtnClickrRenderFilms(currentPage, currentSearchWor
     
     try {  
         const movies = await apiService.fetchFilmByName();  // чекаємо результатів пошуку
-      
+        // Якщо ЗНАЙДЕНО, записуємо в localStoridge 
+        localStore.save('currentFilms', movies);
+        
         appendFromLocalStorage(movies.results);   // рендер карток фільмів, отриманих з фетчу
     }
     catch {
