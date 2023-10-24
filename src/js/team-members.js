@@ -16,7 +16,7 @@ const teamMembers = [
     github: 'https://github.com/Oleksandr-Karpiuk',
     linkedin: 'https://www.linkedin.com/in/oleksandr-karpiuk/',
     photo:
-      'https://media.licdn.com/dms/image/D4E03AQHaiyyHccyRGg/profile-displayphoto-shrink_200_200/0/1680380173309?e=1686182400&v=beta&t=N-mOTz8Drif8wND3Ba9EZb9o3lsC8ZuSTgY3uNj0hEY',
+      'https://media.licdn.com/dms/image/D4E03AQHaiyyHccyRGg/profile-displayphoto-shrink_200_200/0/1680380173309?e=1703721600&v=beta&t=iR-s-k63Diw0YIy4rvfTFLslpo6BrcKI2jJw63ZCNAc',
   },
   {
     name: 'Olga Tolstykhina',
@@ -25,8 +25,7 @@ const teamMembers = [
     roleUa: 'Розробник',
     github: 'https://github.com/OlgaT0709',
     linkedin: 'https://www.linkedin.com/in/olga-tolstikhina-developer/',
-    photo:
-      'https://media.licdn.com/dms/image/D4E03AQEc2RMSdFKOrQ/profile-displayphoto-shrink_200_200/0/1676054506466?e=1686182400&v=beta&t=4axleVyVdGpt4lIyeGPllJmUGqvdUARBSkCx3gONCxo',
+    photo: 'https://avatars.githubusercontent.com/u/113298274?v=4',
   },
   {
     name: 'Liliia Paliichuk',
@@ -36,7 +35,7 @@ const teamMembers = [
     github: 'https://github.com/lili2628',
     linkedin: 'https://www.linkedin.com/in/liliia-paliichuk-a0605579/',
     photo:
-      'https://media.licdn.com/dms/image/D4D03AQHYIP070mnk_w/profile-displayphoto-shrink_200_200/0/1680300560019?e=1686787200&v=beta&t=7TfKO3TD7yBkamExj-ZTNr1y90qD4lROolzu14p-9uo',
+      'https://media.licdn.com/dms/image/D4D03AQHYIP070mnk_w/profile-displayphoto-shrink_200_200/0/1680300560019?e=1703721600&v=beta&t=lMH-PLkNqd8AScUrwdlDE7F7mzdtCEHouv8XbBqyfrE',
   },
   {
     name: 'Natalia Malovana',
@@ -74,7 +73,7 @@ const teamMembers = [
     github: 'https://github.com/WipeRrr',
     linkedin: 'https://www.linkedin.com/in/anatoliy-matsakov-85b934261/',
     photo:
-      'https://media.licdn.com/dms/image/D4E35AQFUYf4luMB9Iw/profile-framedphoto-shrink_200_200/0/1681211227225?e=1681822800&v=beta&t=KEFcU3PId1osfxzCYemK5jaOKx7NEQmr6s9ZWL2nL8c',
+      'https://media.licdn.com/dms/image/D4E03AQG_dNU1r3eqhg/profile-displayphoto-shrink_200_200/0/1681211225424?e=1703721600&v=beta&t=M2Nlf5C9PIlzF4YKzLwA_nJ2xoti44jDFJ9s0QnXaXs',
   },
   {
     name: 'Olesia Manina',
@@ -84,7 +83,7 @@ const teamMembers = [
     github: 'https://github.com/OlesiaManina',
     linkedin: 'https://www.linkedin.com/in/olesia-manina-206592271/',
     photo:
-      'https://media.licdn.com/dms/image/D5603AQEBcXzDdzgetA/profile-displayphoto-shrink_200_200/0/1681136399432?e=1686787200&v=beta&t=39wY9bA1tuVhVuxNQFdnP0-bmNZcD037Qy-cCT-CYLw',
+      'https://media.licdn.com/dms/image/D5603AQEBcXzDdzgetA/profile-displayphoto-shrink_200_200/0/1681136399432?e=1703721600&v=beta&t=wz5xxsrAQLqPsiaJ6LnHi7nkORj7oW8HY2MAPVfw3fw',
   },
   {
     name: 'Pavlo Stakhovsky',
@@ -99,15 +98,17 @@ const teamMembers = [
   {
     name: 'Yaroslav Voinalovich',
     uaName: 'Ярослав Войналович',
+    role: 'Developer',
     roleUa: 'Розробник',
     github: 'https://github.com/Voinalovych91',
     linkedin: 'https://www.linkedin.com/in/yaroslav-voinalovich-8a2b87271/',
     photo:
-      'https://media.licdn.com/dms/image/D4E03AQF8AcETaCzbOw/profile-displayphoto-shrink_200_200/0/1681232134819?e=1686787200&v=beta&t=tVjtXbBPrWdnVygwwazXdjR-4OExYCl2cr5PjCG2obI',
+      'https://media.licdn.com/dms/image/D4E03AQF8AcETaCzbOw/profile-displayphoto-shrink_200_200/0/1681232134819?e=1703721600&v=beta&t=NDHcf5xF8WkLBx0BCjVnghJgvKuyQk9EU_KkaoQKgMk',
   },
   {
     name: 'Yaroslav Hrytsutenko',
     uaName: 'Ярослав Гриценко',
+    role: 'Developer',
     roleUa: 'Розробник',
     github: 'https://github.com/HrytsutenkoYaroslav',
     linkedin: 'https://www.linkedin.com/in/yaroslav-hrytsutenko-340538184/',
@@ -129,7 +130,7 @@ const isLanguageUA = localStorage.getItem('language') === 'ua';
 export function loadIntoTeamModal(teamMembers) {
   const markup = teamMembers
     .map(member => {
-      if(localStorage.getItem('language') === 'ua'){
+      if (localStorage.getItem('language') === 'ua') {
         return `
       <li class="member__card">
         <div class="member__thumb">        
@@ -150,9 +151,8 @@ export function loadIntoTeamModal(teamMembers) {
           <p class="member__role">${member.roleUa}</p>
         </div>
       </li>`;
-      }
-      else {
-             return `
+      } else {
+        return `
       <li class="member__card">
         <div class="member__thumb">        
             <img class="member__image" width='120' 
